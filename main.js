@@ -1137,8 +1137,8 @@ var BaseService = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         url = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["Constants"].k_BASE_WS_URL + '/' + webServiceName;
-                        console.log('\n\n', 'WEB SERVICE: ', url, '\n\n');
-                        console.log('\n\n', 'POST DATA: ', JSON.stringify([postData]), '\n\n');
+                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('\n\n', 'WEB SERVICE: ', url, '\n\n');
+                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('\n\n', 'POST DATA: ', JSON.stringify([postData]), '\n\n');
                         return [4 /*yield*/, this.http.sendRequest(url, {
                                 method: 'post',
                                 data: { vstrPostData: JSON.stringify([postData]) },
@@ -1148,13 +1148,13 @@ var BaseService = /** @class */ (function (_super) {
                                 var _this = this;
                                 return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                                     // prints 200
-                                    console.log(response.data);
+                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log(response.data);
                                     parser = new DOMParser();
                                     xml = parser.parseFromString(response.data, 'text/xml');
                                     obj = this.ngxXml2jsonService.xmlToJson(xml);
                                     arr = JSON.parse(obj['string']);
                                     resItem = arr[0];
-                                    console.log('\n\n', webServiceName, '\t\t', 'RESPONSE ITEM: ', resItem, '\n\n');
+                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('\n\n', webServiceName, '\t\t', 'RESPONSE ITEM: ', resItem, '\n\n');
                                     callback(resItem);
                                     if (!resItem || !resItem.status_code || resItem.status_code != 0 /* Success */) {
                                         strCode_1 = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["Constants"].d_WS_STATUS[resItem.status_code];
@@ -1181,9 +1181,9 @@ var BaseService = /** @class */ (function (_super) {
                                 var _this = this;
                                 return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                                     // prints 403
-                                    console.log(response.status);
+                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log(response.status);
                                     // prints Permission denied
-                                    console.log(response.error);
+                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log(response.error);
                                     callback(response.error);
                                     setTimeout(function () {
                                         _this.presentAlert('Error ' + response.status, response.error + '<br/><br/>Please try again later. Thanks.');
@@ -1199,18 +1199,18 @@ var BaseService = /** @class */ (function (_super) {
         });
     };
     // getWebService(webServiceName: any, postData: any, callback: (response: any) => void) {
-    //   console.log('GET WEB SERVICE: ', webServiceName);
-    //   console.log('GET DATA: ', postData);
+    //   config.log('GET WEB SERVICE: ', webServiceName);
+    //   config.log('GET DATA: ', postData);
     //   this.http.get(Constants.k_BASE_WS_URL + '/' + webServiceName, { vstrPostData: JSON.stringify([postData]) }, {})
     //     .then(response => {
     //       // prints 200
-    //       console.log(response.data);
+    //       config.log(response.data);
     //       const parser = new DOMParser();
     //       const xml = parser.parseFromString(response.data, 'text/xml');
     //       const obj = this.ngxXml2jsonService.xmlToJson(xml);
     //       const arr = JSON.parse(obj['string']);
     //       const resItem = arr[0];
-    //       console.log('GET RESPONSE ITEM: ', resItem);
+    //       config.log('GET RESPONSE ITEM: ', resItem);
     //       if (resItem.status_code != StatusCode.Success) {
     //         this.presentAlert(Constants.d_WS_STATUS[resItem.status_code], resItem.status_desc)
     //       }
@@ -1218,9 +1218,9 @@ var BaseService = /** @class */ (function (_super) {
     //     })
     //     .catch(response => {
     //       // prints 403
-    //       console.log(response.status);
+    //       config.log(response.status);
     //       // prints Permission denied
-    //       console.log(response.error);
+    //       config.log(response.error);
     //       // callback(response.error);
     //     });
     // }
@@ -1367,15 +1367,13 @@ var BasePagePage = /** @class */ (function () {
      */
     BasePagePage.prototype.dismissLoading = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        if (!(this.loadingCtrl.getTop() && this.loadingCtrl.getTop()['__zone_symbol__value'] && this.loadingCtrl.getTop()['__zone_symbol__value'] !== undefined)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.loadingCtrl.dismiss()];
+                    case 0: return [4 /*yield*/, this.loadingCtrl.getTop().then(function (v) { return v ? _this.loadingCtrl.dismiss() : null; })];
                     case 1:
                         _a.sent();
-                        _a.label = 2;
-                    case 2: return [2 /*return*/];
+                        return [2 /*return*/];
                 }
             });
         });
