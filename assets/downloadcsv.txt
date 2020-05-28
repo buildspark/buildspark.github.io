@@ -1,3 +1,0 @@
-<string xmlns="http://tempuri.org/">
-[{"status_code":"0","status_desc":"Success.","data":"[{\"filepath\":\"http://wshqmobile.thunderprint.org/csv/01112_WIP_2020_05_18_080633.csv\"}]"}]
-</string>
