@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.buildspark.insight" version="1.0.19" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Insight</name>
+    <description>This is Machine Insight app.</description>
+    <author email="buildspark.my@gmail.com" href="mailto:buildspark.my@gmail.com?Subject=Hi%2C%20Build%20Spark">Build Spark Team</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-navigation href="http://localhost:8101" sessionid="a07e3433" />
+    <allow-navigation href="http://localhost:8100" sessionid="8a0783c2" />
+    <preference name="orientation" value="portrait" />
+    <preference name="ScrollEnabled" value="false" />
+    <preference name="android-minSdkVersion" value="19" />
+    <preference name="BackupWebStorage" value="none" />
+</widget>
