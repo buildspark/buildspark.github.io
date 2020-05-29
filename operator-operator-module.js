@@ -317,7 +317,7 @@ var OperatorPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Operator\n    </ion-title>\n    <!-- <ion-buttons slot=\"end\" [hidden]=\"true\">\n      <ion-fab-button size=\"small\" (click)=\"closeMenu()\">\n        <ion-icon name=\"list-box\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons> -->\n    <ion-buttons slot=\"end\">\n      <ion-fab-button [disabled]=\"isButtonDisabled\" size=\"small\" color=\"danger\" (click)=\"onOptionClicked()\">\n        <ion-icon name=\"search\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <form (ngSubmit)=\"onSubmit(operatorForm)\" #operatorForm=\"ngForm\">\n    <ion-list>\n      <ion-item>\n\n        <!-- <ion-grid>\n            <ion-row>\n              <ion-col size=\"10\">\n                <ion-label>Machine Name</ion-label>\n                <ion-input type=\"text\" placeholder=\"Machine Name\" maxlength=\"50\" required [(ngModel)]=\"strMachineName\"\n                  name=\"machineName\"></ion-input>\n              </ion-col>\n              <ion-col size=\"2\">\n                <ion-button class=\"ion-float-right\"color=\"primary\" (click)=\"presentModal()\">\n                  <ion-icon name=\"options\"></ion-icon>\n                </ion-button>\n              </ion-col>\n            </ion-row>\n          </ion-grid> -->\n\n        <ion-label>Machine: </ion-label>\n        <ion-input type=\"text\" maxlength=\"50\" required [(ngModel)]=\"strMachineName\" (ngModelChange)=\"keyboardChanged()\"\n          name=\"machineName\"></ion-input>\n        <!-- <ion-button class=\"ion-float-right\" [disabled]=\"isButtonDisabled\" (click)=\"onOptionClicked()\"> -->\n          <!-- <ion-icon name=\"options\"></ion-icon> -->\n          <!-- <p>Select Machine</p>\n        </ion-button> -->\n\n      </ion-item>\n\n      <ion-item *ngFor=\"let transfile of arrTransfile;\">\n        <ion-grid>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Transfile ID</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.TransfileID}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Job No</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.JobNo}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Process Code</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.ProcessCode}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Start Datetime</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{readable(transfile.StartTime) | date:'yyyy-MM-dd, HH:mm:ss'}}\n              </ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row [style.background-color]=\"statusColor\" [hidden]=\"isFlash == true\">\n            <ion-col>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col>\n              <ion-label style=\"text-align: right;\">{{transfile.Status}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row [style.background-color]=\"none\" [hidden]=\"isFlash == false\">\n            <ion-col>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col>\n              <ion-label style=\"text-align: right;\">{{transfile.Status}}</ion-label>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n      <ion-item *ngIf=\"isIdle == true\">\n        <ion-grid>\n          <ion-row [style.background-color]=\"statusIdle\">\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">Idle</ion-label>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>\n\n<ion-content [hidden]=\"true\">\n  <p *ngIf=\"barcodeData\">\n    Scanned: {{barcodeData['text']}} | {{barcodeData['format']}}\n  </p>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar position=\"bottom\">\n    <ion-grid>\n      <ion-row>\n        <ion-col col-6>\n          <ion-button [disabled]=\"operatorForm.form.invalid\" class=\"obj-center\" color=\"warning\"\n            (click)=\"onResetClicked()\">\n            <div>\n              <p class=\"ion-no-margin\">Reset</p>\n            </div>\n          </ion-button>\n        </ion-col>\n        <ion-col col-6>\n\n          <div [hidden]=\"isMachineFound == true\">\n            <ion-button [disabled]=\"operatorForm.form.invalid\" class=\"obj-center\" (click)=\"onSearchJobClicked()\">\n              <p class=\"ion-no-margin\">Search Job</p>\n            </ion-button>\n          </div>\n\n          <div [hidden]=\"isMachineFound == false\">\n            <ion-button [disabled]=\"operatorForm.form.invalid\" color=\"danger\" class=\"obj-center\"\n              (click)=\"onMachineDownClicked()\">\n              <p class=\"ion-no-margin\">Machine Down</p>\n            </ion-button>\n          </div>\n\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button autoHide=\"false\"></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Operator\n    </ion-title>\n    <!-- <ion-buttons slot=\"end\" [hidden]=\"true\">\n      <ion-fab-button size=\"small\" (click)=\"closeMenu()\">\n        <ion-icon name=\"list-box\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons> -->\n    <ion-buttons slot=\"end\">\n      <ion-fab-button [disabled]=\"isButtonDisabled\" size=\"small\" color=\"danger\" (click)=\"onOptionClicked()\">\n        <ion-icon name=\"search\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <form (ngSubmit)=\"onSubmit(operatorForm)\" #operatorForm=\"ngForm\">\n    <ion-list>\n      <ion-item>\n\n        <!-- <ion-grid>\n            <ion-row>\n              <ion-col size=\"10\">\n                <ion-label>Machine Name</ion-label>\n                <ion-input type=\"text\" placeholder=\"Machine Name\" maxlength=\"50\" required [(ngModel)]=\"strMachineName\"\n                  name=\"machineName\"></ion-input>\n              </ion-col>\n              <ion-col size=\"2\">\n                <ion-button class=\"ion-float-right\"color=\"primary\" (click)=\"presentModal()\">\n                  <ion-icon name=\"options\"></ion-icon>\n                </ion-button>\n              </ion-col>\n            </ion-row>\n          </ion-grid> -->\n\n        <ion-label>Machine: </ion-label>\n        <ion-input type=\"text\" maxlength=\"50\" required [(ngModel)]=\"strMachineName\" (ngModelChange)=\"keyboardChanged()\"\n          name=\"machineName\"></ion-input>\n        <!-- <ion-button class=\"ion-float-right\" [disabled]=\"isButtonDisabled\" (click)=\"onOptionClicked()\"> -->\n          <!-- <ion-icon name=\"options\"></ion-icon> -->\n          <!-- <p>Select Machine</p>\n        </ion-button> -->\n\n      </ion-item>\n\n      <ion-item *ngFor=\"let transfile of arrTransfile;\">\n        <ion-grid>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Transfile ID</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.TransfileID}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Job No</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.JobNo}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Process Code</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.ProcessCode}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Start Datetime</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{readable(transfile.StartTime) | date:'yyyy-MM-dd, HH:mm:ss'}}\n              </ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row [style.background-color]=\"statusColor\" [hidden]=\"isFlash == true\">\n            <ion-col>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col>\n              <ion-label style=\"text-align: right;\">{{transfile.Status}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row [style.background-color]=\"none\" [hidden]=\"isFlash == false\">\n            <ion-col>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col>\n              <ion-label style=\"text-align: right;\">{{transfile.Status}}</ion-label>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n      <ion-item *ngIf=\"isIdle == true\">\n        <ion-grid>\n          <ion-row [style.background-color]=\"statusIdle\">\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">Idle</ion-label>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>\n\n<ion-content [hidden]=\"true\">\n  <p *ngIf=\"barcodeData\">\n    Scanned: {{barcodeData['text']}} | {{barcodeData['format']}}\n  </p>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar position=\"bottom\">\n    <ion-grid>\n      <ion-row>\n        <ion-col col-6>\n          <ion-button [disabled]=\"operatorForm.form.invalid\" class=\"obj-center\" color=\"warning\"\n            (click)=\"onResetClicked()\">\n            <div>\n              <p class=\"ion-no-margin\">Reset</p>\n            </div>\n          </ion-button>\n        </ion-col>\n        <ion-col col-6>\n\n          <div [hidden]=\"isMachineFound == true\">\n            <ion-button [disabled]=\"operatorForm.form.invalid\" class=\"obj-center\" (click)=\"onSearchJobClicked()\">\n              <p class=\"ion-no-margin\">Search Job</p>\n            </ion-button>\n          </div>\n\n          <div [hidden]=\"isMachineFound == false\">\n            <ion-button [disabled]=\"operatorForm.form.invalid\" color=\"danger\" class=\"obj-center\"\n              (click)=\"onMachineDownClicked()\">\n              <p class=\"ion-no-margin\">Machine Down</p>\n            </ion-button>\n          </div>\n\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>"
 
 /***/ }),
 
@@ -443,13 +443,13 @@ var OperatorPage = /** @class */ (function (_super) {
     OperatorPage.prototype.callWSToGetPreselectionData = function () {
         var _this = this;
         this.storage.get(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_MACHINE).then(function (machine) {
-            if (!(machine == undefined || machine == null)) {
-                var item = machine;
-                _this.strMachineName = item.selected.name;
-                _this.transfileReqModel.machineid = String(item.selected.value);
+            if (!(machine == undefined || machine == null || machine.selected == null)) {
+                _this.strMachineName = machine.selected.name;
+                _this.transfileReqModel.machineid = String(machine.selected.value);
                 _this.arrTransfile = [];
                 _this.service.presentLoading(true);
                 _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, _this.transfileReqModel, function (res) {
+                    _this.service.dismissLoading();
                     _this.afterGetTransfile(res);
                     if (_this.arrTransfile && _this.arrTransfile.length > 0 && _this.arrTransfile[0].Status) {
                         var strMachineStatus = String(_this.arrTransfile[0].Status);
@@ -460,6 +460,7 @@ var OperatorPage = /** @class */ (function (_super) {
                                     _this.arrMachineDown = [];
                                     _this.service.presentLoading(true);
                                     _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_ISSUE_MDOWN, _this.issueMachineDownReqModel, function (res) {
+                                        _this.service.dismissLoading();
                                         if (res.status_code == 0 /* Success */) {
                                             _this.arrMachineDown = JSON.parse(res.data);
                                             _this.service.setData('downstart', {
@@ -467,19 +468,13 @@ var OperatorPage = /** @class */ (function (_super) {
                                                 'sms': _this.smsReqModel,
                                                 'transfile': _this.arrTransfile[0]
                                             });
-                                            if (_this.navCtrl.navigateForward('/operator/machine-down/downstart')) {
-                                                _this.service.dismissLoading();
-                                            }
-                                        }
-                                        else {
-                                            _this.service.dismissLoading();
+                                            _this.navCtrl.navigateForward('/operator/machine-down/downstart');
                                         }
                                     }, false);
                                 }
                             }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK]);
                         }
                     }
-                    _this.service.dismissLoading();
                 }, false);
             }
         });
@@ -567,8 +562,8 @@ var OperatorPage = /** @class */ (function (_super) {
                                 _this.arrTransfile = [];
                                 _this.service.presentLoading(true);
                                 _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, _this.transfileReqModel, function (res) {
-                                    _this.afterGetTransfile(res);
                                     _this.service.dismissLoading();
+                                    _this.afterGetTransfile(res);
                                 }, false);
                             }
                         });
@@ -587,8 +582,8 @@ var OperatorPage = /** @class */ (function (_super) {
         this.arrTransfile = [];
         this.service.presentLoading(true);
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, this.transfileReqModel, function (res) {
-            _this.afterGetTransfile(res);
             _this.service.dismissLoading();
+            _this.afterGetTransfile(res);
         }, false);
     };
     OperatorPage.prototype.afterGetTransfile = function (response) {
@@ -612,7 +607,7 @@ var OperatorPage = /** @class */ (function (_super) {
                 value: this.transfileReqModel.machineid
             };
             this.storage.get(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_MACHINE).then(function (machine) {
-                if (machine == undefined || machine == null) {
+                if (machine == undefined || machine == null || machine.list == null || machine.list.length == 0) {
                     cache.list = [];
                 }
                 else {
@@ -655,24 +650,21 @@ var OperatorPage = /** @class */ (function (_super) {
         this.arrMachineDown = [];
         this.service.presentLoading(true);
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_ISSUE_MDOWN, this.issueMachineDownReqModel, function (res) {
+            _this.service.dismissLoading();
             if (res.status_code == 0 /* Success */) {
                 _this.arrMachineDown = JSON.parse(res.data);
                 _this.arrTransfile = [];
+                _this.service.presentLoading(true);
                 _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, _this.transfileReqModel, function (res) {
+                    _this.service.dismissLoading();
                     _this.afterGetTransfile(res);
                     _this.service.setData('downstart', {
                         'machineDown': _this.arrMachineDown[0],
                         'sms': _this.smsReqModel,
                         'transfile': _this.arrTransfile[0]
                     });
-                    if (_this.navCtrl.navigateForward('/operator/machine-down/downstart')) {
-                        _this.service.dismissLoading();
-                    }
-                    ;
+                    _this.navCtrl.navigateForward('/operator/machine-down/downstart');
                 }, false);
-            }
-            else {
-                _this.service.dismissLoading();
             }
         }, false);
     };
@@ -1014,7 +1006,7 @@ var SelMachineComponent = /** @class */ (function (_super) {
         var _this = this;
         this.machineReqModel.process = this.navParams.data.arrSelectedProcess;
         this.storage.get(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_5__["Constants"].c_OP_MACHINE).then(function (machine) {
-            if (machine == null || machine.length == 0) {
+            if (machine == null || machine.list == null || machine.list.length == 0) {
                 _this.storage.get(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_5__["Constants"].c_ACCESS_TOKEN).then(function (accessToken) {
                     _this.machineReqModel.accesstoken = accessToken;
                     _this.service.presentLoading(true);

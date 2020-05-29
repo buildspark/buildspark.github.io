@@ -191,7 +191,7 @@ var OutputPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n      <!-- <ion-menu-button></ion-menu-button> -->\n    </ion-buttons>\n    <ion-title>\n      Machine Output\n    </ion-title>\n    <!-- <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" (click)=\"selectMachine()\">\n        <ion-icon name=\"list-box\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons> -->\n    <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" (click)=\"downloadcsv()\">\n        <ion-icon name=\"download\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-card>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"10\">\n          <div class=\"vertical-align-content\">\n            <p>{{ isAccum ? 'Accumulated' : 'Non-accumulated' }}</p>\n          </div>\n        </ion-col>\n        <ion-col size=\"2\">\n          <ion-toggle style=\"float: right;\" (ionChange)=\"updatePackaging($event)\" [checked]=\"isAccum\"></ion-toggle>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n\n  <mat-tab-group #tabGroup [selectedIndex]=\"selectedTab\" (selectedTabChange)=\"onTabChanged($event)\">\n    <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">query_builder</mat-icon>\n        Hourly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              On this day\n              <ion-item>\n                <ion-datetime displayFormat=\"DD MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"wipReqModel.date\" (ionChange)=\"onWipHourlySelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewOutputDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas [hidden]=\"isAccum == false\" *ngFor=\"let chart of arrOutputAccum;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n      <chart-canvas [hidden]=\"isAccum == true\" *ngFor=\"let chart of arrOutputNonAccum;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab>\n\n    <!-- <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">calendar_today</mat-icon>\n        Daily\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              On this day\n              <ion-item>\n                <ion-datetime displayFormat=\"DD MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"wipReqModel.date\" (ionChange)=\"onWipHourlySelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewOutputDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrDailyCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab> -->\n\n    <!-- <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">trending_up</mat-icon>\n        Yearly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              From\n              <ion-item>\n                <ion-datetime displayFormat=\"YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"yearlyReqModel.datefrom\" (ionChange)=\"onFromYearlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col>\n            <div>\n              To\n              <ion-item>\n                <ion-datetime displayFormat=\"YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"yearlyReqModel.dateto\" (ionChange)=\"onToYearlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewYearlyDateClicked()\">View date</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrYearlyCharts;\" [data]=\"chart\"  [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab> -->\n  </mat-tab-group>\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n      <!-- <ion-menu-button></ion-menu-button> -->\n    </ion-buttons>\n    <ion-title>\n      Machine Output\n    </ion-title>\n    <!-- <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" (click)=\"selectMachine()\">\n        <ion-icon name=\"list-box\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons> -->\n    <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" (click)=\"downloadcsv()\">\n        <ion-icon name=\"download\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-card>\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <div class=\"vertical-align-content\">\n            <p>{{ isPack ? 'Packaging' : 'Non-packaging' }}</p>\n          </div>\n        </ion-col>\n        <ion-col>\n          <ion-toggle style=\"float: right;\" (ionChange)=\"updatePackaging($event)\" [checked]=\"isPack\"></ion-toggle>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n  <ion-card>\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <div class=\"vertical-align-content\">\n            <p>{{ isAccum ? 'Accumulated' : 'Non-accumulated' }}</p>\n          </div>\n        </ion-col>\n        <ion-col>\n          <ion-toggle style=\"float: right;\" (ionChange)=\"updateAccumulated($event)\" [checked]=\"isAccum\"></ion-toggle>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n\n  <mat-tab-group #tabGroup [selectedIndex]=\"selectedTab\" (selectedTabChange)=\"onTabChanged($event)\">\n    <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">query_builder</mat-icon>\n        Hourly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              On this day\n              <ion-item>\n                <ion-datetime displayFormat=\"DD MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"wipReqModel.date\" (ionChange)=\"onWipHourlySelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewOutputDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas [hidden]=\"isAccum == false || isPack == false\" *ngFor=\"let chart of arrOutputAccumPack;\"\n        [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n      <chart-canvas [hidden]=\"isAccum == true || isPack == false\" *ngFor=\"let chart of arrOutputNonAccumPack;\"\n        [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n      <chart-canvas [hidden]=\"isAccum == false || isPack == true\" *ngFor=\"let chart of arrOutputAccumNonPack;\"\n        [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n      <chart-canvas [hidden]=\"isAccum == true || isPack == true\" *ngFor=\"let chart of arrOutputNonAccumNonPack;\"\n        [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab>\n\n    <!-- <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">calendar_today</mat-icon>\n        Daily\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              On this day\n              <ion-item>\n                <ion-datetime displayFormat=\"DD MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"wipReqModel.date\" (ionChange)=\"onWipHourlySelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewOutputDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrDailyCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab> -->\n\n    <!-- <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">trending_up</mat-icon>\n        Yearly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              From\n              <ion-item>\n                <ion-datetime displayFormat=\"YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"yearlyReqModel.datefrom\" (ionChange)=\"onFromYearlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col>\n            <div>\n              To\n              <ion-item>\n                <ion-datetime displayFormat=\"YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"yearlyReqModel.dateto\" (ionChange)=\"onToYearlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewYearlyDateClicked()\">View date</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrYearlyCharts;\" [data]=\"chart\"  [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab> -->\n  </mat-tab-group>\n\n</ion-content>"
 
 /***/ }),
 
@@ -258,8 +258,10 @@ var OutputPage = /** @class */ (function (_super) {
         _this.arrDailyCharts = [];
         _this.arrMonthlyCharts = [];
         _this.arrYearlyCharts = [];
-        _this.arrOutputAccum = [];
-        _this.arrOutputNonAccum = [];
+        _this.arrOutputAccumPack = [];
+        _this.arrOutputNonAccumPack = [];
+        _this.arrOutputAccumNonPack = [];
+        _this.arrOutputNonAccumNonPack = [];
         _this.customActionSheetOptions = {
             header: 'Machines',
             subHeader: 'Select the machine(s) you want to view'
@@ -270,8 +272,10 @@ var OutputPage = /** @class */ (function (_super) {
         _this.accessToken = '';
         _this.deptReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["AccessTokenModel"]();
         _this.wipReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["WIPModel"](2 /* Output */);
-        _this.outputAccumReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["AccumulatedOutputModel"]();
-        _this.outputNonAccumReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["AccumulatedOutputModel"]();
+        _this.outputAccumPackReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["AccumulatedOutputModel"]();
+        _this.outputNonAccumPackReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["AccumulatedOutputModel"]();
+        _this.outputAccumNonPackReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["AccumulatedOutputModel"]();
+        _this.outputNonAccumNonPackReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["AccumulatedOutputModel"]();
         _this.monthlyReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["UsageOrImpressionModel"]();
         _this.yearlyReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["UsageOrImpressionModel"]();
         // emailReqModel: EmailModel = new EmailModel(WSTypeCode.Output);
@@ -280,13 +284,14 @@ var OutputPage = /** @class */ (function (_super) {
         _this.yesterdayDate = moment__WEBPACK_IMPORTED_MODULE_6__().add(-1, 'days').format("YYYY-MM-DD");
         _this.minDate = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_MIN_DATE_2020;
         _this.isAccum = true;
+        _this.isPack = true;
         _this.checkBoxList = [];
         _this.strChartTitle = _this.router.url.replace(/[^a-zA-Z0-9 ]/g, "");
         // this.storage.get(Constants.c_ACCESS_TOKEN).then((accessToken) => {
         // this.accessToken = accessToken;
         // this.deptReqModel.accesstoken = accessToken;
         // this.emailReqModel.accesstoken = accessToken;
-        // this.outputAccumReqModel.accesstoken = accessToken;
+        // this.outputAccumPackReqModel.accesstoken = accessToken;
         // this.monthlyReqModel.accesstoken = accessToken;
         // this.monthlyReqModel.datefrom = this.standardDateTime(this.currentDate);
         // this.monthlyReqModel.dateto = this.standardDateTime(this.currentDate);
@@ -318,20 +323,34 @@ var OutputPage = /** @class */ (function (_super) {
             _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log("GET DATA FROM PROCESS: ", JSON.stringify([_this.wipReqModel]));
             _this.downloadCSVReqModel.dept = _this.wipReqModel.dept;
             _this.downloadCSVReqModel.process = _this.wipReqModel.process;
-            _this.outputAccumReqModel.date = _this.wipReqModel.date;
-            _this.outputAccumReqModel.dept = _this.wipReqModel.dept;
-            _this.outputAccumReqModel.process = _this.wipReqModel.process;
-            _this.outputAccumReqModel.accumulated = 1 /* Accum */;
-            _this.outputNonAccumReqModel.date = _this.wipReqModel.date;
-            _this.outputNonAccumReqModel.dept = _this.wipReqModel.dept;
-            _this.outputNonAccumReqModel.process = _this.wipReqModel.process;
-            _this.outputNonAccumReqModel.accumulated = 0 /* NonAccum */;
+            _this.outputAccumPackReqModel.date = _this.wipReqModel.date;
+            _this.outputAccumPackReqModel.dept = _this.wipReqModel.dept;
+            _this.outputAccumPackReqModel.process = _this.wipReqModel.process;
+            _this.outputAccumPackReqModel.accumulated = 1 /* Accum */;
+            _this.outputAccumPackReqModel.packaging = 1 /* Pack */;
+            _this.outputNonAccumPackReqModel.date = _this.wipReqModel.date;
+            _this.outputNonAccumPackReqModel.dept = _this.wipReqModel.dept;
+            _this.outputNonAccumPackReqModel.process = _this.wipReqModel.process;
+            _this.outputNonAccumPackReqModel.accumulated = 0 /* NonAccum */;
+            _this.outputNonAccumPackReqModel.packaging = 1 /* Pack */;
+            _this.outputAccumNonPackReqModel.date = _this.wipReqModel.date;
+            _this.outputAccumNonPackReqModel.dept = _this.wipReqModel.dept;
+            _this.outputAccumNonPackReqModel.process = _this.wipReqModel.process;
+            _this.outputAccumNonPackReqModel.accumulated = 1 /* Accum */;
+            _this.outputAccumNonPackReqModel.packaging = 0 /* NonPack */;
+            _this.outputNonAccumNonPackReqModel.date = _this.wipReqModel.date;
+            _this.outputNonAccumNonPackReqModel.dept = _this.wipReqModel.dept;
+            _this.outputNonAccumNonPackReqModel.process = _this.wipReqModel.process;
+            _this.outputNonAccumNonPackReqModel.accumulated = 0 /* NonAccum */;
+            _this.outputNonAccumNonPackReqModel.packaging = 0 /* NonPack */;
             _this.storage.get(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_ACCESS_TOKEN).then(function (accessToken) {
                 _this.accessToken = accessToken;
                 _this.deptReqModel.accesstoken = accessToken;
                 _this.downloadCSVReqModel.accesstoken = accessToken;
-                _this.outputAccumReqModel.accesstoken = accessToken;
-                _this.outputNonAccumReqModel.accesstoken = accessToken;
+                _this.outputAccumPackReqModel.accesstoken = accessToken;
+                _this.outputNonAccumPackReqModel.accesstoken = accessToken;
+                _this.outputAccumNonPackReqModel.accesstoken = accessToken;
+                _this.outputNonAccumNonPackReqModel.accesstoken = accessToken;
                 _this.callWSToReloadPagesData();
             });
         }
@@ -341,19 +360,31 @@ var OutputPage = /** @class */ (function (_super) {
     };
     OutputPage.prototype.callWSToReloadPagesData = function () {
         var _this = this;
-        this.arrOutputAccum = [];
-        this.arrOutputNonAccum = [];
-        var response1 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_OUTPUT, this.outputAccumReqModel, function (res) {
+        this.arrOutputAccumPack = [];
+        this.arrOutputNonAccumPack = [];
+        this.arrOutputAccumNonPack = [];
+        this.arrOutputNonAccumNonPack = [];
+        var response1 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_OUTPUT, this.outputAccumPackReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
-                _this.arrOutputAccum = JSON.parse(res.data);
+                _this.arrOutputAccumPack = JSON.parse(res.data);
             }
         }, false);
-        var response2 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_OUTPUT, this.outputNonAccumReqModel, function (res) {
+        var response2 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_OUTPUT, this.outputNonAccumPackReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
-                _this.arrOutputNonAccum = JSON.parse(res.data);
+                _this.arrOutputNonAccumPack = JSON.parse(res.data);
             }
         }, false);
-        this.service.callWebServiceSimultaneously([response1, response2]);
+        var response3 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_OUTPUT, this.outputAccumNonPackReqModel, function (res) {
+            if (res && res.data && res.data != '' && res.data != '-') {
+                _this.arrOutputAccumNonPack = JSON.parse(res.data);
+            }
+        }, false);
+        var response4 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_OUTPUT, this.outputNonAccumNonPackReqModel, function (res) {
+            if (res && res.data && res.data != '' && res.data != '-') {
+                _this.arrOutputNonAccumNonPack = JSON.parse(res.data);
+            }
+        }, false);
+        this.service.callWebServiceSimultaneously([response1, response2, response3, response4]);
     };
     OutputPage.prototype.onWipHourlySelected = function (item) {
     };
@@ -385,8 +416,11 @@ var OutputPage = /** @class */ (function (_super) {
             this.yearlyReqModel.datefrom = this.yearlyReqModel.dateto;
         }
     };
-    OutputPage.prototype.updatePackaging = function ($event) {
+    OutputPage.prototype.updateAccumulated = function ($event) {
         this.isAccum = !this.isAccum;
+    };
+    OutputPage.prototype.updatePackaging = function ($event) {
+        this.isPack = !this.isPack;
     };
     OutputPage.prototype.selectMachine = function () {
         // this.selectPop.open()
@@ -414,8 +448,8 @@ var OutputPage = /** @class */ (function (_super) {
     };
     OutputPage.prototype.onViewOutputDateClicked = function () {
         this.wipReqModel.date = this.standardDateTime(this.wipReqModel.date);
-        this.outputAccumReqModel.date = this.wipReqModel.date;
-        this.outputNonAccumReqModel.date = this.wipReqModel.date;
+        this.outputAccumPackReqModel.date = this.wipReqModel.date;
+        this.outputNonAccumPackReqModel.date = this.wipReqModel.date;
         this.callWSToReloadPagesData();
     };
     OutputPage.prototype.random_rgb = function () {

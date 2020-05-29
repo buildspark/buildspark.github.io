@@ -1129,7 +1129,17 @@ var BaseService = /** @class */ (function () {
         this.plt = plt;
         this.data = [];
         this.alertPresented = false;
+        this.innerWidth = window.innerWidth;
+        this.innerHeight = window.innerHeight;
+        console.log('HEIGHT: ', this.innerHeight);
+        console.log('WIDTH: ', this.innerWidth);
     }
+    BaseService.prototype.onResize = function (event) {
+        this.innerWidth = event.target.innerWidth;
+        this.innerHeight = event.target.innerHeight;
+        console.log('RESIZE HEIGHT: ', this.innerHeight);
+        console.log('RESIZE WIDTH: ', this.innerWidth);
+    };
     BaseService.prototype.setData = function (id, data) {
         this.data[id] = data;
     };
@@ -1144,8 +1154,8 @@ var BaseService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         url = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["Constants"].k_BASE_WS_URL + '/' + webServiceName;
-                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('\n\n', 'WEB SERVICE: ', url, '\n\n');
-                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('\n\n', 'POST DATA: ', JSON.stringify([postData]), '\n\n');
+                        console.log('\n\n', 'WEB SERVICE: ', url, '\n\n');
+                        console.log('\n\n', 'POST DATA: ', JSON.stringify([postData]), '\n\n');
                         // Http Options
                         // const httpOptions = {
                         //   headers: new HttpHeaders({
@@ -1165,15 +1175,15 @@ var BaseService = /** @class */ (function () {
                         //       const obj = this.ngxXml2jsonService.xmlToJson(xml);
                         //       const arr = JSON.parse(obj['string']);
                         //       const resItem = arr[0];
-                        //       config.log('resItem: ', resItem)
+                        //       console.log('resItem: ', resItem)
                         //       callback(resItem);
                         //     },
-                        //     err => config.log('something went wrong: ', err)
+                        //     err => console.log('something went wrong: ', err)
                         //   );
                         //   return;
                         // }
-                        // config.log('-------------------CHECK-------------------');
-                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('present needShowLoad: ', needShowLoad);
+                        // console.log('-------------------CHECK-------------------');
+                        console.log('present needShowLoad: ', needShowLoad);
                         this.presentLoading(needShowLoad);
                         return [4 /*yield*/, this.http.sendRequest(url, {
                                 method: 'post',
@@ -1188,7 +1198,8 @@ var BaseService = /** @class */ (function () {
                                     obj = this.ngxXml2jsonService.xmlToJson(xml);
                                     arr = JSON.parse(obj['string']);
                                     resItem = arr[0];
-                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('\n\n', webServiceName, '\t\t', 'RESPONSE ITEM: ', resItem, '\n\n');
+                                    console.log('REQUEST: ', JSON.stringify([postData]));
+                                    console.log('\n\n', webServiceName, '\t\t', 'RESPONSE ITEM: ', resItem, '\n\n');
                                     if (needShowLoad == true) {
                                         this.dismissLoading();
                                     }
@@ -1219,7 +1230,7 @@ var BaseService = /** @class */ (function () {
                             }); }).catch(function (response) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
                                 return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                                     // prints 403
-                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('catch error: ', response);
+                                    console.log('catch error: ', response);
                                     // prints Permission denied
                                     if (needShowLoad == true) {
                                         this.dismissLoading();
@@ -1264,18 +1275,18 @@ var BaseService = /** @class */ (function () {
         });
     };
     // getWebService(webServiceName: any, postData: any, callback: (response: any) => void) {
-    //   config.log('GET WEB SERVICE: ', webServiceName);
-    //   config.log('GET DATA: ', postData);
+    //   console.log('GET WEB SERVICE: ', webServiceName);
+    //   console.log('GET DATA: ', postData);
     //   this.http.get(Constants.k_BASE_WS_URL + '/' + webServiceName, { vstrPostData: JSON.stringify([postData]) }, {})
     //     .then(response => {
     //       // prints 200
-    //       config.log(response.data);
+    //       console.log(response.data);
     //       const parser = new DOMParser();
     //       const xml = parser.parseFromString(response.data, 'text/xml');
     //       const obj = this.ngxXml2jsonService.xmlToJson(xml);
     //       const arr = JSON.parse(obj['string']);
     //       const resItem = arr[0];
-    //       config.log('GET RESPONSE ITEM: ', resItem);
+    //       console.log('GET RESPONSE ITEM: ', resItem);
     //       if (resItem.status_code != StatusCode.Success) {
     //         this.presentAlert(Constants.d_WS_STATUS[resItem.status_code], resItem.status_desc)
     //       }
@@ -1283,9 +1294,9 @@ var BaseService = /** @class */ (function () {
     //     })
     //     .catch(response => {
     //       // prints 403
-    //       config.log(response.status);
+    //       console.log(response.status);
     //       // prints Permission denied
-    //       config.log(response.error);
+    //       console.log(response.error);
     //       // callback(response.error);
     //     });
     // }
@@ -1321,8 +1332,8 @@ var BaseService = /** @class */ (function () {
     BaseService.prototype.screenSize = function () {
         var _this = this;
         this.plt.ready().then(function (readySource) {
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('Width: ' + _this.plt.width());
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('Height: ' + _this.plt.height());
+            console.log('Width: ' + _this.plt.width());
+            console.log('Height: ' + _this.plt.height());
         });
         return {
             'screenWidth': this.plt.width(),
@@ -1330,19 +1341,19 @@ var BaseService = /** @class */ (function () {
         };
     };
     BaseService.prototype.presentLoading = function (needLoading) {
-        if (this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('not null: ', this.loadingCtrl.getTop());
+        if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
+            console.log('not null: ', this.loadingCtrl.getTop());
             this.dismissLoading();
         }
         var action;
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('load mou? ', needLoading);
+        console.log('load mou? ', needLoading);
         if (needLoading == true) {
             action = this.loadingCtrl.create({
             // duration: this.loadingDuration,
             }).then(function (a) {
-                _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('presentation: ', a);
+                console.log('presentation: ', a);
                 a.present().then(function () {
-                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('presented');
+                    console.log('presented');
                     // a.dismiss();
                 });
             });
@@ -1359,27 +1370,22 @@ var BaseService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.loadingCtrl.dismiss().then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
                             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        if (!(this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined)) return [3 /*break*/, 2];
-                                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('dismissed: ', this.loadingCtrl.getTop());
-                                        return [4 /*yield*/, this.loadingCtrl.dismiss()];
-                                    case 1:
-                                        _a.sent();
-                                        _a.label = 2;
-                                    case 2: return [2 /*return*/];
-                                }
+                                return [2 /*return*/];
                             });
-                        }); })];
-                    case 1: 
-                    // if (this.loadingCtrl.getTop()['__zone_symbol__value'] !== undefined) {
-                    //   action = this.loadingCtrl.dismiss().then(() => config.log('dismissed'));
-                    // }
-                    return [2 /*return*/, _a.sent()];
+                        }); }).catch(function (error) {
+                            console.log('DISMISS ERROR: ', error);
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('window:resize', ['$event']),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Function),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object]),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:returntype", void 0)
+    ], BaseService.prototype, "onResize", null);
     BaseService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
