@@ -1366,7 +1366,7 @@ var BaseService = /** @class */ (function () {
             });
         }
     };
-    BaseService.prototype.dismissLoading = function () {
+    BaseService.prototype.dismissLoading = function (callback) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
@@ -1376,6 +1376,13 @@ var BaseService = /** @class */ (function () {
                         return [4 /*yield*/, this.loadingCtrl.dismiss().then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
                                 return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                                     console.log('AFTER DISMISS: ', this.loadingCtrl);
+                                    // if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
+                                    //   config.log('dismissed: ', this.loadingCtrl.getTop());
+                                    //   await this.loadingCtrl.dismiss();
+                                    // }
+                                    if (callback) {
+                                        callback(true);
+                                    }
                                     return [2 /*return*/];
                                 });
                             }); }).catch(function (error) {
