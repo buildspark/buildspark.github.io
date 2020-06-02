@@ -1346,9 +1346,9 @@ var BaseService = /** @class */ (function () {
     };
     BaseService.prototype.presentLoading = function (needLoading) {
         var _this = this;
-        console.log('BEFORE LOAD: ', this.loadingCtrl);
+        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('BEFORE LOAD: ', this.loadingCtrl);
         if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
-            console.log('not null: ', this.loadingCtrl.getTop());
+            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('not null: ', this.loadingCtrl.getTop());
             this.dismissLoading();
         }
         var action;
@@ -1360,29 +1360,22 @@ var BaseService = /** @class */ (function () {
                 _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('presentation: ', a);
                 a.present().then(function () {
                     _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('presented');
-                    console.log('AFTER LOAD: ', _this.loadingCtrl);
+                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('AFTER LOAD: ', _this.loadingCtrl);
                     // a.dismiss();
                 });
             });
         }
     };
-    BaseService.prototype.dismissLoading = function (callback) {
+    BaseService.prototype.dismissLoading = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log('BEFORE DISMISS: ', this.loadingCtrl);
+                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('BEFORE DISMISS: ', this.loadingCtrl);
                         return [4 /*yield*/, this.loadingCtrl.dismiss().then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
                                 return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                                    console.log('AFTER DISMISS: ', this.loadingCtrl);
-                                    // if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
-                                    //   config.log('dismissed: ', this.loadingCtrl.getTop());
-                                    //   await this.loadingCtrl.dismiss();
-                                    // }
-                                    if (callback) {
-                                        callback(true);
-                                    }
+                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('AFTER DISMISS: ', this.loadingCtrl);
                                     return [2 /*return*/];
                                 });
                             }); }).catch(function (error) {
