@@ -1348,7 +1348,7 @@ var BaseService = /** @class */ (function () {
         var _this = this;
         console.log('BEFORE LOAD: ', this.loadingCtrl);
         if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('not null: ', this.loadingCtrl.getTop());
+            console.log('not null: ', this.loadingCtrl.getTop());
             this.dismissLoading();
         }
         var action;
