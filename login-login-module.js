@@ -1495,24 +1495,25 @@ var LoginPage = /** @class */ (function (_super) {
         // this.storage.remove(Constants.c_OP_SEL_DEPT);
         // this.storage.remove(Constants.c_OP_SEL_PROC);
         // this.storage.remove(Constants.c_OP_SEL_MACH);
-        // this.service.presentLoading(true)
+        this.service.presentLoading(true);
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN, this.loginModel, function (res) {
-            // this.service.dismissLoading();
-            _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_DEPT);
-            _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_PROC);
-            _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_MACH);
-            _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_MACHINE_LIST);
-            if (res && res.status_code && res.status_code == 0 /* Success */) {
-                _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN, res.accesstoken);
-                if (_this.isRemembered == true) {
-                    _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, JSON.stringify(_this.loginModel));
+            _this.service.dismissLoading().then(function () {
+                _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_DEPT);
+                _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_PROC);
+                _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_MACH);
+                _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_MACHINE_LIST);
+                if (res && res.status_code && res.status_code == 0 /* Success */) {
+                    _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN, res.accesstoken);
+                    if (_this.isRemembered == true) {
+                        _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, JSON.stringify(_this.loginModel));
+                    }
+                    else {
+                        _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, null);
+                    }
+                    _this.navCtrl.navigateRoot('/operator');
                 }
-                else {
-                    _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, null);
-                }
-                _this.navCtrl.navigateRoot('/operator');
-            }
-        }, true);
+            });
+        }, false);
     };
     LoginPage.prototype.onLogin01112Clicked = function () {
         // // this.presentLoading()
