@@ -1495,9 +1495,9 @@ var LoginPage = /** @class */ (function (_super) {
         // this.storage.remove(Constants.c_OP_SEL_DEPT);
         // this.storage.remove(Constants.c_OP_SEL_PROC);
         // this.storage.remove(Constants.c_OP_SEL_MACH);
-        // this.service.presentLoading(true)
+        this.service.presentLoading(true);
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN, this.loginModel, function (res) {
-            // this.service.dismissLoading();
+            _this.service.dismissLoading();
             _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_DEPT);
             _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_PROC);
             _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_MACH);
@@ -1510,9 +1510,11 @@ var LoginPage = /** @class */ (function (_super) {
                 else {
                     _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, null);
                 }
-                _this.navCtrl.navigateRoot('/operator');
+                setTimeout(function () {
+                    _this.navCtrl.navigateRoot('/operator');
+                }, 500);
             }
-        }, true);
+        }, false);
     };
     LoginPage.prototype.onLogin01112Clicked = function () {
         // // this.presentLoading()
