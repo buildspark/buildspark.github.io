@@ -447,9 +447,9 @@ var OperatorPage = /** @class */ (function (_super) {
                 _this.strMachineName = machine.selected.name;
                 _this.transfileReqModel.machineid = machine.selected.value.toString();
                 _this.arrTransfile = [];
-                _this.service.presentLoading(true);
+                _this.service.presentLoading(true, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE);
                 _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, _this.transfileReqModel, function (res) {
-                    _this.service.dismissLoading();
+                    _this.service.dismissLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE);
                     _this.afterGetTransfile(res);
                     if (_this.arrTransfile && _this.arrTransfile.length > 0 && _this.arrTransfile[0].Status) {
                         var strMachineStatus = String(_this.arrTransfile[0].Status);
