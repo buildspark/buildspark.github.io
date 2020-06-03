@@ -1205,11 +1205,21 @@ var BaseService = /** @class */ (function () {
                                     _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('REQUEST: ', JSON.stringify([postData]));
                                     _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('\n\n', webServiceName, '\t\t', 'RESPONSE ITEM: ', resItem, '\n\n');
                                     if (needShowLoad == true) {
-                                        this.dismissLoading();
+                                        setTimeout(function () {
+                                            _this.dismissLoading().then(function () {
+                                                if (callback) {
+                                                    setTimeout(function () {
+                                                        callback(resItem);
+                                                    }, 600);
+                                                }
+                                            });
+                                        }, 300);
                                     }
-                                    setTimeout(function () {
-                                        callback(resItem);
-                                    }, 250);
+                                    else {
+                                        setTimeout(function () {
+                                            callback(resItem);
+                                        }, 250);
+                                    }
                                     if (!resItem || !resItem.status_code || resItem.status_code != 0 /* Success */) {
                                         strCode_1 = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["Constants"].d_WS_STATUS[resItem.status_code];
                                         strDesc = resItem.status_desc;
@@ -1227,7 +1237,7 @@ var BaseService = /** @class */ (function () {
                                                     _this.navCtrl.navigateRoot('/logout');
                                                 }
                                             });
-                                        }, 500);
+                                        }, 900);
                                     }
                                     return [2 /*return*/];
                                 });
