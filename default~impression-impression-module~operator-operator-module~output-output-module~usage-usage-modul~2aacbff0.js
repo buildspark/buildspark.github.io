@@ -1076,7 +1076,7 @@ var CanvasComponent = /** @class */ (function () {
         var strTitle = String(this.title);
         var ctx = this.canvas.nativeElement;
         if (!this.service.isDesktop()) {
-            ctx.height = this.service.screenSize()['screenHeight'] * 2;
+            ctx.height = this.service.screenSize()['screenHeight'] * 0.5;
         }
         this.chart = new chart_js__WEBPACK_IMPORTED_MODULE_2__["Chart"](ctx, {
             type: 'bar',

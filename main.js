@@ -761,18 +761,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppComponent = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](AppComponent, _super);
-    function AppComponent(loadingCtrl, alertCtrl, platform, statusBar, baseService, router, navCtrl, menuCtrl, events, network) {
+    function AppComponent(loadingCtrl, alertCtrl, platform, statusBar, baseService, network, router, navCtrl, menuCtrl) {
         var _this = _super.call(this, loadingCtrl, alertCtrl) || this;
         _this.loadingCtrl = loadingCtrl;
         _this.alertCtrl = alertCtrl;
         _this.platform = platform;
         _this.statusBar = statusBar;
         _this.baseService = baseService;
+        _this.network = network;
         _this.router = router;
         _this.navCtrl = navCtrl;
         _this.menuCtrl = menuCtrl;
-        _this.events = events;
-        _this.network = network;
         _this.appPages = [
             {
                 title: 'Operator',
@@ -895,11 +894,10 @@ var AppComponent = /** @class */ (function (_super) {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_3__["StatusBar"],
             _services_base_service__WEBPACK_IMPORTED_MODULE_5__["BaseService"],
+            _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_4__["Network"],
             _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
-            _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_4__["Network"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"]])
     ], AppComponent);
     return AppComponent;
 }(_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__["BasePagePage"]));
@@ -1044,6 +1042,7 @@ var Constants = /** @class */ (function () {
     Constants.c_ACCESS_TOKEN = "accesstoken";
     Constants.c_MIN_DATE_2019 = "2019-01-01";
     Constants.c_MIN_DATE_2020 = "2020-03-01";
+    Constants.c_DATE_FORMAT = "YYYY-MM-DD";
     Constants.c_OP_SEL_DEPT = "OP_SEL_DEPT"; // DEPRECATED
     Constants.c_OP_SEL_PROC = "OP_SEL_PROC"; // DEPRECATED
     Constants.c_OP_SEL_MACH = "OP_SEL_MACH"; // DEPRECATED
@@ -1096,13 +1095,12 @@ var LocalStorageCache = /** @class */ (function () {
 /*!******************************************!*\
   !*** ./src/app/services/base.service.ts ***!
   \******************************************/
-/*! exports provided: BaseService, ConnectionStatusEnum */
+/*! exports provided: BaseService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BaseService", function() { return BaseService; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConnectionStatusEnum", function() { return ConnectionStatusEnum; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/http/ngx */ "./node_modules/@ionic-native/http/ngx/index.js");
@@ -1188,7 +1186,6 @@ var BaseService = /** @class */ (function () {
                         // }
                         // console.log('-------------------CHECK-------------------');
                         console.log('present needShowLoad: ', needShowLoad);
-                        this.presentLoading(needShowLoad, webServiceName);
                         return [4 /*yield*/, this.http.sendRequest(url, {
                                 method: 'post',
                                 data: { vstrPostData: JSON.stringify([postData]) },
@@ -1204,22 +1201,12 @@ var BaseService = /** @class */ (function () {
                                     resItem = arr[0];
                                     console.log('REQUEST: ', JSON.stringify([postData]));
                                     console.log('\n\n', webServiceName, '\t\t', 'RESPONSE ITEM: ', resItem, '\n\n');
-                                    if (needShowLoad == true) {
-                                        setTimeout(function () {
-                                            _this.dismissLoading(webServiceName).then(function () {
-                                                if (callback) {
-                                                    setTimeout(function () {
-                                                        callback(resItem);
-                                                    }, 600);
-                                                }
-                                            });
-                                        }, 300);
-                                    }
-                                    else {
-                                        setTimeout(function () {
-                                            callback(resItem);
-                                        }, 250);
-                                    }
+                                    // if (needShowLoad == true) {
+                                    //   this.dismissLoading(webServiceName);
+                                    // }
+                                    setTimeout(function () {
+                                        callback(resItem);
+                                    }, 250);
                                     if (!resItem || !resItem.status_code || resItem.status_code != 0 /* Success */) {
                                         strCode_1 = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["Constants"].d_WS_STATUS[resItem.status_code];
                                         strDesc = resItem.status_desc;
@@ -1237,7 +1224,7 @@ var BaseService = /** @class */ (function () {
                                                     _this.navCtrl.navigateRoot('/logout');
                                                 }
                                             });
-                                        }, 900);
+                                        }, 500);
                                     }
                                     return [2 /*return*/];
                                 });
@@ -1246,9 +1233,9 @@ var BaseService = /** @class */ (function () {
                                     // prints 403
                                     console.log('catch error: ', response);
                                     // prints Permission denied
-                                    if (needShowLoad == true) {
-                                        this.dismissLoading(webServiceName);
-                                    }
+                                    // if (needShowLoad == true) {
+                                    //   this.dismissLoading(webServiceName);
+                                    // }
                                     setTimeout(function () {
                                         callback(response.error);
                                     }, 250);
@@ -1271,7 +1258,7 @@ var BaseService = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.presentLoading(true);
+                        this.presentLoading();
                         return [4 /*yield*/, Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["forkJoin"])(arrResponse).subscribe(function (result) {
                                 setTimeout(function () {
                                     _this.dismissLoading().then(function () {
@@ -1354,47 +1341,35 @@ var BaseService = /** @class */ (function () {
             'screenHeight': this.plt.height()
         };
     };
-    BaseService.prototype.presentLoading = function (needLoading, id) {
-        var _this = this;
-        console.log('LOADINGID: ', id);
-        console.log('BEFORE LOAD: ', this.loadingCtrl);
+    BaseService.prototype.presentLoading = function (id) {
         if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
             console.log('not null: ', this.loadingCtrl.getTop());
-            this.dismissLoading();
+            this.dismissLoading(id ? id : '123');
         }
-        var action;
-        console.log('load mou? ', needLoading);
-        if (needLoading == true) {
-            action = this.loadingCtrl.create({
-                // duration: this.loadingDuration,
-                message: 'Please wait... (' + id + ')',
-                id: id
-            }).then(function (a) {
-                console.log('presentation: ', a);
-                a.present().then(function () {
-                    console.log('presented');
-                    console.log('AFTER LOAD: ', _this.loadingCtrl);
-                    // a.dismiss();
-                });
+        return this.loadingCtrl.create({
+            // duration: this.loadingDuration,
+            message: id,
+            id: id ? id : '123'
+        }).then(function (a) {
+            console.log('presentation: ', a);
+            a.present().then(function () {
+                console.log('presented');
+                // a.dismiss();
             });
-        }
+        });
     };
     BaseService.prototype.dismissLoading = function (id) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log('DISMISSID: ', id);
-                        console.log('BEFORE DISMISS: ', this.loadingCtrl);
-                        return [4 /*yield*/, this.loadingCtrl.dismiss(null, null, id).then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-                                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                                    console.log('AFTER DISMISS: ', this.loadingCtrl);
-                                    return [2 /*return*/];
-                                });
-                            }); }).catch(function (error) {
-                                console.log('DISMISS ERROR: ', error);
-                            })];
+                    case 0: return [4 /*yield*/, this.loadingCtrl.dismiss(null, null, id ? id : '123').then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                return [2 /*return*/];
+                            });
+                        }); }).catch(function (error) {
+                            console.log('DISMISS ERROR: ', error);
+                        })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -1421,11 +1396,6 @@ var BaseService = /** @class */ (function () {
     return BaseService;
 }());
 
-var ConnectionStatusEnum;
-(function (ConnectionStatusEnum) {
-    ConnectionStatusEnum[ConnectionStatusEnum["Online"] = 0] = "Online";
-    ConnectionStatusEnum[ConnectionStatusEnum["Offline"] = 1] = "Offline";
-})(ConnectionStatusEnum || (ConnectionStatusEnum = {}));
 
 
 /***/ }),

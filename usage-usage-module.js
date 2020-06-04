@@ -187,7 +187,7 @@ var UsagePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Usage\n    </ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" (click)=\"selectMachine()\">\n        <ion-icon name=\"list-box\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons>\n    <!-- <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" (click)=\"exportEmail()\">\n        <ion-icon name=\"share\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons> -->\n  </ion-toolbar>\n</ion-header>\n\n<!-- <ion-select [interfaceOptions]=\"customActionSheetOptions\" multiple=\"true\" cancelText=\"Cancel\" okText=\"Select\" #popSelect\n  [hidden]=\"true\" [(ngModel)]=\"arrSelectedMachines\" (ionChange)=\"optionsFn()\">\n  <ion-select-option *ngFor=\"let machine of arrMachines\" value=\"{{machine.value}}\">{{machine.name}}\n  </ion-select-option>\n  <button (click)=\"selectAll(popSelect);\">select all</button>\n</ion-select> -->\n\n<ion-content>\n\n  <mat-tab-group #tabGroup [selectedIndex]=\"selectedTab\" (selectedTabChange)=\"onTabChanged($event)\">\n    <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">query_builder</mat-icon>\n        Daily\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              From\n              <ion-item>\n                <ion-datetime displayFormat=\"DD MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"dailyReqModel.datefrom\" (ionChange)=\"onFromDailyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col>\n            <div>\n              To\n              <ion-item>\n                <ion-datetime displayFormat=\"DD MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"dailyReqModel.dateto\" (ionChange)=\"onToDailyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewDailyDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrDailyCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab>\n\n    <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">calendar_today</mat-icon>\n        Monthly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              From\n              <ion-item>\n                <ion-datetime displayFormat=\"MMM, YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"monthlyReqModel.datefrom\" (ionChange)=\"onFromMonthlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col>\n            <div>\n              To\n              <ion-item>\n                <ion-datetime displayFormat=\"MMM, YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"monthlyReqModel.dateto\" (ionChange)=\"onToMonthlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewMonthlyDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrMonthlyCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab>\n\n    <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">trending_up</mat-icon>\n        Yearly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              From\n              <ion-item>\n                <ion-datetime displayFormat=\"YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"yearlyReqModel.datefrom\" (ionChange)=\"onFromYearlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col>\n            <div>\n              To\n              <ion-item>\n                <ion-datetime displayFormat=\"YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"yearlyReqModel.dateto\" (ionChange)=\"onToYearlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewYearlyDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrYearlyCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab>\n  </mat-tab-group>\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Usage\n    </ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" (click)=\"selectMachine()\">\n        <ion-icon name=\"list-box\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons>\n    <!-- <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" (click)=\"exportEmail()\">\n        <ion-icon name=\"share\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons> -->\n  </ion-toolbar>\n</ion-header>\n\n<!-- <ion-select [interfaceOptions]=\"customActionSheetOptions\" multiple=\"true\" cancelText=\"Cancel\" okText=\"Select\" #popSelect\n  [hidden]=\"true\" [(ngModel)]=\"arrSelectedMachines\" (ionChange)=\"optionsFn()\">\n  <ion-select-option *ngFor=\"let machine of arrMachines\" value=\"{{machine.value}}\">{{machine.name}}\n  </ion-select-option>\n  <button (click)=\"selectAll(popSelect);\">select all</button>\n</ion-select> -->\n\n<ion-content>\n\n  <mat-tab-group #tabGroup [selectedIndex]=\"selectedTab\" (selectedTabChange)=\"onTabChanged($event)\">\n    <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">query_builder</mat-icon>\n        Daily\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              From\n              <ion-item>\n                <ion-datetime displayFormat=\"DD MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"dailyReqModel.datefrom\" (ionChange)=\"onFromDailyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col>\n            <div>\n              To\n              <ion-item>\n                <ion-datetime displayFormat=\"DD MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"dailyReqModel.dateto\" (ionChange)=\"onToDailyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewDailyDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrDailyCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab>\n\n    <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">calendar_today</mat-icon>\n        Monthly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              From\n              <ion-item>\n                <ion-datetime displayFormat=\"MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"monthlyReqModel.datefrom\" (ionChange)=\"onFromMonthlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col>\n            <div>\n              To\n              <ion-item>\n                <ion-datetime displayFormat=\"MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"monthlyReqModel.dateto\" (ionChange)=\"onToMonthlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewMonthlyDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrMonthlyCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab>\n\n    <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">trending_up</mat-icon>\n        Yearly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              From\n              <ion-item>\n                <ion-datetime displayFormat=\"YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"yearlyReqModel.datefrom\" (ionChange)=\"onFromYearlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col>\n            <div>\n              To\n              <ion-item>\n                <ion-datetime displayFormat=\"YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"yearlyReqModel.dateto\" (ionChange)=\"onToYearlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewYearlyDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrYearlyCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab>\n  </mat-tab-group>\n\n</ion-content>"
 
 /***/ }),
 
@@ -264,8 +264,8 @@ var UsagePage = /** @class */ (function (_super) {
         _this.dailyReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["UsageOrImpressionModel"]();
         _this.monthlyReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["UsageOrImpressionModel"]();
         _this.yearlyReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["UsageOrImpressionModel"]();
-        _this.currentDate = moment__WEBPACK_IMPORTED_MODULE_6__().format("YYYY-MM-DD");
-        // yesterdayDate: string = moment().add(-1, 'days').format("YYYY-MM-DD");
+        _this.currentDate = moment__WEBPACK_IMPORTED_MODULE_6__().format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
+        // yesterdayDate: string = moment().add(-1, 'days').format(Constants.c_DATE_FORMAT);
         _this.minDate = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_MIN_DATE_2019;
         _this.checkBoxList = [];
         _this.strChartTitle = _this.router.url.replace(/[^a-zA-Z0-9 ]/g, "");
@@ -273,16 +273,10 @@ var UsagePage = /** @class */ (function (_super) {
             _this.accessToken = accessToken;
             _this.deviceReqModel.accesstoken = accessToken;
             _this.dailyReqModel.accesstoken = accessToken;
-            // this.dailyReqModel.datefrom = this.standardDateTime(this.yesterdayDate);
-            // this.dailyReqModel.dateto = this.standardDateTime(this.yesterdayDate);
             _this.monthlyReqModel.accesstoken = accessToken;
-            // this.monthlyReqModel.datefrom = this.standardDateTime(this.currentDate);
-            // this.monthlyReqModel.dateto = this.standardDateTime(this.currentDate);
             _this.yearlyReqModel.accesstoken = accessToken;
-            // this.yearlyReqModel.datefrom = this.standardDateTime(this.currentDate);
-            // this.yearlyReqModel.dateto = this.standardDateTime(this.currentDate);
-            _this.setDataAvailableDate();
-            _this.service.presentLoading(true);
+            _this.preprareDateAvailableData(_this.currentDate);
+            _this.service.presentLoading();
             _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_GET_DEVICE, _this.deviceReqModel, function (res) {
                 if (res.status_code == 0 /* Success */) {
                     _this.arrMachines = JSON.parse(res.data);
@@ -387,6 +381,7 @@ var UsagePage = /** @class */ (function (_super) {
         _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('selectselectselect: ', select);
     };
     UsagePage.prototype.optionsFn = function () {
+        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log("item: ", this.arrSelectedMachines);
         this.dailyReqModel.device = this.arrSelectedMachines.join(",");
         this.monthlyReqModel.device = this.arrSelectedMachines.join(",");
         this.yearlyReqModel.device = this.arrSelectedMachines.join(",");
@@ -401,7 +396,7 @@ var UsagePage = /** @class */ (function (_super) {
         var _this = this;
         this.dailyReqModel.datefrom = this.standardDateTime(this.dailyReqModel.datefrom);
         this.dailyReqModel.dateto = this.standardDateTime(this.dailyReqModel.dateto);
-        this.service.presentLoading(true);
+        this.service.presentLoading();
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_DAILY_USAGE, this.dailyReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrDailyCharts = JSON.parse(res.data);
@@ -413,7 +408,7 @@ var UsagePage = /** @class */ (function (_super) {
         var _this = this;
         this.monthlyReqModel.datefrom = this.standardDateTime(this.monthlyReqModel.datefrom);
         this.monthlyReqModel.dateto = this.standardDateTime(this.monthlyReqModel.dateto);
-        this.service.presentLoading(true);
+        this.service.presentLoading();
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_MONTHLY_USAGE, this.monthlyReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrMonthlyCharts = JSON.parse(res.data);
@@ -425,7 +420,7 @@ var UsagePage = /** @class */ (function (_super) {
         var _this = this;
         this.yearlyReqModel.datefrom = this.standardDateTime(this.yearlyReqModel.datefrom);
         this.yearlyReqModel.dateto = this.standardDateTime(this.yearlyReqModel.dateto);
-        this.service.presentLoading(true);
+        this.service.presentLoading();
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_YEARLY_USAGE, this.yearlyReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrYearlyCharts = JSON.parse(res.data);
@@ -438,31 +433,34 @@ var UsagePage = /** @class */ (function (_super) {
         return 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
     };
     UsagePage.prototype.standardDateTime = function (dateString) {
-        return moment__WEBPACK_IMPORTED_MODULE_6__(dateString).format("YYYY-MM-DD");
+        return moment__WEBPACK_IMPORTED_MODULE_6__(dateString).format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
     };
-    UsagePage.prototype.setDataAvailableDate = function () {
-        var standardFormat = "YYYY-MM-DD";
-        var today = new Date(this.currentDate);
-        this.dailyReqModel.datefrom = this.standardDateTime(moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'days').format(standardFormat));
-        this.dailyReqModel.dateto = this.standardDateTime(moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'days').format(standardFormat));
-        if (today.getDate() == 1) {
-            this.monthlyReqModel.datefrom = moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'months').format(standardFormat).toString();
-            this.monthlyReqModel.dateto = moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'months').format(standardFormat).toString();
+    UsagePage.prototype.preprareDateAvailableData = function (currentDate) {
+        var strTodayDate = currentDate;
+        // const strTodayDate: string = "2020-06-01";
+        var todayDate = new Date(strTodayDate);
+        this.dailyReqModel.datefrom = this.standardDateTime(moment__WEBPACK_IMPORTED_MODULE_6__(strTodayDate).add(-1, 'days').format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT));
+        this.dailyReqModel.dateto = this.standardDateTime(moment__WEBPACK_IMPORTED_MODULE_6__(strTodayDate).add(-1, 'days').format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT));
+        var month;
+        if (todayDate.getDate() == 1) {
+            month = moment__WEBPACK_IMPORTED_MODULE_6__(todayDate).add(-1, 'months').format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
         }
         else {
-            today.setDate(1);
-            this.monthlyReqModel.datefrom = moment__WEBPACK_IMPORTED_MODULE_6__(today).format(standardFormat).toString();
-            this.monthlyReqModel.dateto = moment__WEBPACK_IMPORTED_MODULE_6__(today).format(standardFormat).toString();
+            todayDate.setDate(1);
+            month = moment__WEBPACK_IMPORTED_MODULE_6__(todayDate).format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
         }
-        if (today.getMonth() == 0) {
-            this.yearlyReqModel.datefrom = moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'years').format(standardFormat).toString();
-            this.yearlyReqModel.dateto = moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'years').format(standardFormat).toString();
+        this.monthlyReqModel.datefrom = this.standardDateTime(month);
+        this.monthlyReqModel.dateto = this.standardDateTime(month);
+        var year;
+        if (todayDate.getMonth() == 0) {
+            year = moment__WEBPACK_IMPORTED_MODULE_6__(todayDate).add(-1, 'years').format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
         }
         else {
-            today.setMonth(0);
-            this.yearlyReqModel.datefrom = moment__WEBPACK_IMPORTED_MODULE_6__(today).format(standardFormat).toString();
-            this.yearlyReqModel.dateto = moment__WEBPACK_IMPORTED_MODULE_6__(today).format(standardFormat).toString();
+            todayDate.setMonth(0);
+            year = moment__WEBPACK_IMPORTED_MODULE_6__(todayDate).format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
         }
+        this.yearlyReqModel.datefrom = this.standardDateTime(year);
+        this.yearlyReqModel.dateto = this.standardDateTime(year);
     };
     UsagePage.prototype.presentModal = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {

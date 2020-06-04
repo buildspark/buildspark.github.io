@@ -450,8 +450,6 @@ var OutputPage = /** @class */ (function (_super) {
         this.wipReqModel.date = this.standardDateTime(this.wipReqModel.date);
         this.outputAccumPackReqModel.date = this.wipReqModel.date;
         this.outputNonAccumPackReqModel.date = this.wipReqModel.date;
-        this.outputAccumNonPackReqModel.date = this.wipReqModel.date;
-        this.outputNonAccumNonPackReqModel.date = this.wipReqModel.date;
         this.callWSToReloadPagesData();
     };
     OutputPage.prototype.random_rgb = function () {
@@ -499,7 +497,7 @@ var OutputPage = /** @class */ (function (_super) {
         var _this = this;
         _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_10__["BasePagePage"].presentAlert('Extract Data', 'Are you sure want to extract data as file to your local storage?', function (res) {
             _this.downloadCSVReqModel.date = _this.wipReqModel.date;
-            _this.service.presentLoading(true);
+            _this.service.presentLoading();
             _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_DOWNLOAD_CSV, _this.downloadCSVReqModel, function (res) {
                 if (res && res.data && res.data != '' && res.data != '-') {
                     var arr = JSON.parse(res.data);

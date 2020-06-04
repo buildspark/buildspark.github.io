@@ -406,8 +406,9 @@ var OperatorPage = /** @class */ (function (_super) {
             _this.isFlash = !_this.isFlash;
         });
     };
-    OperatorPage.prototype.ionViewWillEnter = function () {
+    OperatorPage.prototype.ionViewDidEnter = function () {
         var _this = this;
+        console.log('OPERATOR LO OI');
         this.storage.get(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN).then(function (accessToken) {
             _this.transfileReqModel.accesstoken = accessToken;
             _this.issueMachineDownReqModel.accesstoken = accessToken;
@@ -443,11 +444,11 @@ var OperatorPage = /** @class */ (function (_super) {
     OperatorPage.prototype.callWSToGetPreselectionData = function () {
         var _this = this;
         this.storage.get(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_MACHINE).then(function (machine) {
-            if ((machine != undefined && machine != null && machine.selected != null)) {
+            if (!(machine == undefined || machine == null || machine.selected == null)) {
                 _this.strMachineName = machine.selected.name;
-                _this.transfileReqModel.machineid = machine.selected.value.toString();
+                _this.transfileReqModel.machineid = String(machine.selected.value);
                 _this.arrTransfile = [];
-                _this.service.presentLoading(true, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE);
+                _this.service.presentLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE);
                 _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, _this.transfileReqModel, function (res) {
                     _this.service.dismissLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE);
                     _this.afterGetTransfile(res);
@@ -458,7 +459,7 @@ var OperatorPage = /** @class */ (function (_super) {
                                 if (res.role == _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK) {
                                     _this.issueMachineDownReqModel.transfileID = _this.arrTransfile[0].TransfileID;
                                     _this.arrMachineDown = [];
-                                    _this.service.presentLoading(true);
+                                    _this.service.presentLoading();
                                     _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_ISSUE_MDOWN, _this.issueMachineDownReqModel, function (res) {
                                         _this.service.dismissLoading();
                                         if (res.status_code == 0 /* Success */) {
@@ -544,7 +545,7 @@ var OperatorPage = /** @class */ (function (_super) {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        process = item == null ? null : item.list;
+                        process = (item && item.list && item.list.length > 0) ? item.list : null;
                         this.isButtonDisabled = true;
                         return [4 /*yield*/, this.modalCtrl.create({
                                 component: _modal_base_modal_base_component__WEBPACK_IMPORTED_MODULE_9__["ModalBaseComponent"],
@@ -553,14 +554,14 @@ var OperatorPage = /** @class */ (function (_super) {
                     case 1:
                         modal = _a.sent();
                         modal.onDidDismiss().then(function (dataReturned) {
-                            var selected = Object.assign({}, dataReturned.data);
                             _this.isButtonDisabled = false;
-                            if (dataReturned !== null && dataReturned.data !== undefined) {
-                                _this.transfileReqModel.machineid = String(selected.value);
-                                _this.smsReqModel.machineid = String(selected.value);
-                                _this.strMachineName = String(selected.name);
+                            if (dataReturned && dataReturned.data && dataReturned.data != undefined) {
+                                var selected = Object.assign({}, dataReturned.data);
+                                _this.transfileReqModel.machineid = selected.value.toString();
+                                _this.smsReqModel.machineid = selected.value.toString();
+                                _this.strMachineName = selected.name.toString();
                                 _this.arrTransfile = [];
-                                _this.service.presentLoading(true);
+                                _this.service.presentLoading();
                                 _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, _this.transfileReqModel, function (res) {
                                     _this.service.dismissLoading();
                                     _this.afterGetTransfile(res);
@@ -580,7 +581,7 @@ var OperatorPage = /** @class */ (function (_super) {
         var _this = this;
         this.transfileReqModel.machineid = this.strMachineName;
         this.arrTransfile = [];
-        this.service.presentLoading(true);
+        this.service.presentLoading();
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, this.transfileReqModel, function (res) {
             _this.service.dismissLoading();
             _this.afterGetTransfile(res);
@@ -648,13 +649,13 @@ var OperatorPage = /** @class */ (function (_super) {
         var _this = this;
         this.issueMachineDownReqModel.transfileID = this.arrTransfile[0].TransfileID;
         this.arrMachineDown = [];
-        this.service.presentLoading(true);
+        this.service.presentLoading();
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_ISSUE_MDOWN, this.issueMachineDownReqModel, function (res) {
             _this.service.dismissLoading();
             if (res.status_code == 0 /* Success */) {
                 _this.arrMachineDown = JSON.parse(res.data);
                 _this.arrTransfile = [];
-                _this.service.presentLoading(true);
+                _this.service.presentLoading();
                 _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, _this.transfileReqModel, function (res) {
                     _this.service.dismissLoading();
                     _this.afterGetTransfile(res);
@@ -798,7 +799,7 @@ var SelDeptComponent = /** @class */ (function (_super) {
                 // GET LATEST DEPARTMENT LIST
                 _this.storage.get(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN).then(function (accessToken) {
                     _this.deptReqModel.accesstoken = accessToken;
-                    _this.service.presentLoading(true);
+                    _this.service.presentLoading();
                     _this.service.callWebService(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_DEPT, _this.deptReqModel, function (res) {
                         if ((res && res.data && res.data != '' && res.data != '-') && res.status_code == 0 /* Success */) {
                             _this.cacheDept.list = JSON.parse(res.data);
@@ -1009,7 +1010,7 @@ var SelMachineComponent = /** @class */ (function (_super) {
             if (machine == null || machine.list == null || machine.list.length == 0) {
                 _this.storage.get(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_5__["Constants"].c_ACCESS_TOKEN).then(function (accessToken) {
                     _this.machineReqModel.accesstoken = accessToken;
-                    _this.service.presentLoading(true);
+                    _this.service.presentLoading();
                     _this.service.callWebService(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_5__["Constants"].k_GET_MACHINE, _this.machineReqModel, function (res) {
                         if ((res && res.data && res.data != '' && res.data != '-') && res.status_code == 0 /* Success */) {
                             _this.cacheMachine.list = JSON.parse(res.data);
@@ -1192,7 +1193,7 @@ var SelProcessComponent = /** @class */ (function (_super) {
         // GET LATEST PROCESS LIST
         this.storage.get(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN).then(function (accessToken) {
             _this.processReqModel.accesstoken = accessToken;
-            _this.service.presentLoading(true);
+            _this.service.presentLoading();
             _this.service.callWebService(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_PROCESS, _this.processReqModel, function (res) {
                 if ((res && res.data && res.data != '' && res.data != '-') && res.status_code == 0 /* Success */) {
                     _this.cacheProcess.list = JSON.parse(res.data);

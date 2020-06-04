@@ -377,7 +377,7 @@ var MachineDownPage = /** @class */ (function (_super) {
         this.storage.get(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN).then(function (accessToken) {
             _this.problemReqModel.accesstoken = accessToken;
             _this.insertMachineDownReqModel.accesstoken = accessToken;
-            _this.service.presentLoading(true);
+            _this.service.presentLoading();
             _this.service.callWebService(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_MACHINE_DOWN_PROBLEM, _this.problemReqModel, function (res) {
                 if (res.status_code == 0 /* Success */) {
                     _this.arrDownReasons = JSON.parse(res.data);
@@ -455,7 +455,7 @@ var MachineDownPage = /** @class */ (function (_super) {
         });
         src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_3__["BasePagePage"].presentAlert('Alert', 'Are you sure want to submit?<br/><br/>' + this.transfile.Machine + ' Down Reasons:<br/>- ' + this.insertMachineDownReqModel.remark.join('<br/>- '), function (res) {
             if (res.role == src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK) {
-                _this.service.presentLoading(true);
+                _this.service.presentLoading();
                 _this.service.callWebService(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_INSERT_MDOWN_DETAIL, _this.insertMachineDownReqModel, function (res) {
                     if (res.status_code == 0 /* Success */) {
                         _this.service.dismissLoading();
@@ -476,7 +476,7 @@ var MachineDownPage = /** @class */ (function (_super) {
         var _this = this;
         src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_3__["BasePagePage"].presentAlert('Alert', 'Are you sure want to request assistance from your supervisor?', function (res) {
             if (res.role == src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK) {
-                _this.service.presentLoading(true);
+                _this.service.presentLoading();
                 _this.service.callWebService(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_SEND_SMS, _this.smsReqModel, function (res) {
                     if (res.status_code == 0 /* Success */ && src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_3__["BasePagePage"].presentAlert(res.status_desc, res.data)) {
                         _this.service.dismissLoading();

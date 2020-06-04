@@ -264,7 +264,7 @@ var ImpressionPage = /** @class */ (function (_super) {
         _this.dailyReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["UsageOrImpressionModel"]();
         _this.monthlyReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["UsageOrImpressionModel"]();
         _this.yearlyReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["UsageOrImpressionModel"]();
-        _this.currentDate = moment__WEBPACK_IMPORTED_MODULE_6__().format("YYYY-MM-DD");
+        _this.currentDate = moment__WEBPACK_IMPORTED_MODULE_6__().format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
         // yesterdayDate: string = moment().add(-1, 'days').format("YYYY-MM-DD");
         _this.minDate = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_MIN_DATE_2019;
         _this.checkBoxList = [];
@@ -273,16 +273,10 @@ var ImpressionPage = /** @class */ (function (_super) {
             _this.accessToken = accessToken;
             _this.deviceReqModel.accesstoken = accessToken;
             _this.dailyReqModel.accesstoken = accessToken;
-            // this.dailyReqModel.datefrom = this.standardDateTime(this.yesterdayDate);
-            // this.dailyReqModel.dateto = this.standardDateTime(this.yesterdayDate);
             _this.monthlyReqModel.accesstoken = accessToken;
-            // this.monthlyReqModel.datefrom = this.standardDateTime(this.currentDate);
-            // this.monthlyReqModel.dateto = this.standardDateTime(this.currentDate);
             _this.yearlyReqModel.accesstoken = accessToken;
-            // this.yearlyReqModel.datefrom = this.standardDateTime(this.currentDate);
-            // this.yearlyReqModel.dateto = this.standardDateTime(this.currentDate);
-            _this.setDataAvailableDate();
-            _this.service.presentLoading(true);
+            _this.preprareDateAvailableData(_this.currentDate);
+            _this.service.presentLoading();
             _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_GET_DEVICE, _this.deviceReqModel, function (res) {
                 if (res.status_code == 0 /* Success */) {
                     _this.arrMachines = JSON.parse(res.data);
@@ -402,7 +396,7 @@ var ImpressionPage = /** @class */ (function (_super) {
         var _this = this;
         this.dailyReqModel.datefrom = this.standardDateTime(this.dailyReqModel.datefrom);
         this.dailyReqModel.dateto = this.standardDateTime(this.dailyReqModel.dateto);
-        this.service.presentLoading(true);
+        this.service.presentLoading();
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_DAILY_IMP, this.dailyReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrDailyCharts = JSON.parse(res.data);
@@ -414,7 +408,7 @@ var ImpressionPage = /** @class */ (function (_super) {
         var _this = this;
         this.monthlyReqModel.datefrom = this.standardDateTime(this.monthlyReqModel.datefrom);
         this.monthlyReqModel.dateto = this.standardDateTime(this.monthlyReqModel.dateto);
-        this.service.presentLoading(true);
+        this.service.presentLoading();
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_MONTHLY_IMP, this.monthlyReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrMonthlyCharts = JSON.parse(res.data);
@@ -426,7 +420,7 @@ var ImpressionPage = /** @class */ (function (_super) {
         var _this = this;
         this.yearlyReqModel.datefrom = this.standardDateTime(this.yearlyReqModel.datefrom);
         this.yearlyReqModel.dateto = this.standardDateTime(this.yearlyReqModel.dateto);
-        this.service.presentLoading(true);
+        this.service.presentLoading();
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_YEARLY_IMP, this.yearlyReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrYearlyCharts = JSON.parse(res.data);
@@ -441,29 +435,32 @@ var ImpressionPage = /** @class */ (function (_super) {
     ImpressionPage.prototype.standardDateTime = function (dateString) {
         return moment__WEBPACK_IMPORTED_MODULE_6__(dateString).format("YYYY-MM-DD");
     };
-    ImpressionPage.prototype.setDataAvailableDate = function () {
-        var standardFormat = "YYYY-MM-DD";
-        var today = new Date(this.currentDate);
-        this.dailyReqModel.datefrom = this.standardDateTime(moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'days').format(standardFormat));
-        this.dailyReqModel.dateto = this.standardDateTime(moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'days').format(standardFormat));
-        if (today.getDate() == 1) {
-            this.monthlyReqModel.datefrom = moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'months').format(standardFormat).toString();
-            this.monthlyReqModel.dateto = moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'months').format(standardFormat).toString();
+    ImpressionPage.prototype.preprareDateAvailableData = function (currentDate) {
+        var strTodayDate = currentDate;
+        // const strTodayDate: string = "2020-06-01";
+        var todayDate = new Date(strTodayDate);
+        this.dailyReqModel.datefrom = this.standardDateTime(moment__WEBPACK_IMPORTED_MODULE_6__(strTodayDate).add(-1, 'days').format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT));
+        this.dailyReqModel.dateto = this.standardDateTime(moment__WEBPACK_IMPORTED_MODULE_6__(strTodayDate).add(-1, 'days').format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT));
+        var month;
+        if (todayDate.getDate() == 1) {
+            month = moment__WEBPACK_IMPORTED_MODULE_6__(todayDate).add(-1, 'months').format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
         }
         else {
-            today.setDate(1);
-            this.monthlyReqModel.datefrom = moment__WEBPACK_IMPORTED_MODULE_6__(today).format(standardFormat).toString();
-            this.monthlyReqModel.dateto = moment__WEBPACK_IMPORTED_MODULE_6__(today).format(standardFormat).toString();
+            todayDate.setDate(1);
+            month = moment__WEBPACK_IMPORTED_MODULE_6__(todayDate).format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
         }
-        if (today.getMonth() == 0) {
-            this.yearlyReqModel.datefrom = moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'years').format(standardFormat).toString();
-            this.yearlyReqModel.dateto = moment__WEBPACK_IMPORTED_MODULE_6__(today).add(-1, 'years').format(standardFormat).toString();
+        this.monthlyReqModel.datefrom = this.standardDateTime(month);
+        this.monthlyReqModel.dateto = this.standardDateTime(month);
+        var year;
+        if (todayDate.getMonth() == 0) {
+            year = moment__WEBPACK_IMPORTED_MODULE_6__(todayDate).add(-1, 'years').format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
         }
         else {
-            today.setMonth(0);
-            this.yearlyReqModel.datefrom = moment__WEBPACK_IMPORTED_MODULE_6__(today).format(standardFormat).toString();
-            this.yearlyReqModel.dateto = moment__WEBPACK_IMPORTED_MODULE_6__(today).format(standardFormat).toString();
+            todayDate.setMonth(0);
+            year = moment__WEBPACK_IMPORTED_MODULE_6__(todayDate).format(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_DATE_FORMAT);
         }
+        this.yearlyReqModel.datefrom = this.standardDateTime(year);
+        this.yearlyReqModel.dateto = this.standardDateTime(year);
     };
     ImpressionPage.prototype.presentModal = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
