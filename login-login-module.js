@@ -1497,7 +1497,6 @@ var LoginPage = /** @class */ (function (_super) {
         // this.storage.remove(Constants.c_OP_SEL_MACH);
         this.service.presentLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN);
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN, this.loginModel, function (res) {
-            _this.service.dismissLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN);
             if (res && res.status_code && res.status_code == 0 /* Success */) {
                 _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN, res.accesstoken);
                 if (_this.isRemembered == true) {
@@ -1514,6 +1513,7 @@ var LoginPage = /** @class */ (function (_super) {
                     console.log('DONE ROOT OPERATOR');
                 }
                 ;
+                _this.service.dismissLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN);
             }
             else {
                 _this.service.dismissLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN);
