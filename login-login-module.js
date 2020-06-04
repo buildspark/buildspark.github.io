@@ -1497,25 +1497,26 @@ var LoginPage = /** @class */ (function (_super) {
         // this.storage.remove(Constants.c_OP_SEL_MACH);
         this.service.presentLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN);
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN, this.loginModel, function (res) {
-            _this.service.dismissLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN).then(function (done) {
-                console.log('dodo: ', done);
-                if (res && res.status_code && res.status_code == 0 /* Success */) {
-                    _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN, res.accesstoken);
-                    if (_this.isRemembered == true) {
-                        _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, JSON.stringify(_this.loginModel));
-                    }
-                    else {
-                        _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, null);
-                    }
-                    if (_this.navCtrl.navigateRoot('/operator')) {
-                        _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_DEPT);
-                        _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_PROC);
-                        _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_MACH);
-                        _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_MACHINE_LIST);
-                        console.log('DONE ROOT OPERATOR');
-                    }
-                    ;
-                }
+            // this.service.dismissLoading(Constants.k_LOGIN).then((done)=> {
+            //   console.log('dodo: ', done);
+            //   if (res && res.status_code && res.status_code == StatusCode.Success) {
+            //     this.storage.set(Constants.c_ACCESS_TOKEN, res.accesstoken)
+            //     if (this.isRemembered == true) {
+            //       this.storage.set(Constants.c_LG_REMEMBER_ME, JSON.stringify(this.loginModel));
+            //     } else {
+            //       this.storage.set(Constants.c_LG_REMEMBER_ME, null);
+            //     }
+            //     if (this.navCtrl.navigateRoot('/operator')) {
+            //       this.storage.remove(Constants.c_OP_SEL_DEPT);
+            //       this.storage.remove(Constants.c_OP_SEL_PROC);
+            //       this.storage.remove(Constants.c_OP_SEL_MACH);
+            //       this.storage.remove(Constants.c_OP_MACHINE_LIST);
+            //       console.log('DONE ROOT OPERATOR');
+            //     };
+            //   }
+            // });
+            _this.service.dismissLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN).then(function () {
+                console.log('apa apa apa');
             });
         }, false);
     };
