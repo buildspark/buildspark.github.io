@@ -1516,7 +1516,7 @@ var LoginPage = /** @class */ (function (_super) {
                 ;
             }
             else {
-                _this.service.dismissLoading();
+                _this.service.dismissLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN);
             }
         }, false);
     };

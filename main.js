@@ -1342,6 +1342,8 @@ var BaseService = /** @class */ (function () {
         };
     };
     BaseService.prototype.presentLoading = function (id) {
+        var _this = this;
+        console.log('11111 BEFORE LOAD: ', this.loadingCtrl);
         if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
             console.log('not null: ', this.loadingCtrl.getTop());
             this.dismissLoading(id ? id : '123');
@@ -1353,7 +1355,8 @@ var BaseService = /** @class */ (function () {
         }).then(function (a) {
             console.log('presentation: ', a);
             a.present().then(function () {
-                console.log('presented');
+                // console.log('presented');
+                console.log('22222 AFTER LOAD: ', _this.loadingCtrl);
                 // a.dismiss();
             });
         });
@@ -1363,13 +1366,20 @@ var BaseService = /** @class */ (function () {
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.loadingCtrl.dismiss(null, null, id ? id : '123').then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                                return [2 /*return*/];
-                            });
-                        }); }).catch(function (error) {
-                            console.log('DISMISS ERROR: ', error);
-                        })];
+                    case 0:
+                        console.log('333 BEFORE DISMISS: ', this.loadingCtrl);
+                        return [4 /*yield*/, this.loadingCtrl.dismiss(null, null, id ? id : '123').then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                    // if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
+                                    //   console.log('dismissed: ', this.loadingCtrl.getTop());
+                                    //   await this.loadingCtrl.dismiss();
+                                    // }
+                                    console.log('444 AFTER DISMISS: ', this.loadingCtrl);
+                                    return [2 /*return*/];
+                                });
+                            }); }).catch(function (error) {
+                                console.log('DISMISS ERROR: ', error);
+                            })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
