@@ -1354,11 +1354,13 @@ var BaseService = /** @class */ (function () {
             id: id ? id : '123'
         }).then(function (a) {
             console.log('presentation: ', a);
-            a.present().then(function () {
-                // console.log('presented');
-                console.log('22222 AFTER LOAD: ', _this.loadingCtrl);
-                // a.dismiss();
-            });
+            setTimeout(function () {
+                a.present().then(function () {
+                    // console.log('presented');
+                    console.log('22222 AFTER LOAD: ', _this.loadingCtrl);
+                    // a.dismiss();
+                });
+            }, 50);
         });
     };
     BaseService.prototype.dismissLoading = function (id) {
