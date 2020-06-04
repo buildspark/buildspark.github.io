@@ -1342,25 +1342,33 @@ var BaseService = /** @class */ (function () {
         };
     };
     BaseService.prototype.presentLoading = function (id) {
-        var _this = this;
-        console.log('11111 BEFORE LOAD: ', this.loadingCtrl);
-        if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
-            console.log('not null: ', this.loadingCtrl.getTop());
-            this.dismissLoading(id ? id : '123');
-        }
-        return this.loadingCtrl.create({
-            // duration: this.loadingDuration,
-            message: id,
-            id: id ? id : '123'
-        }).then(function (a) {
-            console.log('presentation: ', a);
-            setTimeout(function () {
-                a.present().then(function () {
-                    // console.log('presented');
-                    console.log('22222 AFTER LOAD: ', _this.loadingCtrl);
-                    // a.dismiss();
-                });
-            }, 50);
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('11111 BEFORE LOAD: ', this.loadingCtrl);
+                        if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
+                            console.log('not null: ', this.loadingCtrl.getTop());
+                            this.dismissLoading(id ? id : '123');
+                        }
+                        return [4 /*yield*/, this.loadingCtrl.create({
+                                // duration: this.loadingDuration,
+                                message: id,
+                                id: id ? id : '123'
+                            }).then(function (a) {
+                                console.log('presentation: ', a);
+                                setTimeout(function () {
+                                    a.present().then(function () {
+                                        // console.log('presented');
+                                        console.log('22222 AFTER LOAD: ', _this.loadingCtrl);
+                                        // a.dismiss();
+                                    });
+                                }, 50);
+                            })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
     };
     BaseService.prototype.dismissLoading = function (id) {

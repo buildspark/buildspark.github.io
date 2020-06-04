@@ -448,34 +448,43 @@ var OperatorPage = /** @class */ (function (_super) {
                 _this.strMachineName = machine.selected.name;
                 _this.transfileReqModel.machineid = String(machine.selected.value);
                 _this.arrTransfile = [];
-                _this.service.presentLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE);
+                _this.loadingCtrl.create({ id: _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE }).then(function (a) {
+                    a.present();
+                });
                 _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, _this.transfileReqModel, function (res) {
-                    _this.service.dismissLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE);
-                    _this.afterGetTransfile(res);
-                    if (_this.arrTransfile && _this.arrTransfile.length > 0 && _this.arrTransfile[0].Status) {
-                        var strMachineStatus = String(_this.arrTransfile[0].Status);
-                        if (strMachineStatus.toLowerCase() == 'down') {
-                            _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_8__["BasePagePage"].presentAlert('Alert', 'Machine ' + _this.arrTransfile[0].Machine + ' is in ' + strMachineStatus + ' State. Do you want to continue to machine down detail page?', function (res) {
-                                if (res.role == _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK) {
-                                    _this.issueMachineDownReqModel.transfileID = _this.arrTransfile[0].TransfileID;
-                                    _this.arrMachineDown = [];
-                                    _this.service.presentLoading();
-                                    _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_ISSUE_MDOWN, _this.issueMachineDownReqModel, function (res) {
-                                        _this.service.dismissLoading();
-                                        if (res.status_code == 0 /* Success */) {
-                                            _this.arrMachineDown = JSON.parse(res.data);
-                                            _this.service.setData('downstart', {
-                                                'machineDown': _this.arrMachineDown[0],
-                                                'sms': _this.smsReqModel,
-                                                'transfile': _this.arrTransfile[0]
+                    _this.loadingCtrl.dismiss(null, null, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE).then(function (done) {
+                        console.log('operator done: ', done);
+                        _this.afterGetTransfile(res);
+                        if (_this.arrTransfile && _this.arrTransfile.length > 0 && _this.arrTransfile[0].Status) {
+                            var strMachineStatus = String(_this.arrTransfile[0].Status);
+                            if (strMachineStatus.toLowerCase() == 'down') {
+                                _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_8__["BasePagePage"].presentAlert('Alert', 'Machine ' + _this.arrTransfile[0].Machine + ' is in ' + strMachineStatus + ' State. Do you want to continue to machine down detail page?', function (res) {
+                                    if (res.role == _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK) {
+                                        _this.issueMachineDownReqModel.transfileID = _this.arrTransfile[0].TransfileID;
+                                        _this.arrMachineDown = [];
+                                        _this.service.presentLoading();
+                                        _this.loadingCtrl.create({ id: _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_ISSUE_MDOWN }).then(function (a) {
+                                            a.present();
+                                        });
+                                        _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_ISSUE_MDOWN, _this.issueMachineDownReqModel, function (res) {
+                                            _this.loadingCtrl.dismiss(null, null, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_ISSUE_MDOWN).then(function (done) {
+                                                console.log('operator done: ', done);
+                                                if (res.status_code == 0 /* Success */) {
+                                                    _this.arrMachineDown = JSON.parse(res.data);
+                                                    _this.service.setData('downstart', {
+                                                        'machineDown': _this.arrMachineDown[0],
+                                                        'sms': _this.smsReqModel,
+                                                        'transfile': _this.arrTransfile[0]
+                                                    });
+                                                    _this.navCtrl.navigateForward('/operator/machine-down/downstart');
+                                                }
                                             });
-                                            _this.navCtrl.navigateForward('/operator/machine-down/downstart');
-                                        }
-                                    }, false);
-                                }
-                            }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK]);
+                                        }, false);
+                                    }
+                                }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK]);
+                            }
                         }
-                    }
+                    });
                 }, false);
             }
         });

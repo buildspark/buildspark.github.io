@@ -1495,9 +1495,11 @@ var LoginPage = /** @class */ (function (_super) {
         // this.storage.remove(Constants.c_OP_SEL_DEPT);
         // this.storage.remove(Constants.c_OP_SEL_PROC);
         // this.storage.remove(Constants.c_OP_SEL_MACH);
-        this.service.presentLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN);
+        this.loadingCtrl.create().then(function (a) {
+            a.present();
+        });
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN, this.loginModel, function (res) {
-            _this.service.dismissLoading(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN).then(function (done) {
+            _this.loadingCtrl.dismiss().then(function (done) {
                 console.log('dodo: ', done);
                 if (res && res.status_code && res.status_code == 0 /* Success */) {
                     _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN, res.accesstoken);
