@@ -406,9 +406,8 @@ var OperatorPage = /** @class */ (function (_super) {
             _this.isFlash = !_this.isFlash;
         });
     };
-    OperatorPage.prototype.ionViewDidEnter = function () {
+    OperatorPage.prototype.ionViewWillEnter = function () {
         var _this = this;
-        console.log('OPERATOR LO OI');
         this.storage.get(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN).then(function (accessToken) {
             _this.transfileReqModel.accesstoken = accessToken;
             _this.issueMachineDownReqModel.accesstoken = accessToken;

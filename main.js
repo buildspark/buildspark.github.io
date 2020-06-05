@@ -1133,14 +1133,14 @@ var BaseService = /** @class */ (function () {
         this.alertPresented = false;
         this.innerWidth = window.innerWidth;
         this.innerHeight = window.innerHeight;
-        console.log('HEIGHT: ', this.innerHeight);
-        console.log('WIDTH: ', this.innerWidth);
+        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('HEIGHT: ', this.innerHeight);
+        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('WIDTH: ', this.innerWidth);
     }
     BaseService.prototype.onResize = function (event) {
         this.innerWidth = event.target.innerWidth;
         this.innerHeight = event.target.innerHeight;
-        console.log('RESIZE HEIGHT: ', this.innerHeight);
-        console.log('RESIZE WIDTH: ', this.innerWidth);
+        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('RESIZE HEIGHT: ', this.innerHeight);
+        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('RESIZE WIDTH: ', this.innerWidth);
     };
     BaseService.prototype.setData = function (id, data) {
         this.data[id] = data;
@@ -1156,8 +1156,8 @@ var BaseService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         url = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["Constants"].k_BASE_WS_URL + '/' + webServiceName;
-                        console.log('\n\n', 'WEB SERVICE: ', url, '\n\n');
-                        console.log('\n\n', 'POST DATA: ', JSON.stringify([postData]), '\n\n');
+                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('\n\n', 'WEB SERVICE: ', url, '\n\n');
+                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('\n\n', 'POST DATA: ', JSON.stringify([postData]), '\n\n');
                         // Http Options
                         // const httpOptions = {
                         //   headers: new HttpHeaders({
@@ -1177,15 +1177,15 @@ var BaseService = /** @class */ (function () {
                         //       const obj = this.ngxXml2jsonService.xmlToJson(xml);
                         //       const arr = JSON.parse(obj['string']);
                         //       const resItem = arr[0];
-                        //       console.log('resItem: ', resItem)
+                        //       config.log('resItem: ', resItem)
                         //       callback(resItem);
                         //     },
-                        //     err => console.log('something went wrong: ', err)
+                        //     err => config.log('something went wrong: ', err)
                         //   );
                         //   return;
                         // }
-                        // console.log('-------------------CHECK-------------------');
-                        console.log('present needShowLoad: ', needShowLoad);
+                        // config.log('-------------------CHECK-------------------');
+                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('present needShowLoad: ', needShowLoad);
                         return [4 /*yield*/, this.http.sendRequest(url, {
                                 method: 'post',
                                 data: { vstrPostData: JSON.stringify([postData]) },
@@ -1199,8 +1199,8 @@ var BaseService = /** @class */ (function () {
                                     obj = this.ngxXml2jsonService.xmlToJson(xml);
                                     arr = JSON.parse(obj['string']);
                                     resItem = arr[0];
-                                    console.log('REQUEST: ', JSON.stringify([postData]));
-                                    console.log('\n\n', webServiceName, '\t\t', 'RESPONSE ITEM: ', resItem, '\n\n');
+                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('REQUEST: ', JSON.stringify([postData]));
+                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('\n\n', webServiceName, '\t\t', 'RESPONSE ITEM: ', resItem, '\n\n');
                                     // if (needShowLoad == true) {
                                     //   this.dismissLoading(webServiceName);
                                     // }
@@ -1231,7 +1231,7 @@ var BaseService = /** @class */ (function () {
                             }); }).catch(function (response) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
                                 return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                                     // prints 403
-                                    console.log('catch error: ', response);
+                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('catch error: ', response);
                                     // prints Permission denied
                                     // if (needShowLoad == true) {
                                     //   this.dismissLoading(webServiceName);
@@ -1276,18 +1276,18 @@ var BaseService = /** @class */ (function () {
         });
     };
     // getWebService(webServiceName: any, postData: any, callback: (response: any) => void) {
-    //   console.log('GET WEB SERVICE: ', webServiceName);
-    //   console.log('GET DATA: ', postData);
+    //   config.log('GET WEB SERVICE: ', webServiceName);
+    //   config.log('GET DATA: ', postData);
     //   this.http.get(Constants.k_BASE_WS_URL + '/' + webServiceName, { vstrPostData: JSON.stringify([postData]) }, {})
     //     .then(response => {
     //       // prints 200
-    //       console.log(response.data);
+    //       config.log(response.data);
     //       const parser = new DOMParser();
     //       const xml = parser.parseFromString(response.data, 'text/xml');
     //       const obj = this.ngxXml2jsonService.xmlToJson(xml);
     //       const arr = JSON.parse(obj['string']);
     //       const resItem = arr[0];
-    //       console.log('GET RESPONSE ITEM: ', resItem);
+    //       config.log('GET RESPONSE ITEM: ', resItem);
     //       if (resItem.status_code != StatusCode.Success) {
     //         this.presentAlert(Constants.d_WS_STATUS[resItem.status_code], resItem.status_desc)
     //       }
@@ -1295,9 +1295,9 @@ var BaseService = /** @class */ (function () {
     //     })
     //     .catch(response => {
     //       // prints 403
-    //       console.log(response.status);
+    //       config.log(response.status);
     //       // prints Permission denied
-    //       console.log(response.error);
+    //       config.log(response.error);
     //       // callback(response.error);
     //     });
     // }
@@ -1333,63 +1333,58 @@ var BaseService = /** @class */ (function () {
     BaseService.prototype.screenSize = function () {
         var _this = this;
         this.plt.ready().then(function (readySource) {
-            console.log('Width: ' + _this.plt.width());
-            console.log('Height: ' + _this.plt.height());
+            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('Width: ' + _this.plt.width());
+            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('Height: ' + _this.plt.height());
         });
         return {
             'screenWidth': this.plt.width(),
             'screenHeight': this.plt.height()
         };
     };
-    BaseService.prototype.presentLoading = function (id) {
+    BaseService.prototype.presentLoading = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log('11111 BEFORE LOAD: ', this.loadingCtrl);
+                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('11111 BEFORE LOAD: ', this.loadingCtrl);
                         if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
-                            console.log('not null: ', this.loadingCtrl.getTop());
-                            this.dismissLoading(id ? id : '123');
+                            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('not null: ', this.loadingCtrl.getTop());
+                            this.dismissLoading();
                         }
                         return [4 /*yield*/, this.loadingCtrl.create({
-                                // duration: this.loadingDuration,
-                                duration: 5000,
-                                message: id,
-                                id: id ? id : '123'
+                            // duration: this.loadingDuration,
                             }).then(function (a) {
-                                console.log('presentation: ', a);
-                                setTimeout(function () {
-                                    a.present().then(function () {
-                                        // console.log('presented');
-                                        console.log('22222 AFTER LOAD: ', _this.loadingCtrl);
-                                        // a.dismiss();
-                                    });
-                                }, 50);
+                                _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('presentation: ', a);
+                                a.present().then(function () {
+                                    // config.log('presented');
+                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('22222 AFTER LOAD: ', _this.loadingCtrl);
+                                    // a.dismiss();
+                                });
                             })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    BaseService.prototype.dismissLoading = function (id) {
+    BaseService.prototype.dismissLoading = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log('333 BEFORE DISMISS: ', this.loadingCtrl);
-                        return [4 /*yield*/, this.loadingCtrl.dismiss(null, null, id ? id : '123').then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('333 BEFORE DISMISS: ', this.loadingCtrl);
+                        return [4 /*yield*/, this.loadingCtrl.dismiss().then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
                                 return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                                     // if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
-                                    //   console.log('dismissed: ', this.loadingCtrl.getTop());
+                                    //   config.log('dismissed: ', this.loadingCtrl.getTop());
                                     //   await this.loadingCtrl.dismiss();
                                     // }
-                                    console.log('444 AFTER DISMISS: ', this.loadingCtrl);
+                                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('444 AFTER DISMISS: ', this.loadingCtrl);
                                     return [2 /*return*/];
                                 });
                             }); }).catch(function (error) {
-                                console.log('DISMISS ERROR: ', error);
+                                _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log('DISMISS ERROR: ', error);
                             })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
