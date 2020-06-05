@@ -1354,6 +1354,7 @@ var BaseService = /** @class */ (function () {
                         }
                         return [4 /*yield*/, this.loadingCtrl.create({
                                 // duration: this.loadingDuration,
+                                duration: 5000,
                                 message: id,
                                 id: id ? id : '123'
                             }).then(function (a) {
