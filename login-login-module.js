@@ -1516,7 +1516,7 @@ var LoginPage = /** @class */ (function (_super) {
                     else {
                         _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, null);
                     }
-                    if (_this.navCtrl.navigateRoot('/operator')) {
+                    if (_this.navCtrl.navigateForward('/operator')) {
                         _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_DEPT);
                         _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_PROC);
                         _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_MACH);

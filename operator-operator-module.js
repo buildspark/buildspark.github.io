@@ -413,7 +413,7 @@ var OperatorPage = /** @class */ (function (_super) {
             _this.transfileReqModel.accesstoken = accessToken;
             _this.issueMachineDownReqModel.accesstoken = accessToken;
             _this.smsReqModel.accesstoken = accessToken;
-            // this.callWSToGetPreselectionData();
+            _this.callWSToGetPreselectionData();
         });
     };
     // ionViewDidEnter() {
