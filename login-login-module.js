@@ -1431,6 +1431,7 @@ var LoginPage = /** @class */ (function (_super) {
         _this.loginModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_5__["LoginModel"]('', '');
         _this.isLoading = false;
         _this.alertShown = false;
+        _this.duration = 90000;
         _this.platform.ready().then(function () {
             if (_this.service.isDesktop()) {
                 // Debug
@@ -1470,6 +1471,9 @@ var LoginPage = /** @class */ (function (_super) {
             _this.menuCtrl.swipeGesture(false);
         }, 1000);
     };
+    LoginPage.prototype.ionViewWillLeave = function () {
+        this.loadingCtrl.dismiss();
+    };
     LoginPage.prototype.ionViewDidLeave = function () {
         var _this = this;
         // enable the root left menu when leaving the tutorial page
@@ -1497,28 +1501,29 @@ var LoginPage = /** @class */ (function (_super) {
         // this.storage.remove(Constants.c_OP_SEL_DEPT);
         // this.storage.remove(Constants.c_OP_SEL_PROC);
         // this.storage.remove(Constants.c_OP_SEL_MACH);
-        this.loadingCtrl.create().then(function (a) {
+        this.loadingCtrl.create({
+            duration: this.duration
+        }).then(function (a) {
             a.present();
         });
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN, this.loginModel, function (res) {
-            _this.loadingCtrl.dismiss().then(function () {
-                if (res && res.status_code && res.status_code == 0 /* Success */) {
-                    _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN, res.accesstoken);
-                    if (_this.isRemembered == true) {
-                        _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, JSON.stringify(_this.loginModel));
-                    }
-                    else {
-                        _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, null);
-                    }
-                    if (_this.navCtrl.navigateRoot('/operator')) {
-                        _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_DEPT);
-                        _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_PROC);
-                        _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_MACH);
-                        _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_MACHINE_LIST);
-                    }
-                    ;
+            if (res && res.status_code && res.status_code == 0 /* Success */) {
+                _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN, res.accesstoken);
+                if (_this.isRemembered == true) {
+                    _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, JSON.stringify(_this.loginModel));
                 }
-            });
+                else {
+                    _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME, null);
+                }
+                if (_this.navCtrl.navigateRoot('/operator')) {
+                    _this.duration = 100;
+                    _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_DEPT);
+                    _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_PROC);
+                    _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_SEL_MACH);
+                    _this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_MACHINE_LIST);
+                }
+                ;
+            }
             // this.service.dismissLoading(Constants.k_LOGIN).then(()=> {
             //   config.log('apa apa apa');
             // });
