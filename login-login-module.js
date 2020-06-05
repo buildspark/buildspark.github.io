@@ -1472,7 +1472,7 @@ var LoginPage = /** @class */ (function (_super) {
     };
     LoginPage.prototype.ionViewWillLeave = function () {
         console.log('ionViewWillLeave');
-        this.loadingCtrl.dismiss();
+        this.service.dismissLoading();
     };
     LoginPage.prototype.ionViewDidLeave = function () {
         var _this = this;
@@ -1485,7 +1485,7 @@ var LoginPage = /** @class */ (function (_super) {
             _this.menuCtrl.enable(true);
             _this.menuCtrl.swipeGesture(true);
         }, 1000);
-        this.loadingCtrl.dismiss();
+        this.service.dismissLoading();
         console.log('LOGIN1234567890');
     };
     LoginPage.prototype.onSubmit = function (form) {
@@ -1501,11 +1501,9 @@ var LoginPage = /** @class */ (function (_super) {
         // this.storage.remove(Constants.c_OP_SEL_DEPT);
         // this.storage.remove(Constants.c_OP_SEL_PROC);
         // this.storage.remove(Constants.c_OP_SEL_MACH);
-        this.loadingCtrl.create().then(function (a) {
-            a.present();
-        });
+        this.service.presentLoading();
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_LOGIN, this.loginModel, function (res) {
-            _this.loadingCtrl.dismiss();
+            _this.service.dismissLoading();
             if (res && res.status_code && res.status_code == 0 /* Success */) {
                 _this.storage.set(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_ACCESS_TOKEN, res.accesstoken);
                 if (_this.isRemembered == true) {
