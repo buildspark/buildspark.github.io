@@ -443,9 +443,9 @@ var OperatorPage = /** @class */ (function (_super) {
     OperatorPage.prototype.callWSToGetPreselectionData = function () {
         var _this = this;
         this.storage.get(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_MACHINE).then(function (machine) {
-            if (!(machine == undefined || machine == null || machine.selected == null)) {
+            if (machine && machine.selected && machine.selected.name && machine.selected.value) {
                 _this.strMachineName = machine.selected.name;
-                _this.transfileReqModel.machineid = String(machine.selected.value);
+                _this.transfileReqModel.machineid = machine.selected.value.toString();
                 _this.arrTransfile = [];
                 _this.service.presentLoading();
                 _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, _this.transfileReqModel, function (res) {
