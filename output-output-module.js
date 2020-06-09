@@ -450,6 +450,8 @@ var OutputPage = /** @class */ (function (_super) {
         this.wipReqModel.date = this.standardDateTime(this.wipReqModel.date);
         this.outputAccumPackReqModel.date = this.wipReqModel.date;
         this.outputNonAccumPackReqModel.date = this.wipReqModel.date;
+        this.outputAccumNonPackReqModel.date = this.wipReqModel.date;
+        this.outputNonAccumNonPackReqModel.date = this.wipReqModel.date;
         this.callWSToReloadPagesData();
     };
     OutputPage.prototype.random_rgb = function () {
