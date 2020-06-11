@@ -788,9 +788,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var chartjs_plugin_zoom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chartjs-plugin-zoom */ "./node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.js");
 /* harmony import */ var chartjs_plugin_zoom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_zoom__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/data-model/constant.model */ "./src/app/data-model/constant.model.ts");
-/* harmony import */ var src_app_services_base_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/base.service */ "./src/app/services/base.service.ts");
-
+/* harmony import */ var src_app_services_base_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/base.service */ "./src/app/services/base.service.ts");
 
 
 
@@ -871,88 +869,13 @@ var CanvasComponent = /** @class */ (function () {
                         stacked: true
                     }]
             },
-            plugins: {
-                zoom: {
-                    // Container for pan options
-                    pan: {
-                        // Boolean to enable panning
-                        enabled: true,
-                        // Panning directions. Remove the appropriate direction to disable
-                        // Eg. 'y' would only allow panning in the y direction
-                        // A function that is called as the user is panning and returns the
-                        // available directions can also be used:
-                        //   mode: function({ chart }) {
-                        //     return 'xy';
-                        //   },
-                        mode: 'xy',
-                        rangeMin: {
-                            // Format of min pan range depends on scale type
-                            x: null,
-                            y: null
-                        },
-                        rangeMax: {
-                            // Format of max pan range depends on scale type
-                            x: null,
-                            y: null
-                        },
-                        // Function called while the user is panning
-                        onPan: function (_a) {
-                            var chart = _a.chart;
-                            src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("I'm panning!!!");
-                        },
-                        // Function called once panning is completed
-                        onPanComplete: function (_a) {
-                            var chart = _a.chart;
-                            src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("I was panned!!!");
-                        }
-                    },
-                    // Container for zoom options
-                    zoom: {
-                        // Boolean to enable zooming
-                        enabled: true,
-                        // Enable drag-to-zoom behavior
-                        drag: true,
-                        // Drag-to-zoom effect can be customized
-                        // drag: {
-                        // 	 borderColor: 'rgba(225,225,225,0.3)'
-                        // 	 borderWidth: 5,
-                        // 	 backgroundColor: 'rgb(225,225,225)',
-                        // 	 animationDuration: 0
-                        // },
-                        // Zooming directions. Remove the appropriate direction to disable
-                        // Eg. 'y' would only allow zooming in the y direction
-                        // A function that is called as the user is zooming and returns the
-                        // available directions can also be used:
-                        //   mode: function({ chart }) {
-                        //     return 'xy';
-                        //   },
-                        mode: 'xy',
-                        rangeMin: {
-                            // Format of min zoom range depends on scale type
-                            x: null,
-                            y: null
-                        },
-                        rangeMax: {
-                            // Format of max zoom range depends on scale type
-                            x: null,
-                            y: null
-                        },
-                        // Speed of zoom via mouse wheel
-                        // (percentage of zoom on a wheel event)
-                        speed: 0.1,
-                        // Function called while the user is zooming
-                        onZoom: function (_a) {
-                            var chart = _a.chart;
-                            src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("I'm zooming!!!");
-                        },
-                        // Function called once zooming is completed
-                        onZoomComplete: function (_a) {
-                            var chart = _a.chart;
-                            src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("I was zoomed!!!");
-                        }
-                    }
-                }
-            }
+            legend: {
+                // display: true,
+                // labels: {
+                //   fontColor: 'rgb(255, 99, 132)'
+                // },
+                position: 'right'
+            },
         };
         var impressionChart = {
             scales: {
@@ -969,6 +892,13 @@ var CanvasComponent = /** @class */ (function () {
                         },
                         stacked: true
                     }]
+            },
+            legend: {
+                // display: true,
+                // labels: {
+                //   fontColor: 'rgb(255, 99, 132)'
+                // },
+                position: 'right'
             },
             tooltips: {
                 caretY: 0,
@@ -990,88 +920,6 @@ var CanvasComponent = /** @class */ (function () {
                     }
                 },
             },
-            plugins: {
-                zoom: {
-                    // Container for pan options
-                    pan: {
-                        // Boolean to enable panning
-                        enabled: true,
-                        // Panning directions. Remove the appropriate direction to disable
-                        // Eg. 'y' would only allow panning in the y direction
-                        // A function that is called as the user is panning and returns the
-                        // available directions can also be used:
-                        //   mode: function({ chart }) {
-                        //     return 'xy';
-                        //   },
-                        mode: 'xy',
-                        rangeMin: {
-                            // Format of min pan range depends on scale type
-                            x: null,
-                            y: null
-                        },
-                        rangeMax: {
-                            // Format of max pan range depends on scale type
-                            x: null,
-                            y: null
-                        },
-                        // Function called while the user is panning
-                        onPan: function (_a) {
-                            var chart = _a.chart;
-                            src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("I'm panning!!!");
-                        },
-                        // Function called once panning is completed
-                        onPanComplete: function (_a) {
-                            var chart = _a.chart;
-                            src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("I was panned!!!");
-                        }
-                    },
-                    // Container for zoom options
-                    zoom: {
-                        // Boolean to enable zooming
-                        enabled: true,
-                        // Enable drag-to-zoom behavior
-                        drag: true,
-                        // Drag-to-zoom effect can be customized
-                        // drag: {
-                        // 	 borderColor: 'rgba(225,225,225,0.3)'
-                        // 	 borderWidth: 5,
-                        // 	 backgroundColor: 'rgb(225,225,225)',
-                        // 	 animationDuration: 0
-                        // },
-                        // Zooming directions. Remove the appropriate direction to disable
-                        // Eg. 'y' would only allow zooming in the y direction
-                        // A function that is called as the user is zooming and returns the
-                        // available directions can also be used:
-                        //   mode: function({ chart }) {
-                        //     return 'xy';
-                        //   },
-                        mode: 'xy',
-                        rangeMin: {
-                            // Format of min zoom range depends on scale type
-                            x: null,
-                            y: null
-                        },
-                        rangeMax: {
-                            // Format of max zoom range depends on scale type
-                            x: null,
-                            y: null
-                        },
-                        // Speed of zoom via mouse wheel
-                        // (percentage of zoom on a wheel event)
-                        speed: 0.1,
-                        // Function called while the user is zooming
-                        onZoom: function (_a) {
-                            var chart = _a.chart;
-                            src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("I'm zooming!!!");
-                        },
-                        // Function called once zooming is completed
-                        onZoomComplete: function (_a) {
-                            var chart = _a.chart;
-                            src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("I was zoomed!!!");
-                        }
-                    }
-                }
-            }
         };
         var strTitle = String(this.title);
         var ctx = this.canvas.nativeElement;
@@ -1113,10 +961,10 @@ var CanvasComponent = /** @class */ (function () {
         // Chart.defaults.global.showTooltips = false;
     };
     CanvasComponent.prototype.myFunction = function () {
-        src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("Hello world!");
+        console.log("Hello world!");
     };
     CanvasComponent.prototype.yHandler = function () {
-        src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("123 123 123");
+        console.log("123 123 123");
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -1136,7 +984,7 @@ var CanvasComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./canvas.component.html */ "./src/app/shared/canvas/canvas.component.html"),
             styles: [__webpack_require__(/*! ./canvas.component.scss */ "./src/app/shared/canvas/canvas.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_base_service__WEBPACK_IMPORTED_MODULE_5__["BaseService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_base_service__WEBPACK_IMPORTED_MODULE_4__["BaseService"]])
     ], CanvasComponent);
     return CanvasComponent;
 }());

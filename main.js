@@ -750,6 +750,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./shared/base-page/base-page.page */ "./src/app/shared/base-page/base-page.page.ts");
 /* harmony import */ var _data_model_constant_model__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./data-model/constant.model */ "./src/app/data-model/constant.model.ts");
+/* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+
+
 
 
 
@@ -761,17 +765,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppComponent = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](AppComponent, _super);
-    function AppComponent(loadingCtrl, alertCtrl, platform, statusBar, baseService, network, router, navCtrl, menuCtrl) {
+    function AppComponent(loadingCtrl, alertCtrl, platform, statusBar, service, network, router, navCtrl, menuCtrl, appVersion, meta) {
         var _this = _super.call(this, loadingCtrl, alertCtrl) || this;
         _this.loadingCtrl = loadingCtrl;
         _this.alertCtrl = alertCtrl;
         _this.platform = platform;
         _this.statusBar = statusBar;
-        _this.baseService = baseService;
+        _this.service = service;
         _this.network = network;
         _this.router = router;
         _this.navCtrl = navCtrl;
         _this.menuCtrl = menuCtrl;
+        _this.appVersion = appVersion;
+        _this.meta = meta;
         _this.appPages = [
             {
                 title: 'Operator',
@@ -813,6 +819,28 @@ var AppComponent = /** @class */ (function (_super) {
     }
     AppComponent.prototype.initializeApp = function () {
         var _this = this;
+        this.platform.ready().then(function () {
+            if (_this.service.isDesktop()) {
+                // Debug
+                var viewport = _this.meta.getTag('name=version');
+                _this.versionNumber = viewport.content;
+                // console.log("BROWSER: ", this.versionNumber);
+                _this.checkConsoleLog();
+            }
+            else {
+                _this.appVersion.getVersionNumber().then(function (v) {
+                    _this.versionNumber = v;
+                    // console.log("VVVVVV: ", this.versionNumber);
+                    _this.checkConsoleLog();
+                }, function (err) {
+                    // PWA
+                    var viewport = _this.meta.getTag('name=version');
+                    _this.versionNumber = viewport.content;
+                    // console.log("EEEEE: ", this.versionNumber);
+                    _this.checkConsoleLog();
+                });
+            }
+        });
         this.router.events.subscribe(function (event) {
             if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_6__["NavigationEnd"]) {
                 _this.selectedPath = event.url;
@@ -843,13 +871,13 @@ var AppComponent = /** @class */ (function (_super) {
         //     document.addEventListener('backbutton', function (event) {
         //       event.preventDefault();
         //       event.stopPropagation();
-        //     }, false);
+        //     });
         //   });
         //   this.statusBar.styleDefault();
         // });
         // watch network for a connection
         var connectSubscription = this.network.onConnect().subscribe(function () {
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_8__["config"].log('network connected!');
+            console.log('network connected!');
             // We just got a connection but we need to wait briefly
             // before we determine the connection type. Might need to wait.
             // prior to doing any api requests as well.
@@ -858,13 +886,13 @@ var AppComponent = /** @class */ (function (_super) {
             }
             setTimeout(function () {
                 if (_this.network.type === 'wifi') {
-                    _data_model_constant_model__WEBPACK_IMPORTED_MODULE_8__["config"].log('we got a wifi connection, woohoo!');
+                    console.log('we got a wifi connection, woohoo!');
                 }
             }, 3000);
         });
         // watch network for a disconnection
         var disconnectSubscription = this.network.onDisconnect().subscribe(function () {
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_8__["config"].log('network was disconnected :-(');
+            console.log('network was disconnected :-(');
             // this.baseService.presentAlert("Oppss..", "Network connection was lost. 😢");
             _this.isConnectionLost = true;
         });
@@ -881,8 +909,19 @@ var AppComponent = /** @class */ (function (_super) {
         // this.unsubsribeHardwareBackButton();
     };
     AppComponent.prototype.close = function () {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_8__["config"].log('CLOSE');
+        console.log('CLOSE');
         this.menuCtrl.close('first');
+    };
+    AppComponent.prototype.checkConsoleLog = function () {
+        if (this.versionNumber.toString().includes('.')) {
+            var arrVersionNumber = this.versionNumber.toString().split('.');
+            console.log('VERSION NUMBER: ', arrVersionNumber);
+            if (arrVersionNumber.length < 4) {
+                if (window) {
+                    window.console.log = function () { };
+                }
+            }
+        }
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -897,7 +936,9 @@ var AppComponent = /** @class */ (function (_super) {
             _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_4__["Network"],
             _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
+            _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_9__["AppVersion"],
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__["Meta"]])
     ], AppComponent);
     return AppComponent;
 }(_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__["BasePagePage"]));
@@ -932,6 +973,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
 /* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
 /* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
+/* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
+
 
 
 
@@ -970,7 +1013,8 @@ var AppModule = /** @class */ (function () {
                 _services_base_service__WEBPACK_IMPORTED_MODULE_12__["BaseService"],
                 _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_14__["Network"],
                 _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_15__["BarcodeScanner"],
-                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
+                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
+                _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_16__["AppVersion"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
@@ -986,13 +1030,12 @@ var AppModule = /** @class */ (function () {
 /*!**********************************************!*\
   !*** ./src/app/data-model/constant.model.ts ***!
   \**********************************************/
-/*! exports provided: Constants, config, LocalStorageCache */
+/*! exports provided: Constants, LocalStorageCache */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Constants", function() { return Constants; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LocalStorageCache", function() { return LocalStorageCache; });
 var Constants = /** @class */ (function () {
     function Constants() {
@@ -1056,30 +1099,6 @@ var Constants = /** @class */ (function () {
     return Constants;
 }());
 
-var config = /** @class */ (function () {
-    function config() {
-    }
-    config.log = function (message) {
-        var optionalParams = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            optionalParams[_i - 1] = arguments[_i];
-        }
-        var environment = window.location.hostname;
-        switch (environment) {
-            case 'localhost':
-                // console.log(message, optionalParams);
-                console.log();
-                break;
-            case 'txwei89.github.io':
-                console.log();
-                break;
-            default:
-                console.log();
-        }
-    };
-    return config;
-}());
-
 var LocalStorageCache = /** @class */ (function () {
     function LocalStorageCache() {
         this.list = [];
@@ -1133,22 +1152,14 @@ var BaseService = /** @class */ (function () {
         this.alertPresented = false;
         this.innerWidth = window.innerWidth;
         this.innerHeight = window.innerHeight;
-        console.log('HEIGHT: ', this.innerHeight);
-        console.log('WIDTH: ', this.innerWidth);
     }
-    BaseService.prototype.onResize = function (event) {
-        this.innerWidth = event.target.innerWidth;
-        this.innerHeight = event.target.innerHeight;
-        console.log('RESIZE HEIGHT: ', this.innerHeight);
-        console.log('RESIZE WIDTH: ', this.innerWidth);
-    };
     BaseService.prototype.setData = function (id, data) {
         this.data[id] = data;
     };
     BaseService.prototype.getData = function (id) {
         return this.data[id];
     };
-    BaseService.prototype.callWebService = function (webServiceName, postData, callback, needShowLoad) {
+    BaseService.prototype.callWebService = function (webServiceName, postData, callback) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var url, res;
             var _this = this;
@@ -1158,34 +1169,6 @@ var BaseService = /** @class */ (function () {
                         url = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["Constants"].k_BASE_WS_URL + '/' + webServiceName;
                         console.log('\n\n', 'WEB SERVICE: ', url, '\n\n');
                         console.log('\n\n', 'POST DATA: ', JSON.stringify([postData]), '\n\n');
-                        // Http Options
-                        // const httpOptions = {
-                        //   headers: new HttpHeaders({
-                        //     'Accept': 'application/json',
-                        //     'Content-Type': 'application/json',
-                        //     'Access-Control-Allow-Origin': '*',
-                        //     'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
-                        //   })
-                        // }
-                        // if (webServiceName == Constants.k_POST_EMAIL) {
-                        //   this.httpClient.get('./assets/downloadcsv.txt', {
-                        //     responseType: 'text'
-                        //   }).subscribe(
-                        //     data => {
-                        //       const parser = new DOMParser();
-                        //       const xml = parser.parseFromString(data, 'text/xml');
-                        //       const obj = this.ngxXml2jsonService.xmlToJson(xml);
-                        //       const arr = JSON.parse(obj['string']);
-                        //       const resItem = arr[0];
-                        //       console.log('resItem: ', resItem)
-                        //       callback(resItem);
-                        //     },
-                        //     err => console.log('something went wrong: ', err)
-                        //   );
-                        //   return;
-                        // }
-                        // console.log('-------------------CHECK-------------------');
-                        console.log('present needShowLoad: ', needShowLoad);
                         return [4 /*yield*/, this.http.sendRequest(url, {
                                 method: 'post',
                                 data: { vstrPostData: JSON.stringify([postData]) },
@@ -1343,13 +1326,10 @@ var BaseService = /** @class */ (function () {
     };
     BaseService.prototype.presentLoading = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log('11111 BEFORE LOAD: ', this.loadingCtrl);
                         if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
-                            console.log('not null: ', this.loadingCtrl.getTop());
                             this.dismissLoading();
                         }
                         return [4 /*yield*/, this.loadingCtrl.create({
@@ -1357,8 +1337,7 @@ var BaseService = /** @class */ (function () {
                             }).then(function (a) {
                                 console.log('presentation: ', a);
                                 a.present().then(function () {
-                                    // console.log('presented');
-                                    console.log('22222 AFTER LOAD: ', _this.loadingCtrl);
+                                    console.log('presented');
                                     // a.dismiss();
                                 });
                             })];
@@ -1372,31 +1351,18 @@ var BaseService = /** @class */ (function () {
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log('333 BEFORE DISMISS: ', this.loadingCtrl);
-                        return [4 /*yield*/, this.loadingCtrl.dismiss().then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-                                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                                    // if (this.loadingCtrl.getTop() != null && this.loadingCtrl.getTop()['__zone_symbol__value'] != undefined) {
-                                    //   console.log('dismissed: ', this.loadingCtrl.getTop());
-                                    //   await this.loadingCtrl.dismiss();
-                                    // }
-                                    console.log('444 AFTER DISMISS: ', this.loadingCtrl);
-                                    return [2 /*return*/];
-                                });
-                            }); }).catch(function (error) {
-                                console.log('DISMISS ERROR: ', error);
-                            })];
+                    case 0: return [4 /*yield*/, this.loadingCtrl.dismiss().then(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                return [2 /*return*/];
+                            });
+                        }); }).catch(function (error) {
+                            console.log('DISMISS ERROR: ', error);
+                        })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('window:resize', ['$event']),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Function),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object]),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:returntype", void 0)
-    ], BaseService.prototype, "onResize", null);
     BaseService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
@@ -1525,9 +1491,9 @@ var BasePagePage = /** @class */ (function () {
           // duration: 5000,
         }).then(a => {
           a.present().then(() => {
-            config.log('presented');
+            console.log('presented');
             if (!this.isLoading) {
-              a.dismiss().then(() => config.log('abort presenting'));
+              a.dismiss().then(() => console.log('abort presenting'));
             }
           }).finally(() => {
             this.isLoading = true;
@@ -1545,7 +1511,7 @@ var BasePagePage = /** @class */ (function () {
   
       var action: Promise<any>;
       if (this.isLoading === true && this.loadingCtrl.getTop()['__zone_symbol__value'] !== undefined) {
-        action = this.loadingCtrl.dismiss().then(() => config.log('dismissed')).finally(()=> {
+        action = this.loadingCtrl.dismiss().then(() => console.log('dismissed')).finally(()=> {
           this.isLoading = false;
         })
       } else {
@@ -1595,7 +1561,7 @@ var BasePagePage = /** @class */ (function () {
                     case 2:
                         _a.sent();
                         return [4 /*yield*/, alert_1.onDidDismiss().then(function (res) {
-                                // config.log('resssss alert: ', res);
+                                // console.log('resssss alert: ', res);
                                 vm.alertPresented = false;
                                 if (res.role && (res.role.toString() != src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].b_CANCEL) && callback) {
                                     callback(res);
@@ -1679,9 +1645,6 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].produc
 }
 Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])
     .catch(function (err) { return console.log(err); });
-if (window) {
-    window.console.log = function () { };
-}
 
 
 /***/ }),

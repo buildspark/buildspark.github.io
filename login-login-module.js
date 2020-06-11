@@ -1,45 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["login-login-module"],{
 
-/***/ "./node_modules/@ionic-native/app-version/ngx/index.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@ionic-native/app-version/ngx/index.js ***!
-  \*************************************************************/
-/*! exports provided: AppVersion */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppVersion", function() { return AppVersion; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_native_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/core */ "./node_modules/@ionic-native/core/index.js");
-
-
-
-var AppVersion = /** @class */ (function (_super) {
-    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AppVersion, _super);
-    function AppVersion() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    AppVersion.prototype.getAppName = function () { return Object(_ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["cordova"])(this, "getAppName", {}, arguments); };
-    AppVersion.prototype.getPackageName = function () { return Object(_ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["cordova"])(this, "getPackageName", {}, arguments); };
-    AppVersion.prototype.getVersionCode = function () { return Object(_ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["cordova"])(this, "getVersionCode", {}, arguments); };
-    AppVersion.prototype.getVersionNumber = function () { return Object(_ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["cordova"])(this, "getVersionNumber", {}, arguments); };
-    AppVersion.pluginName = "AppVersion";
-    AppVersion.plugin = "cordova-plugin-app-version";
-    AppVersion.pluginRef = "cordova.getAppVersion";
-    AppVersion.repo = "https://github.com/whiteoctober/cordova-plugin-app-version";
-    AppVersion.platforms = ["Android", "iOS", "Windows"];
-    AppVersion = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
-    ], AppVersion);
-    return AppVersion;
-}(_ionic_native_core__WEBPACK_IMPORTED_MODULE_2__["IonicNativePlugin"]));
-
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9zcmMvQGlvbmljLW5hdGl2ZS9wbHVnaW5zL2FwcC12ZXJzaW9uL25neC9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUMzQyxPQUFPLDhCQUFzQyxNQUFNLG9CQUFvQixDQUFDOztJQWtDeEMsOEJBQWlCOzs7O0lBTy9DLCtCQUFVO0lBT1YsbUNBQWM7SUFTZCxtQ0FBYztJQU9kLHFDQUFnQjs7Ozs7O0lBOUJMLFVBQVU7UUFEdEIsVUFBVSxFQUFFO09BQ0EsVUFBVTtxQkFuQ3ZCO0VBbUNnQyxpQkFBaUI7U0FBcEMsVUFBVSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IENvcmRvdmEsIElvbmljTmF0aXZlUGx1Z2luLCBQbHVnaW4gfSBmcm9tICdAaW9uaWMtbmF0aXZlL2NvcmUnO1xuXG5cbi8qKlxuICogQG5hbWUgQXBwIFZlcnNpb25cbiAqIEBkZXNjcmlwdGlvblxuICogUmVhZHMgdGhlIHZlcnNpb24gb2YgeW91ciBhcHAgZnJvbSB0aGUgdGFyZ2V0IGJ1aWxkIHNldHRpbmdzLlxuICpcbiAqIFJlcXVpcmVzIENvcmRvdmEgcGx1Z2luOiBgY29yZG92YS1wbHVnaW4tYXBwLXZlcnNpb25gLiBGb3IgbW9yZSBpbmZvLCBwbGVhc2Ugc2VlIHRoZSBbQ29yZG92YSBBcHAgVmVyc2lvbiBkb2NzXShodHRwczovL2dpdGh1Yi5jb20vd2hpdGVvY3RvYmVyL2NvcmRvdmEtcGx1Z2luLWFwcC12ZXJzaW9uKS5cbiAqXG4gKiBAdXNhZ2VcbiAqIGBgYHR5cGVzY3JpcHRcbiAqIGltcG9ydCB7IEFwcFZlcnNpb24gfSBmcm9tICdAaW9uaWMtbmF0aXZlL2FwcC12ZXJzaW9uL25neCc7XG4gKlxuICogY29uc3RydWN0b3IocHJpdmF0ZSBhcHBWZXJzaW9uOiBBcHBWZXJzaW9uKSB7IH1cbiAqXG4gKiAuLi5cbiAqXG4gKlxuICogdGhpcy5hcHBWZXJzaW9uLmdldEFwcE5hbWUoKTtcbiAqIHRoaXMuYXBwVmVyc2lvbi5nZXRQYWNrYWdlTmFtZSgpO1xuICogdGhpcy5hcHBWZXJzaW9uLmdldFZlcnNpb25Db2RlKCk7XG4gKiB0aGlzLmFwcFZlcnNpb24uZ2V0VmVyc2lvbk51bWJlcigpO1xuICpcbiAqIGBgYFxuICovXG5AUGx1Z2luKHtcbiAgcGx1Z2luTmFtZTogJ0FwcFZlcnNpb24nLFxuICBwbHVnaW46ICdjb3Jkb3ZhLXBsdWdpbi1hcHAtdmVyc2lvbicsXG4gIHBsdWdpblJlZjogJ2NvcmRvdmEuZ2V0QXBwVmVyc2lvbicsXG4gIHJlcG86ICdodHRwczovL2dpdGh1Yi5jb20vd2hpdGVvY3RvYmVyL2NvcmRvdmEtcGx1Z2luLWFwcC12ZXJzaW9uJyxcbiAgcGxhdGZvcm1zOiBbJ0FuZHJvaWQnLCAnaU9TJywgJ1dpbmRvd3MnXVxufSlcbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBBcHBWZXJzaW9uIGV4dGVuZHMgSW9uaWNOYXRpdmVQbHVnaW4ge1xuXG4gIC8qKlxuICAgKiBSZXR1cm5zIHRoZSBuYW1lIG9mIHRoZSBhcHAsIGUuZy46IFwiTXkgQXdlc29tZSBBcHBcIlxuICAgKiBAcmV0dXJucyB7UHJvbWlzZTxzdHJpbmc+fVxuICAgKi9cbiAgQENvcmRvdmEoKVxuICBnZXRBcHBOYW1lKCk6IFByb21pc2U8c3RyaW5nPiB7IHJldHVybjsgfVxuXG4gIC8qKlxuICAgKiBSZXR1cm5zIHRoZSBwYWNrYWdlIG5hbWUgb2YgdGhlIGFwcCwgZS5nLjogXCJjb20uZXhhbXBsZS5teWF3ZXNvbWVhcHBcIlxuICAgKiBAcmV0dXJucyB7UHJvbWlzZTxzdHJpbmc+fVxuICAgKi9cbiAgQENvcmRvdmEoKVxuICBnZXRQYWNrYWdlTmFtZSgpOiBQcm9taXNlPHN0cmluZz4geyByZXR1cm47IH1cblxuICAvKipcbiAgICogUmV0dXJucyB0aGUgYnVpbGQgaWRlbnRpZmllciBvZiB0aGUgYXBwLlxuICAgKiBJbiBpT1MgYSBzdHJpbmcgd2l0aCB0aGUgYnVpbGQgdmVyc2lvbiBsaWtlIFwiMS42MDk1XCJcbiAgICogSW4gQW5kcm9pZCBhIG51bWJlciBnZW5lcmF0ZWQgZnJvbSB0aGUgdmVyc2lvbiBzdHJpbmcsIGxpa2UgMTAyMDMgZm9yIHZlcnNpb24gXCIxLjIuM1wiXG4gICAqIEByZXR1cm5zIHtQcm9taXNlPHN0cmluZyB8IG51bWJlcj59XG4gICAqL1xuICBAQ29yZG92YSgpXG4gIGdldFZlcnNpb25Db2RlKCk6IFByb21pc2U8c3RyaW5nIHwgbnVtYmVyPiB7IHJldHVybjsgfVxuXG4gIC8qKlxuICAgKiBSZXR1cm5zIHRoZSB2ZXJzaW9uIG9mIHRoZSBhcHAsIGUuZy46IFwiMS4yLjNcIlxuICAgKiBAcmV0dXJucyB7UHJvbWlzZTxzdHJpbmc+fVxuICAgKi9cbiAgQENvcmRvdmEoKVxuICBnZXRWZXJzaW9uTnVtYmVyKCk6IFByb21pc2U8c3RyaW5nPiB7IHJldHVybjsgfVxuXG59XG4iXX0=
-
-/***/ }),
-
 /***/ "./node_modules/@ionic-native/downloader/ngx/index.js":
 /*!************************************************************!*\
   !*** ./node_modules/@ionic-native/downloader/ngx/index.js ***!
@@ -1437,17 +1397,17 @@ var LoginPage = /** @class */ (function (_super) {
                 // Debug
                 var viewport = _this.meta.getTag('name=version');
                 _this.versionNumber = viewport.content;
-                // config.log("BROWSER: ", this.versionNumber);
+                // console.log("BROWSER: ", this.versionNumber);
             }
             else {
                 _this.appVersion.getVersionNumber().then(function (v) {
                     _this.versionNumber = v;
-                    // config.log("VVVVVV: ", this.versionNumber);
+                    // console.log("VVVVVV: ", this.versionNumber);
                 }, function (err) {
                     // PWA
                     var viewport = _this.meta.getTag('name=version');
                     _this.versionNumber = viewport.content;
-                    // config.log("EEEEE: ", this.versionNumber);
+                    // console.log("EEEEE: ", this.versionNumber);
                 });
             }
         });
@@ -1486,7 +1446,7 @@ var LoginPage = /** @class */ (function (_super) {
             _this.menuCtrl.swipeGesture(true);
         }, 1000);
         // this.service.dismissLoading();
-        // config.log('LOGIN1234567890');
+        // console.log('LOGIN1234567890');
     };
     LoginPage.prototype.onSubmit = function (form) {
         this.onLoginClicked();
@@ -1494,7 +1454,7 @@ var LoginPage = /** @class */ (function (_super) {
     LoginPage.prototype.onLoginClicked = function () {
         // Or to get a key/value pair
         // this.storage.get('name').then((val) => {
-        //   config.log('Your name is', val);
+        //   console.log('Your name is', val);
         //   this.presentAlert(val)
         // });
         var _this = this;
@@ -1525,9 +1485,9 @@ var LoginPage = /** @class */ (function (_super) {
                 ;
             }
             // this.service.dismissLoading(Constants.k_LOGIN).then(()=> {
-            //   config.log('apa apa apa');
+            //   console.log('apa apa apa');
             // });
-        }, false);
+        });
     };
     LoginPage.prototype.onLogin01112Clicked = function () {
         // // this.presentLoading()
@@ -1552,14 +1512,14 @@ var LoginPage = /** @class */ (function (_super) {
         //   }
         // };
         // this.downloader.download(request)
-        //   .then((location: string) => config.log('File downloaded at:' + location))
+        //   .then((location: string) => console.log('File downloaded at:' + location))
         //   .catch((error: any) => config.error(error));
         // this.service.callWebService(Constants.k_POST_EMAIL, new EmailModel(WSTypeCode.WIP), (res) => {
-        // config.log("ressssss email done: ", res);
+        // console.log("ressssss email done: ", res);
         // let arr = JSON.parse(res.data);
         // let filepath = arr[0];
         // let fullpath = filepath.filepath
-        // config.log('fullpath: ', fullpath);
+        // console.log('fullpath: ', fullpath);
         // window.open(fullpath, '_system');
         // window.open(filepath.filepath, '_system');
         //   let csv = this.papa.unparse({
@@ -1567,7 +1527,7 @@ var LoginPage = /** @class */ (function (_super) {
         //     data: item
         //   });
         //   if (this.service.isDesktop()) {
-        //     config.log('Dummy implementation for Desktop download purpose');
+        //     console.log('Dummy implementation for Desktop download purpose');
         //     // Dummy implementation for Desktop download purpose
         //     var blob = new Blob([csv]);
         //     var a = window.document.createElement('a');
@@ -1577,27 +1537,27 @@ var LoginPage = /** @class */ (function (_super) {
         //     a.click();
         //     document.body.removeChild(a);
         //   } else {
-        // config.log('cordovacordovacordova');
+        // console.log('cordovacordovacordova');
         // this.file.writeFile(this.file.dataDirectory, 'data.csv', csv, { replace: true }).then(res => {
         //   this.socialSharing.share(null, null, res.nativeURL, null).then(e => {
         //     // Success
         //   }).catch(e => {
-        //     config.log('Share failed:', e)
+        //     console.log('Share failed:', e)
         //   });
         // }, err => {
-        //   config.log('Error: ', err);
+        //   console.log('Error: ', err);
         // });
         //   }
         // });
         this.storage.get(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_LG_REMEMBER_ME).then(function (loginModel) {
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log('isremember: ', _this.isRemembered);
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log('loginModel: ', loginModel);
+            console.log('isremember: ', _this.isRemembered);
+            console.log('loginModel: ', loginModel);
             var objecttt = JSON.parse(loginModel);
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log('objecttt: ', objecttt['username'] + ' ' + objecttt['password']);
+            console.log('objecttt: ', objecttt['username'] + ' ' + objecttt['password']);
         });
     };
     LoginPage.prototype.login = function () {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log("login");
+        console.log("login");
     };
     LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

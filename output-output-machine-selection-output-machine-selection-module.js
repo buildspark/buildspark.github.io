@@ -273,12 +273,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_base_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/base.service */ "./src/app/services/base.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_app_data_model_base_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/data-model/base.model */ "./src/app/data-model/base.model.ts");
-/* harmony import */ var src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/data-model/constant.model */ "./src/app/data-model/constant.model.ts");
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/shared/base-page/base-page.page */ "./src/app/shared/base-page/base-page.page.ts");
-
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/shared/base-page/base-page.page */ "./src/app/shared/base-page/base-page.page.ts");
 
 
 
@@ -302,13 +300,13 @@ var OutputMachineSelectionPage = /** @class */ (function (_super) {
         _this.checkBoxList = [];
         _this.arrMachine = [];
         _this.wipReqModel = new src_app_data_model_base_model__WEBPACK_IMPORTED_MODULE_5__["WIPModel"](2 /* Output */);
-        _this.currentDate = moment__WEBPACK_IMPORTED_MODULE_8__().format("YYYY-MM-DD");
+        _this.currentDate = moment__WEBPACK_IMPORTED_MODULE_7__().format("YYYY-MM-DD");
         return _this;
     }
     OutputMachineSelectionPage.prototype.ngOnInit = function () {
         var _this = this;
         if (this.route.snapshot.data['special']) {
-            src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log('special-----------------------: ', this.route.snapshot.data['special']);
+            console.log('special-----------------------: ', this.route.snapshot.data['special']);
             this.wipReqModel = this.route.snapshot.data['special'];
         }
         var machineList = [{ "name": "Auto Gluing Machine (1)", "value": "Auto Gluing Machine (1)" },
@@ -387,7 +385,7 @@ var OutputMachineSelectionPage = /** @class */ (function (_super) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var isCheckedAtLeastOne;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log("CHOSEN: ", this.checkBoxList);
+                console.log("CHOSEN: ", this.checkBoxList);
                 isCheckedAtLeastOne = false;
                 // this.wipReqModel.process = [];
                 this.checkBoxList.forEach(function (element) {
@@ -401,7 +399,7 @@ var OutputMachineSelectionPage = /** @class */ (function (_super) {
                     this.navCtrl.navigateForward('/output/sel-mach');
                 }
                 else {
-                    src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_9__["BasePagePage"].presentAlert('Alert', 'Please select at least one (1) machine.');
+                    src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_8__["BasePagePage"].presentAlert('Alert', 'Please select at least one (1) machine.');
                 }
                 return [2 /*return*/];
             });
@@ -417,12 +415,12 @@ var OutputMachineSelectionPage = /** @class */ (function (_super) {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
             src_app_services_base_service__WEBPACK_IMPORTED_MODULE_3__["BaseService"],
-            _ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"],
+            _ionic_storage__WEBPACK_IMPORTED_MODULE_6__["Storage"],
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], OutputMachineSelectionPage);
     return OutputMachineSelectionPage;
-}(src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_9__["BasePagePage"]));
+}(src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_8__["BasePagePage"]));
 
 
 

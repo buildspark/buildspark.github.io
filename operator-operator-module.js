@@ -219,15 +219,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data-model/constant.model */ "./src/app/data-model/constant.model.ts");
-
 
 
 
 var ModalBaseComponent = /** @class */ (function () {
     function ModalBaseComponent(navParams) {
         this.navParams = navParams;
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('PARAM: ', this.navParams);
+        console.log('PARAM: ', this.navParams);
         this.rootPage = this.navParams.data.rootPage;
         this.rootPageParams = this.navParams.data;
     }
@@ -422,20 +420,20 @@ var OperatorPage = /** @class */ (function (_super) {
     //     let deptReqModel: DeptModel = new AccessTokenModel();
     //     deptReqModel.accesstoken = accessToken;
     //     let ws = new WebService(Constants.k_GET_DEPT, deptReqModel, (res) => {
-    //       config.log('callback only');
+    //       console.log('callback only');
     //     });
     //     let deviceReqModel: DeviceModel = new AccessTokenModel();
     //     deviceReqModel.accesstoken = accessToken;
     //     let ws1 = new WebService(Constants.k_GET_DEVICE, deviceReqModel, (res) => {
-    //       config.log('callback only111');
+    //       console.log('callback only111');
     //     });
     //     let machineDownReasonReqModel: DownModel = new AccessTokenModel();
     //     machineDownReasonReqModel.accesstoken = accessToken;
     //     let ws2 = new WebService('TPInsight_GetMachineDownReason', machineDownReasonReqModel, (res) => {
-    //       config.log('callback only222');
+    //       console.log('callback only222');
     //     });
     //     this.service.callWebServiceSimultaneously([ws, ws1, ws2], (res)=> {
-    //       config.log('done yeah');
+    //       console.log('done yeah');
     //     }, true);
     //   });
     // }
@@ -472,12 +470,12 @@ var OperatorPage = /** @class */ (function (_super) {
                                             });
                                             _this.navCtrl.navigateForward('/operator/machine-down/downstart');
                                         }
-                                    }, false);
+                                    });
                                 }
                             }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK]);
                         }
                     }
-                }, false);
+                });
             }
         });
     };
@@ -485,13 +483,13 @@ var OperatorPage = /** @class */ (function (_super) {
         var _this = this;
         this.barcodeScanner.scan().then(function (barcodeData) {
             _this.barcodeData = barcodeData;
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log('Barcode data', _this.barcodeData);
+            console.log('Barcode data', _this.barcodeData);
         }).catch(function (err) {
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log('Error', err);
+            console.log('Error', err);
         });
     };
     OperatorPage.prototype.onButtonClicked = function (e) {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log('onButtonClicked: ', e.srcElement['innerText']);
+        console.log('onButtonClicked: ', e.srcElement['innerText']);
     };
     OperatorPage.prototype.resetField = function () {
         this.isMachineFound = false;
@@ -522,10 +520,10 @@ var OperatorPage = /** @class */ (function (_super) {
         }
     };
     OperatorPage.prototype.onMachineSelected = function () {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log('selectedMachine: ', this.selectedMachine);
+        console.log('selectedMachine: ', this.selectedMachine);
     };
     OperatorPage.prototype.onSubmit = function (form) {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log('datatatat: ', form.value);
+        console.log('datatatat: ', form.value);
         if (this.isMachineFound == true) {
             this.navCtrl.navigateForward('/operator/machine-down');
         }
@@ -583,7 +581,7 @@ var OperatorPage = /** @class */ (function (_super) {
                                 _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, _this.transfileReqModel, function (res) {
                                     _this.service.dismissLoading();
                                     _this.afterGetTransfile(res);
-                                }, false);
+                                });
                             }
                         });
                         return [4 /*yield*/, modal.present()];
@@ -603,7 +601,7 @@ var OperatorPage = /** @class */ (function (_super) {
         this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].k_GET_TRANSFILE, this.transfileReqModel, function (res) {
             _this.service.dismissLoading();
             _this.afterGetTransfile(res);
-        }, false);
+        });
     };
     OperatorPage.prototype.afterGetTransfile = function (response) {
         var _this = this;
@@ -683,9 +681,9 @@ var OperatorPage = /** @class */ (function (_super) {
                         'transfile': _this.arrTransfile[0]
                     });
                     _this.navCtrl.navigateForward('/operator/machine-down/downstart');
-                }, false);
+                });
             }
-        }, false);
+        });
     };
     OperatorPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -822,7 +820,7 @@ var SelDeptComponent = /** @class */ (function (_super) {
                             _this.cacheDept.list = JSON.parse(res.data);
                         }
                         _this.service.dismissLoading();
-                    }, false);
+                    });
                 });
             }
             else {
@@ -894,7 +892,7 @@ var SelDeptComponent = /** @class */ (function (_super) {
     };
     SelDeptComponent.prototype.onDepartmentClicked = function (department) {
         this.cacheDept.selected = department;
-        src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log('cacheDept: ', this.cacheDept);
+        console.log('cacheDept: ', this.cacheDept);
         // CACHE FOR MACHINE SELECTION IF USER ENTER FOR SECOND TIME AFTER CLOSE / KILL APP
         this.storage.set(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_DEPARTMENT, this.cacheDept);
         this.closeModal();
@@ -1040,7 +1038,7 @@ var SelMachineComponent = /** @class */ (function (_super) {
                             _this.storage.remove(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_5__["Constants"].c_OP_PROCESS);
                             _this.cancelModal();
                         }
-                    }, false);
+                    });
                 });
             }
         });
@@ -1079,7 +1077,7 @@ var SelMachineComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header class=\"custom-header\">\n  <ion-toolbar>\n    <ion-title>Select Process</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-buttons slot=\"primary\">\n      <ion-button (click)=\"cancelModal()\">\n        <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <ion-list>\n    <ion-item>\n      <ion-label><strong>Select All</strong></ion-label>\n      <ion-checkbox slot=\"start\" [(ngModel)]=\"masterCheck\" [indeterminate]=\"isIndeterminate\" (click)=\"checkMaster()\">\n      </ion-checkbox>\n    </ion-item>\n  </ion-list> -->\n  <ion-list *ngIf=\"cacheProcess.list\">\n    <ion-item *ngFor=\"let item of cacheProcess.list\" (click)='onProcessClicked(item)'>\n      <ion-label>{{item.value}}</ion-label>\n      <!-- <ion-checkbox slot=\"start\" [(ngModel)]=\"item.isChecked\" (ionChange)=\"checkEvent()\"></ion-checkbox> -->\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n\n<!-- <ion-footer>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <div *ngIf=\"checkBoxList\">\n          <ion-button [disabled]=\"disableSelectButton()\" class=\"obj-center\" (click)=\"navigateToSelMachine()\">Select\n          </ion-button>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-footer> -->"
+module.exports = "<ion-header class=\"custom-header\">\n  <ion-toolbar>\n    <ion-title>Select Process</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-buttons slot=\"primary\">\n      <ion-button (click)=\"cancelModal()\">\n        <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <!-- <ion-list>\n    <ion-item>\n      <ion-label><strong>Select All</strong></ion-label>\n      <ion-checkbox slot=\"start\" [(ngModel)]=\"masterCheck\" [indeterminate]=\"isIndeterminate\" (click)=\"checkMaster()\">\n      </ion-checkbox>\n    </ion-item>\n  </ion-list> -->\n  <ion-list *ngIf=\"cacheProcess.list\">\n    <ion-item *ngFor=\"let item of cacheProcess.list\" (click)='onProcessClicked(item)'>\n      <ion-label>{{item.name}}</ion-label>\n      <!-- <ion-checkbox slot=\"start\" [(ngModel)]=\"item.isChecked\" (ionChange)=\"checkEvent()\"></ion-checkbox> -->\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n\n<!-- <ion-footer>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <div *ngIf=\"checkBoxList\">\n          <ion-button [disabled]=\"disableSelectButton()\" class=\"obj-center\" (click)=\"navigateToSelMachine()\">Select\n          </ion-button>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-footer> -->"
 
 /***/ }),
 
@@ -1226,7 +1224,7 @@ var SelProcessComponent = /** @class */ (function (_super) {
                             _this.cacheProcess.list = JSON.parse(res.data);
                         }
                         _this.service.dismissLoading();
-                    }, false);
+                    });
                 });
             }
         });

@@ -309,7 +309,7 @@ var OutputPage = /** @class */ (function (_super) {
         //       this.checkBoxList.push({'machine' : element, 'isChecked' : false})
         //     }
         //   });
-        //   config.log("checkBoxList: ", this.checkBoxList);
+        //   console.log("checkBoxList: ", this.checkBoxList);
         //   // this.arrSelectedMachines = Array.prototype.map.call(this.arrMachines, function (item) { return item.value; })
         //   this.wipReqModel.dept.push(this.arrDept[0].value);
         //   this.monthlyReqModel.device = this.wipReqModel.dept.join(",");
@@ -320,7 +320,7 @@ var OutputPage = /** @class */ (function (_super) {
         // this.presentLoading();
         if (_this.route.snapshot.data['special']) {
             _this.wipReqModel = _this.route.snapshot.data['special'];
-            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log("GET DATA FROM PROCESS: ", JSON.stringify([_this.wipReqModel]));
+            console.log("GET DATA FROM PROCESS: ", JSON.stringify([_this.wipReqModel]));
             _this.downloadCSVReqModel.dept = _this.wipReqModel.dept;
             _this.downloadCSVReqModel.process = _this.wipReqModel.process;
             _this.outputAccumPackReqModel.date = _this.wipReqModel.date;
@@ -368,22 +368,22 @@ var OutputPage = /** @class */ (function (_super) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrOutputAccumPack = JSON.parse(res.data);
             }
-        }, false);
+        });
         var response2 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_OUTPUT, this.outputNonAccumPackReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrOutputNonAccumPack = JSON.parse(res.data);
             }
-        }, false);
+        });
         var response3 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_OUTPUT, this.outputAccumNonPackReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrOutputAccumNonPack = JSON.parse(res.data);
             }
-        }, false);
+        });
         var response4 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_OUTPUT, this.outputNonAccumNonPackReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrOutputNonAccumNonPack = JSON.parse(res.data);
             }
-        }, false);
+        });
         this.service.callWebServiceSimultaneously([response1, response2, response3, response4]);
     };
     OutputPage.prototype.onWipHourlySelected = function (item) {
@@ -442,8 +442,8 @@ var OutputPage = /** @class */ (function (_super) {
         this.callWSToReloadPagesData();
     };
     OutputPage.prototype.onTabChanged = function (tabChangeEvent) {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('tabChangeEvent => ', tabChangeEvent);
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('index => ', tabChangeEvent.index);
+        console.log('tabChangeEvent => ', tabChangeEvent);
+        console.log('index => ', tabChangeEvent.index);
         // this.optionsFn(null)
     };
     OutputPage.prototype.onViewOutputDateClicked = function () {
@@ -485,7 +485,7 @@ var OutputPage = /** @class */ (function (_super) {
                                         _this.wipReqModel.dept.push(element.machine.value);
                                     }
                                 });
-                                _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('--- Modal SELECTED Data: ', _this.wipReqModel.dept);
+                                console.log('--- Modal SELECTED Data: ', _this.wipReqModel.dept);
                                 _this.optionsFn();
                             }
                         });
@@ -508,7 +508,7 @@ var OutputPage = /** @class */ (function (_super) {
                     window.open(fullpath, '_system');
                 }
                 _this.service.dismissLoading();
-            }, false);
+            });
         }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].b_OK] /*, [{
           name: 'email',
           type: 'email',

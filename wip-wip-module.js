@@ -297,7 +297,7 @@ var WipPage = /** @class */ (function (_super) {
             //       this.checkBoxList.push({'machine' : element, 'isChecked' : false})
             //     }
             //   });
-            //   config.log("checkBoxList: ", this.checkBoxList);
+            //   console.log("checkBoxList: ", this.checkBoxList);
             //   // this.arrSelectedMachines = Array.prototype.map.call(this.arrMachines, function (item) { return item.value; })
             //   this.wipPackReqModel.dept.push(this.arrDept[0].value);
             //   this.monthlyReqModel.device = this.wipPackReqModel.dept.join(",");
@@ -328,7 +328,7 @@ var WipPage = /** @class */ (function (_super) {
     WipPage.prototype.ngOnInit = function () {
         // if (this.route.snapshot.data['special']) {
         //   this.wipPackReqModel = this.route.snapshot.data['special'];
-        //   config.log("GET DATA FROM PROCESS: ", JSON.stringify([this.wipPackReqModel]));
+        //   console.log("GET DATA FROM PROCESS: ", JSON.stringify([this.wipPackReqModel]));
         //   this.callWSToReloadPagesData();
         // }
     };
@@ -342,12 +342,12 @@ var WipPage = /** @class */ (function (_super) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrDailyCharts = JSON.parse(res.data);
             }
-        }, false);
+        });
         var response2 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_WIP, this.wipNonPackReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrDailyNonPackCharts = JSON.parse(res.data);
             }
-        }, false);
+        });
         this.service.callWebServiceSimultaneously([response1, response2]);
     };
     WipPage.prototype.onWipHourlySelected = function (item) {
@@ -403,8 +403,8 @@ var WipPage = /** @class */ (function (_super) {
         this.callWSToReloadPagesData();
     };
     WipPage.prototype.onTabChanged = function (tabChangeEvent) {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('tabChangeEvent => ', tabChangeEvent);
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('index => ', tabChangeEvent.index);
+        console.log('tabChangeEvent => ', tabChangeEvent);
+        console.log('index => ', tabChangeEvent.index);
         // this.optionsFn(null)
     };
     WipPage.prototype.onViewWIPDateClicked = function () {
@@ -416,7 +416,7 @@ var WipPage = /** @class */ (function (_super) {
         //     this.arrDailyCharts = JSON.parse(res.data);
         //   }
         //   this.service.dismissLoading();
-        // }, false);
+        // });
         this.callWSToReloadPagesData();
     };
     WipPage.prototype.random_rgb = function () {
@@ -450,7 +450,7 @@ var WipPage = /** @class */ (function (_super) {
                                         _this.wipPackReqModel.dept.push(element.machine.value);
                                     }
                                 });
-                                _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('--- Modal SELECTED Data: ', _this.wipPackReqModel.dept);
+                                console.log('--- Modal SELECTED Data: ', _this.wipPackReqModel.dept);
                                 _this.optionsFn();
                             }
                         });
@@ -461,12 +461,12 @@ var WipPage = /** @class */ (function (_super) {
         });
     };
     WipPage.prototype.onClicked = function () {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log("BACK");
+        console.log("BACK");
     };
     WipPage.prototype.downloadcsv = function () {
         var _this = this;
         _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_10__["BasePagePage"].presentAlert('Extract Data', 'Are you sure want to extract data as file to your local storage?', function (res) {
-            // config.log('hi, ai am here: ', res.data.values.email);
+            // console.log('hi, ai am here: ', res.data.values.email);
             _this.downloadCSVReqModel.date = _this.wipPackReqModel.date;
             _this.service.presentLoading();
             _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_DOWNLOAD_CSV, _this.downloadCSVReqModel, function (res) {
@@ -477,7 +477,7 @@ var WipPage = /** @class */ (function (_super) {
                     window.open(fullpath, '_system');
                 }
                 _this.service.dismissLoading();
-            }, false);
+            });
         }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].b_OK] /*, [{
           name: 'email',
           type: 'email',

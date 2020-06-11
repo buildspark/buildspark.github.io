@@ -309,7 +309,7 @@ var OutputDeptSelectionPage = /** @class */ (function (_super) {
                     _this.checkBoxList.push({ 'dept': element, 'isChecked': false });
                 });
                 _this.service.dismissLoading();
-            }, false);
+            });
         });
         return _this;
     }

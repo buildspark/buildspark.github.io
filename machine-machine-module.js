@@ -239,7 +239,7 @@ var MachinePage = /** @class */ (function () {
                 var strItem = arrJSON[0];
                 var strJSON = strItem["data"];
                 _this.deviceData = JSON.parse(strJSON);
-                _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log("\n\n\nDATA: ", _this.deviceData, "\n\n\n");
+                console.log("\n\n\nDATA: ", _this.deviceData, "\n\n\n");
             });
         });
     }
@@ -329,7 +329,7 @@ var MachinePage = /** @class */ (function () {
                         return [4 /*yield*/, alert.onDidDismiss()];
                     case 3:
                         result = _a.sent();
-                        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["config"].log(result);
+                        console.log(result);
                         return [2 /*return*/];
                 }
             });

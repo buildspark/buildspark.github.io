@@ -294,7 +294,7 @@ var UsagePage = /** @class */ (function (_super) {
                     _this.yearlyReqModel.device = _this.arrSelectedMachines.join(",");
                     _this.callWSToReloadPagesData();
                 }
-            }, false);
+            });
         });
         return _this;
     }
@@ -304,17 +304,17 @@ var UsagePage = /** @class */ (function (_super) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrDailyCharts = JSON.parse(res.data);
             }
-        }, false);
+        });
         var response2 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_MONTHLY_USAGE, this.monthlyReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrMonthlyCharts = JSON.parse(res.data);
             }
-        }, false);
+        });
         var response3 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_YEARLY_USAGE, this.yearlyReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrYearlyCharts = JSON.parse(res.data);
             }
-        }, false);
+        });
         this.service.callWebServiceSimultaneously([response1, response2, response3]).finally(function () {
             _this.service.dismissLoading();
         });
@@ -378,18 +378,18 @@ var UsagePage = /** @class */ (function (_super) {
     };
     UsagePage.prototype.selectAll = function (select) {
         // do what you want
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('selectselectselect: ', select);
+        console.log('selectselectselect: ', select);
     };
     UsagePage.prototype.optionsFn = function () {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log("item: ", this.arrSelectedMachines);
+        console.log("item: ", this.arrSelectedMachines);
         this.dailyReqModel.device = this.arrSelectedMachines.join(",");
         this.monthlyReqModel.device = this.arrSelectedMachines.join(",");
         this.yearlyReqModel.device = this.arrSelectedMachines.join(",");
         this.callWSToReloadPagesData();
     };
     UsagePage.prototype.onTabChanged = function (tabChangeEvent) {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('tabChangeEvent => ', tabChangeEvent);
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('index => ', tabChangeEvent.index);
+        console.log('tabChangeEvent => ', tabChangeEvent);
+        console.log('index => ', tabChangeEvent.index);
         // this.optionsFn(null)
     };
     UsagePage.prototype.onViewDailyDateClicked = function () {
@@ -402,7 +402,7 @@ var UsagePage = /** @class */ (function (_super) {
                 _this.arrDailyCharts = JSON.parse(res.data);
             }
             _this.service.dismissLoading();
-        }, false);
+        });
     };
     UsagePage.prototype.onViewMonthlyDateClicked = function () {
         var _this = this;
@@ -414,7 +414,7 @@ var UsagePage = /** @class */ (function (_super) {
                 _this.arrMonthlyCharts = JSON.parse(res.data);
             }
             _this.service.dismissLoading();
-        }, false);
+        });
     };
     UsagePage.prototype.onViewYearlyDateClicked = function () {
         var _this = this;
@@ -426,7 +426,7 @@ var UsagePage = /** @class */ (function (_super) {
                 _this.arrYearlyCharts = JSON.parse(res.data);
             }
             _this.service.dismissLoading();
-        }, false);
+        });
     };
     UsagePage.prototype.random_rgb = function () {
         var o = Math.round, r = Math.random, s = 255;
@@ -486,7 +486,7 @@ var UsagePage = /** @class */ (function (_super) {
                                         _this.arrSelectedMachines.push(element.machine.value);
                                     }
                                 });
-                                _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('--- Modal SELECTED Data: ', _this.arrSelectedMachines);
+                                console.log('--- Modal SELECTED Data: ', _this.arrSelectedMachines);
                                 _this.optionsFn();
                             }
                         });

@@ -393,7 +393,7 @@ var MachineDownPage = /** @class */ (function (_super) {
                 else {
                     _this.service.dismissLoading();
                 }
-            }, false);
+            });
         });
     };
     MachineDownPage.prototype.ngOnDestroy = function () {
@@ -439,9 +439,9 @@ var MachineDownPage = /** @class */ (function (_super) {
         var hours = Number(arrSplit[0]);
         var minutes = Number(arrSplit[1]);
         var seconds = Number(arrSplit[2]);
-        src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log("hours: ", hours);
-        src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log("minutes: ", minutes);
-        src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["config"].log("seconds: ", seconds);
+        console.log("hours: ", hours);
+        console.log("minutes: ", minutes);
+        console.log("seconds: ", seconds);
     };
     MachineDownPage.prototype.onSubmitClicked = function (form, e) {
         var _this = this;
@@ -468,7 +468,7 @@ var MachineDownPage = /** @class */ (function (_super) {
                     else {
                         _this.service.dismissLoading();
                     }
-                }, false);
+                });
             }
         }, [src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_CANCEL, src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK]);
     };
@@ -484,7 +484,7 @@ var MachineDownPage = /** @class */ (function (_super) {
                     else {
                         _this.service.dismissLoading();
                     }
-                }, false);
+                });
             }
         }, [src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_CANCEL, src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK]);
     };

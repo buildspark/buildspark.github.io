@@ -297,7 +297,7 @@ var ImpressionPage = /** @class */ (function (_super) {
                 else {
                     _this.service.dismissLoading();
                 }
-            }, false);
+            });
         });
         return _this;
     }
@@ -309,17 +309,17 @@ var ImpressionPage = /** @class */ (function (_super) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrDailyCharts = JSON.parse(res.data);
             }
-        }, false);
+        });
         var response2 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_MONTHLY_IMP, this.monthlyReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrMonthlyCharts = JSON.parse(res.data);
             }
-        }, false);
+        });
         var response3 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_YEARLY_IMP, this.yearlyReqModel, function (res) {
             if (res && res.data && res.data != '' && res.data != '-') {
                 _this.arrYearlyCharts = JSON.parse(res.data);
             }
-        }, false);
+        });
         this.service.callWebServiceSimultaneously([response1, response2, response3]).finally(function () {
             _this.service.dismissLoading();
         });
@@ -381,15 +381,15 @@ var ImpressionPage = /** @class */ (function (_super) {
         this.presentModal();
     };
     ImpressionPage.prototype.optionsFn = function () {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log("optionsFnitem: ", this.arrSelectedMachines);
+        console.log("optionsFnitem: ", this.arrSelectedMachines);
         this.dailyReqModel.device = this.arrSelectedMachines.join(",");
         this.monthlyReqModel.device = this.arrSelectedMachines.join(",");
         this.yearlyReqModel.device = this.arrSelectedMachines.join(",");
         this.callWSToReloadPagesData();
     };
     ImpressionPage.prototype.onTabChanged = function (tabChangeEvent) {
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('tabChangeEvent => ', tabChangeEvent);
-        _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('index => ', tabChangeEvent.index);
+        console.log('tabChangeEvent => ', tabChangeEvent);
+        console.log('index => ', tabChangeEvent.index);
         // this.optionsFn(null)
     };
     ImpressionPage.prototype.onViewDailyDateClicked = function () {
@@ -402,7 +402,7 @@ var ImpressionPage = /** @class */ (function (_super) {
                 _this.arrDailyCharts = JSON.parse(res.data);
             }
             _this.service.dismissLoading();
-        }, false);
+        });
     };
     ImpressionPage.prototype.onViewMonthlyDateClicked = function () {
         var _this = this;
@@ -414,7 +414,7 @@ var ImpressionPage = /** @class */ (function (_super) {
                 _this.arrMonthlyCharts = JSON.parse(res.data);
             }
             _this.service.dismissLoading();
-        }, false);
+        });
     };
     ImpressionPage.prototype.onViewYearlyDateClicked = function () {
         var _this = this;
@@ -426,7 +426,7 @@ var ImpressionPage = /** @class */ (function (_super) {
                 _this.arrYearlyCharts = JSON.parse(res.data);
             }
             _this.service.dismissLoading();
-        }, false);
+        });
     };
     ImpressionPage.prototype.random_rgb = function () {
         var o = Math.round, r = Math.random, s = 255;
@@ -478,7 +478,7 @@ var ImpressionPage = /** @class */ (function (_super) {
                     case 1:
                         modal = _a.sent();
                         modal.onDidDismiss().then(function (dataReturned) {
-                            _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('dataReturned: ', dataReturned);
+                            console.log('dataReturned: ', dataReturned);
                             if (dataReturned !== null && dataReturned.data !== undefined) {
                                 // this.dataReturned = dataReturned.data;
                                 _this.arrSelectedMachines = [];
@@ -487,7 +487,7 @@ var ImpressionPage = /** @class */ (function (_super) {
                                         _this.arrSelectedMachines.push(element.machine.value);
                                     }
                                 });
-                                _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["config"].log('--- Modal SELECTED Data: ', _this.arrSelectedMachines);
+                                console.log('--- Modal SELECTED Data: ', _this.arrSelectedMachines);
                                 _this.optionsFn();
                             }
                         });
