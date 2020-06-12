@@ -757,7 +757,7 @@ return zoomPlugin;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <ion-card class=\"welcome-card\">\n    <ion-card-header>\n      <!-- <ion-card-subtitle>{{title}}</ion-card-subtitle> -->\n      <ion-card-title>{{ data.device }}</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <!-- <div style=\"width: 100%; overflow-x: auto;overflow-y:hidden\">\n        <div style=\"width: 3000px; height: 100%\">\n          <canvas #canvas height=\"100%\" width=\"3000\"></canvas>\n        </div>\n      </div> -->\n      <!-- \n      <div class=\"chartWrapper\">\n        <div class=\"chartAreaWrapper\">\n          <div class=\"chartAreaWrapper2\">\n              <canvas id=\"myChart\"></canvas>\n          </div>\n        </div>\n          \n          <canvas id=\"myChartAxis\" height=\"300\" width=\"0\"></canvas>\n          \n      </div> -->\n\n      <!-- <div #scrollView class=\"scrolling-wrapper\">\n        <div class=\"card\">\n          <canvas #canvas height=\"400\" width=\"3000\" style=\"pointer-events: none;\"></canvas>\n        </div>\n      </div> -->\n\n      <canvas #canvas></canvas>\n    </ion-card-content>\n  </ion-card>\n</div>"
+module.exports = "<div>\n  <ion-card class=\"welcome-card\">\n    <ion-card-header>\n      <!-- <ion-card-subtitle>{{title}}</ion-card-subtitle> -->\n      <ion-card-title>{{ data.device }}</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <!-- <div style=\"width: 100%; overflow-x: auto;overflow-y:hidden\">\n        <div style=\"width: 3000px; height: 100%\">\n          <canvas #canvas height=\"100%\" width=\"3000\"></canvas>\n        </div>\n      </div> -->\n      <!-- \n      <div class=\"chartWrapper\">\n        <div class=\"chartAreaWrapper\">\n          <div class=\"chartAreaWrapper2\">\n              <canvas id=\"myChart\"></canvas>\n          </div>\n        </div>\n          \n          <canvas id=\"myChartAxis\" height=\"300\" width=\"0\"></canvas>\n          \n      </div> -->\n\n      <!-- <div #scrollView class=\"scrolling-wrapper\">\n        <div class=\"card\">\n          <canvas #canvas height=\"400\" width=\"3000\" style=\"pointer-events: none;\"></canvas>\n        </div>\n      </div> -->\n\n      <!-- <div class=\"chart-container\" style=\"position: relative; height:75vh; width:75vw\">\n        <canvas #canvas></canvas>\n      </div> -->\n\n      <canvas #canvas></canvas>\n\n    </ion-card-content>\n  </ion-card>\n</div>"
 
 /***/ }),
 
@@ -845,6 +845,8 @@ var CanvasComponent = /** @class */ (function () {
         this.createBarChart(this.data);
     };
     CanvasComponent.prototype.createBarChart = function (dataInput) {
+        var arrLabels = JSON.parse(dataInput["data"]).labels;
+        var arrDatasets = JSON.parse(dataInput["data"]).datasets;
         //register custom positioner
         chart_js__WEBPACK_IMPORTED_MODULE_2__["Chart"].Tooltip.positioners.custom = function (elements, position) {
             //debugger;
@@ -869,13 +871,93 @@ var CanvasComponent = /** @class */ (function () {
                         stacked: true
                     }]
             },
+            // responsive: false,
+            // maintainAspectRatio: false,
             legend: {
-                // display: true,
-                // labels: {
-                //   fontColor: 'rgb(255, 99, 132)'
-                // },
-                position: 'right'
+                display: false,
             },
+            plugins: {
+                zoom: {
+                    // Container for pan options
+                    pan: {
+                        // Boolean to enable panning
+                        enabled: true,
+                        // Panning directions. Remove the appropriate direction to disable
+                        // Eg. 'y' would only allow panning in the y direction
+                        // A function that is called as the user is panning and returns the
+                        // available directions can also be used:
+                        //   mode: function({ chart }) {
+                        //     return 'xy';
+                        //   },
+                        mode: 'xy',
+                        rangeMin: {
+                            // Format of min pan range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        rangeMax: {
+                            // Format of max pan range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        // Function called while the user is panning
+                        onPan: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I'm panning!!!");
+                        },
+                        // Function called once panning is completed
+                        onPanComplete: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I was panned!!!");
+                        }
+                    },
+                    // Container for zoom options
+                    zoom: {
+                        // Boolean to enable zooming
+                        enabled: true,
+                        // Enable drag-to-zoom behavior
+                        drag: true,
+                        // Drag-to-zoom effect can be customized
+                        // drag: {
+                        // 	 borderColor: 'rgba(225,225,225,0.3)'
+                        // 	 borderWidth: 5,
+                        // 	 backgroundColor: 'rgb(225,225,225)',
+                        // 	 animationDuration: 0
+                        // },
+                        // Zooming directions. Remove the appropriate direction to disable
+                        // Eg. 'y' would only allow zooming in the y direction
+                        // A function that is called as the user is zooming and returns the
+                        // available directions can also be used:
+                        //   mode: function({ chart }) {
+                        //     return 'xy';
+                        //   },
+                        mode: 'xy',
+                        rangeMin: {
+                            // Format of min zoom range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        rangeMax: {
+                            // Format of max zoom range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        // Speed of zoom via mouse wheel
+                        // (percentage of zoom on a wheel event)
+                        speed: 0.1,
+                        // Function called while the user is zooming
+                        onZoom: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I'm zooming!!!");
+                        },
+                        // Function called once zooming is completed
+                        onZoomComplete: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I was zoomed!!!");
+                        }
+                    }
+                }
+            }
         };
         var impressionChart = {
             scales: {
@@ -893,12 +975,10 @@ var CanvasComponent = /** @class */ (function () {
                         stacked: true
                     }]
             },
+            // responsive: false,
+            // maintainAspectRatio: false,
             legend: {
-                // display: true,
-                // labels: {
-                //   fontColor: 'rgb(255, 99, 132)'
-                // },
-                position: 'right'
+                display: false,
             },
             tooltips: {
                 caretY: 0,
@@ -920,17 +1000,99 @@ var CanvasComponent = /** @class */ (function () {
                     }
                 },
             },
+            plugins: {
+                zoom: {
+                    // Container for pan options
+                    pan: {
+                        // Boolean to enable panning
+                        enabled: true,
+                        // Panning directions. Remove the appropriate direction to disable
+                        // Eg. 'y' would only allow panning in the y direction
+                        // A function that is called as the user is panning and returns the
+                        // available directions can also be used:
+                        //   mode: function({ chart }) {
+                        //     return 'xy';
+                        //   },
+                        mode: 'xy',
+                        rangeMin: {
+                            // Format of min pan range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        rangeMax: {
+                            // Format of max pan range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        // Function called while the user is panning
+                        onPan: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I'm panning!!!");
+                        },
+                        // Function called once panning is completed
+                        onPanComplete: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I was panned!!!");
+                        }
+                    },
+                    // Container for zoom options
+                    zoom: {
+                        // Boolean to enable zooming
+                        enabled: true,
+                        // Enable drag-to-zoom behavior
+                        drag: true,
+                        // Drag-to-zoom effect can be customized
+                        // drag: {
+                        // 	 borderColor: 'rgba(225,225,225,0.3)'
+                        // 	 borderWidth: 5,
+                        // 	 backgroundColor: 'rgb(225,225,225)',
+                        // 	 animationDuration: 0
+                        // },
+                        // Zooming directions. Remove the appropriate direction to disable
+                        // Eg. 'y' would only allow zooming in the y direction
+                        // A function that is called as the user is zooming and returns the
+                        // available directions can also be used:
+                        //   mode: function({ chart }) {
+                        //     return 'xy';
+                        //   },
+                        mode: 'xy',
+                        rangeMin: {
+                            // Format of min zoom range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        rangeMax: {
+                            // Format of max zoom range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        // Speed of zoom via mouse wheel
+                        // (percentage of zoom on a wheel event)
+                        speed: 0.1,
+                        // Function called while the user is zooming
+                        onZoom: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I'm zooming!!!");
+                        },
+                        // Function called once zooming is completed
+                        onZoomComplete: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I was zoomed!!!");
+                        }
+                    }
+                }
+            }
         };
         var strTitle = String(this.title);
         var ctx = this.canvas.nativeElement;
         if (!this.service.isDesktop()) {
-            ctx.height = this.service.screenSize()['screenHeight'] * 0.5;
+            ctx.height = this.service.screenSize()['screenHeight'] * 0.8;
         }
         this.chart = new chart_js__WEBPACK_IMPORTED_MODULE_2__["Chart"](ctx, {
             type: 'bar',
             data: {
-                labels: JSON.parse(dataInput["data"]).labels,
-                datasets: JSON.parse(dataInput["data"]).datasets
+                labels: arrLabels,
+                datasets: arrDatasets
             },
             options: strTitle.includes('impression') || strTitle.includes('wip') || strTitle.includes('output') ? impressionChart : usageChart
             // {
