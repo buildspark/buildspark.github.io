@@ -1083,6 +1083,134 @@ var CanvasComponent = /** @class */ (function () {
                 }
             }
         };
+        var wipChart = {
+            scales: {
+                xAxes: [{
+                        barPercentage: 0.9,
+                        gridLines: {
+                            offsetGridLines: true
+                        },
+                        stacked: true
+                    }],
+                yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                        stacked: true
+                    }]
+            },
+            // responsive: false,
+            // maintainAspectRatio: false,
+            legend: {
+                display: true,
+                // labels: {
+                //   fontColor: 'rgb(255, 99, 132)'
+                // },
+                position: 'top'
+            },
+            tooltips: {
+                caretY: 0,
+                yAlign: 'bottom',
+                mode: 'label',
+                position: 'nearest',
+                callbacks: {
+                    afterTitle: function () {
+                        window.total = 0;
+                    },
+                    label: function (tooltipItem, data) {
+                        var corporation = data.datasets[tooltipItem.datasetIndex].label;
+                        var valor = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        window.total += valor;
+                        return corporation + ": " + valor.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                    },
+                    footer: function () {
+                        return "TOTAL: " + window.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                    }
+                },
+            },
+            plugins: {
+                zoom: {
+                    // Container for pan options
+                    pan: {
+                        // Boolean to enable panning
+                        enabled: true,
+                        // Panning directions. Remove the appropriate direction to disable
+                        // Eg. 'y' would only allow panning in the y direction
+                        // A function that is called as the user is panning and returns the
+                        // available directions can also be used:
+                        //   mode: function({ chart }) {
+                        //     return 'xy';
+                        //   },
+                        mode: 'xy',
+                        rangeMin: {
+                            // Format of min pan range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        rangeMax: {
+                            // Format of max pan range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        // Function called while the user is panning
+                        onPan: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I'm panning!!!");
+                        },
+                        // Function called once panning is completed
+                        onPanComplete: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I was panned!!!");
+                        }
+                    },
+                    // Container for zoom options
+                    zoom: {
+                        // Boolean to enable zooming
+                        enabled: true,
+                        // Enable drag-to-zoom behavior
+                        drag: true,
+                        // Drag-to-zoom effect can be customized
+                        // drag: {
+                        // 	 borderColor: 'rgba(225,225,225,0.3)'
+                        // 	 borderWidth: 5,
+                        // 	 backgroundColor: 'rgb(225,225,225)',
+                        // 	 animationDuration: 0
+                        // },
+                        // Zooming directions. Remove the appropriate direction to disable
+                        // Eg. 'y' would only allow zooming in the y direction
+                        // A function that is called as the user is zooming and returns the
+                        // available directions can also be used:
+                        //   mode: function({ chart }) {
+                        //     return 'xy';
+                        //   },
+                        mode: 'xy',
+                        rangeMin: {
+                            // Format of min zoom range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        rangeMax: {
+                            // Format of max zoom range depends on scale type
+                            x: null,
+                            y: null
+                        },
+                        // Speed of zoom via mouse wheel
+                        // (percentage of zoom on a wheel event)
+                        speed: 0.1,
+                        // Function called while the user is zooming
+                        onZoom: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I'm zooming!!!");
+                        },
+                        // Function called once zooming is completed
+                        onZoomComplete: function (_a) {
+                            var chart = _a.chart;
+                            console.log("I was zoomed!!!");
+                        }
+                    }
+                }
+            }
+        };
         var strTitle = String(this.title);
         var ctx = this.canvas.nativeElement;
         if (!this.service.isDesktop()) {
@@ -1094,7 +1222,7 @@ var CanvasComponent = /** @class */ (function () {
                 labels: arrLabels,
                 datasets: arrDatasets
             },
-            options: strTitle.includes('impression') || strTitle.includes('wip') || strTitle.includes('output') ? impressionChart : usageChart
+            options: strTitle.includes('impression') ? impressionChart : (strTitle.includes('wip') || strTitle.includes('output')) ? wipChart : usageChart
             // {
             // plugins: {
             //   stacked100: { enable: true }
