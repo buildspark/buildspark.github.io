@@ -1108,6 +1108,20 @@ var CanvasComponent = /** @class */ (function () {
                 // },
                 position: 'top'
             },
+            events: ["click"],
+            hover: {
+                mode: 'nearest'
+            },
+            // onClick: function(event, element) {
+            //    var activeElement = element[0];
+            //    var data = activeElement._chart.data;
+            //    var barIndex = activeElement._index;
+            //    var datasetIndex = activeElement._datasetIndex;
+            //    var datasetLabel = data.datasets[datasetIndex].label;
+            //    var xLabel = data.labels[barIndex];
+            //    var yLabel = data.datasets[datasetIndex].data[barIndex];
+            //    console.log(datasetLabel, xLabel, yLabel);
+            // },
             tooltips: {
                 caretY: 0,
                 yAlign: 'bottom',

@@ -497,6 +497,8 @@ var OutputPage = /** @class */ (function (_super) {
     };
     OutputPage.prototype.downloadcsv = function () {
         var _this = this;
+        this.downloadCSVReqModel.packaging = this.isPack ? '1' : '0';
+        this.downloadCSVReqModel.accumulated = this.isAccum ? '1' : '0';
         _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_10__["BasePagePage"].presentAlert('Extract Data', 'Are you sure want to extract data as file to your local storage?', function (res) {
             _this.downloadCSVReqModel.date = _this.wipReqModel.date;
             _this.service.presentLoading();

@@ -752,6 +752,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _data_model_constant_model__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./data-model/constant.model */ "./src/app/data-model/constant.model.ts");
 /* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
+
 
 
 
@@ -765,7 +767,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppComponent = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](AppComponent, _super);
-    function AppComponent(loadingCtrl, alertCtrl, platform, statusBar, service, network, router, navCtrl, menuCtrl, appVersion, meta) {
+    function AppComponent(loadingCtrl, alertCtrl, platform, statusBar, service, network, router, navCtrl, menuCtrl, appVersion, meta, fcm) {
         var _this = _super.call(this, loadingCtrl, alertCtrl) || this;
         _this.loadingCtrl = loadingCtrl;
         _this.alertCtrl = alertCtrl;
@@ -778,6 +780,7 @@ var AppComponent = /** @class */ (function (_super) {
         _this.menuCtrl = menuCtrl;
         _this.appVersion = appVersion;
         _this.meta = meta;
+        _this.fcm = fcm;
         _this.appPages = [
             {
                 title: 'Operator',
@@ -840,6 +843,36 @@ var AppComponent = /** @class */ (function (_super) {
                     _this.checkConsoleLog();
                 });
             }
+            // // const plugin = (window as any).FirebasePlugin;
+            // const plugin = (window as any).FCM;
+            // plugin.getToken(function (fcmToken) {
+            //   console.log('----------fcmToken: ', fcmToken);
+            // }, function (error) {
+            //   console.error(error);
+            // });
+            // plugin.subscribe("latest_news");
+            // subscribe to a topic
+            _this.fcm.subscribeToTopic('latest_news');
+            // get FCM token
+            _this.fcm.getToken().then(function (token) {
+                console.log("tokentokentoken: ", token);
+            });
+            // ionic push notification example
+            _this.fcm.onNotification().subscribe(function (data) {
+                console.log(data);
+                if (data.wasTapped) {
+                    console.log('Received in background');
+                }
+                else {
+                    console.log('Received in foreground');
+                }
+            });
+            // refresh the FCM token
+            _this.fcm.onTokenRefresh().subscribe(function (token) {
+                console.log(token);
+            });
+            // unsubscribe from a topic
+            // this.fcm.unsubscribeFromTopic('offers');
         });
         this.router.events.subscribe(function (event) {
             if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_6__["NavigationEnd"]) {
@@ -938,7 +971,8 @@ var AppComponent = /** @class */ (function (_super) {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
             _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_9__["AppVersion"],
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__["Meta"]])
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__["Meta"],
+            _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_11__["FCM"]])
     ], AppComponent);
     return AppComponent;
 }(_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__["BasePagePage"]));
@@ -974,6 +1008,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
 /* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
 /* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
+/* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
 
 
 
@@ -990,6 +1025,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+// FCM
 
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -1014,7 +1051,8 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_14__["Network"],
                 _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_15__["BarcodeScanner"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
-                _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_16__["AppVersion"]
+                _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_16__["AppVersion"],
+                _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_17__["FCM"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })

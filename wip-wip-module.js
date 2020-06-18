@@ -465,6 +465,8 @@ var WipPage = /** @class */ (function (_super) {
     };
     WipPage.prototype.downloadcsv = function () {
         var _this = this;
+        this.downloadCSVReqModel.packaging = this.isPack ? '1' : '0';
+        this.downloadCSVReqModel.accumulated = '0'; // WIP no accumulated data
         _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_10__["BasePagePage"].presentAlert('Extract Data', 'Are you sure want to extract data as file to your local storage?', function (res) {
             // console.log('hi, ai am here: ', res.data.values.email);
             _this.downloadCSVReqModel.date = _this.wipPackReqModel.date;

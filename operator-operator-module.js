@@ -112,12 +112,16 @@ var DownloadCSVModel = /** @class */ (function () {
     function DownloadCSVModel(type, // WIP = 1, Output = 2
     accesstoken, date, // 2020-02-13
     dept, // [1,2,3,5]
-    process) {
+    process, // ['CLDR', 'CREA', 'GLUE']
+    accumulated, // Non-acccumulated = 0, Accumulated = 1
+    packaging) {
         this.type = type;
         this.accesstoken = accesstoken;
         this.date = date;
         this.dept = dept;
         this.process = process;
+        this.accumulated = accumulated;
+        this.packaging = packaging;
     }
     return DownloadCSVModel;
 }());

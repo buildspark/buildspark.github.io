@@ -1,5 +1,4 @@
-cordova.define("cordova-plugin-document-viewer.SitewaertsDocumentViewer", function(require, exports, module) {
-//  cordova-plugin-document-viewer
+cordova.define("cordova-plugin-document-viewer.SitewaertsDocumentViewer", function(require, exports, module) { //  cordova-plugin-document-viewer
 //
 //  Created by Felix Schauerte 25.09.2014
 //
