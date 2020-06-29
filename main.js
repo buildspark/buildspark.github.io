@@ -428,17 +428,17 @@ module.exports = webpackAsyncContext;
 var map = {
 	"./impression/impression.module": [
 		"./src/app/impression/impression.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~2469fd9a",
-		"default~impression-impression-module~machine-machine-module~output-output-module~usage-usage-module~~c1ba61ff",
-		"default~impression-impression-module~operator-operator-module~output-output-module~usage-usage-modul~2aacbff0",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
+		"default~impression-impression-module~machine-machine-module~output-output-chart-output-chart-module~~6f5ee94b",
+		"default~impression-impression-module~operator-operator-module~output-output-chart-output-chart-modul~08438382",
 		"common",
 		"impression-impression-module"
 	],
 	"./line/line.module": [
 		"./src/app/line/line.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~2469fd9a",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
 		"common",
 		"line-line-module"
 	],
@@ -449,9 +449,9 @@ var map = {
 	],
 	"./machine/machine.module": [
 		"./src/app/machine/machine.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~2469fd9a",
-		"default~impression-impression-module~machine-machine-module~output-output-module~usage-usage-module~~c1ba61ff",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
+		"default~impression-impression-module~machine-machine-module~output-output-chart-output-chart-module~~6f5ee94b",
 		"common",
 		"machine-machine-module"
 	],
@@ -462,42 +462,46 @@ var map = {
 	],
 	"./operator/operator.module": [
 		"./src/app/operator/operator.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~2469fd9a",
-		"default~impression-impression-module~operator-operator-module~output-output-module~usage-usage-modul~2aacbff0",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
+		"default~impression-impression-module~operator-operator-module~output-output-chart-output-chart-modul~08438382",
 		"common",
 		"operator-operator-module"
 	],
-	"./output/output-dept-selection/output-dept-selection.module": [
-		"./src/app/output/output-dept-selection/output-dept-selection.module.ts",
+	"./output/output-chart/output-chart.module": [
+		"./src/app/output/output-chart/output-chart.module.ts",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
+		"default~impression-impression-module~machine-machine-module~output-output-chart-output-chart-module~~6f5ee94b",
+		"default~impression-impression-module~operator-operator-module~output-output-chart-output-chart-modul~08438382",
 		"common",
-		"output-output-dept-selection-output-dept-selection-module"
+		"output-output-chart-output-chart-module"
 	],
 	"./output/output-machine-selection/output-machine-selection.module": [
 		"./src/app/output/output-machine-selection/output-machine-selection.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
 		"common",
 		"output-output-machine-selection-output-machine-selection-module"
 	],
 	"./output/output-process-selection/output-process-selection.module": [
 		"./src/app/output/output-process-selection/output-process-selection.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
 		"common",
 		"output-output-process-selection-output-process-selection-module"
 	],
 	"./output/output.module": [
 		"./src/app/output/output.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~2469fd9a",
-		"default~impression-impression-module~machine-machine-module~output-output-module~usage-usage-module~~c1ba61ff",
-		"default~impression-impression-module~operator-operator-module~output-output-module~usage-usage-modul~2aacbff0",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
+		"default~impression-impression-module~machine-machine-module~output-output-chart-output-chart-module~~6f5ee94b",
+		"default~impression-impression-module~operator-operator-module~output-output-chart-output-chart-modul~08438382",
 		"common",
 		"output-output-module"
 	],
 	"./pie/pie.module": [
 		"./src/app/pie/pie.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~2469fd9a",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
 		"common",
 		"pie-pie-module"
 	],
@@ -507,37 +511,41 @@ var map = {
 	],
 	"./usage/usage.module": [
 		"./src/app/usage/usage.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~2469fd9a",
-		"default~impression-impression-module~machine-machine-module~output-output-module~usage-usage-module~~c1ba61ff",
-		"default~impression-impression-module~operator-operator-module~output-output-module~usage-usage-modul~2aacbff0",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
+		"default~impression-impression-module~machine-machine-module~output-output-chart-output-chart-module~~6f5ee94b",
+		"default~impression-impression-module~operator-operator-module~output-output-chart-output-chart-modul~08438382",
 		"common",
 		"usage-usage-module"
 	],
 	"./utilize/utilize.module": [
 		"./src/app/utilize/utilize.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~2469fd9a",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
 		"common",
 		"utilize-utilize-module"
 	],
-	"./wip/wip-dept-selection/wip-dept-selection.module": [
-		"./src/app/wip/wip-dept-selection/wip-dept-selection.module.ts",
+	"./wip/wip-chart/wip-chart.module": [
+		"./src/app/wip/wip-chart/wip-chart.module.ts",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
+		"default~impression-impression-module~machine-machine-module~output-output-chart-output-chart-module~~6f5ee94b",
+		"default~impression-impression-module~operator-operator-module~output-output-chart-output-chart-modul~08438382",
 		"common",
-		"wip-wip-dept-selection-wip-dept-selection-module"
+		"wip-wip-chart-wip-chart-module"
 	],
 	"./wip/wip-process-selection/wip-process-selection.module": [
 		"./src/app/wip/wip-process-selection/wip-process-selection.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
 		"common",
 		"wip-wip-process-selection-wip-process-selection-module"
 	],
 	"./wip/wip.module": [
 		"./src/app/wip/wip.module.ts",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~e6493cb4",
-		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~2469fd9a",
-		"default~impression-impression-module~machine-machine-module~output-output-module~usage-usage-module~~c1ba61ff",
-		"default~impression-impression-module~operator-operator-module~output-output-module~usage-usage-modul~2aacbff0",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~61006d78",
+		"default~impression-impression-module~line-line-module~machine-machine-module~operator-operator-modul~b8145fd9",
+		"default~impression-impression-module~machine-machine-module~output-output-chart-output-chart-module~~6f5ee94b",
+		"default~impression-impression-module~operator-operator-module~output-output-chart-output-chart-modul~08438382",
 		"common",
 		"wip-wip-module"
 	]
@@ -625,11 +633,7 @@ var routes = [
         children: [
             {
                 path: '',
-                loadChildren: './wip/wip-dept-selection/wip-dept-selection.module#WipDeptSelectionPageModule'
-            },
-            {
-                path: 'dept-selection',
-                loadChildren: './wip/wip-dept-selection/wip-dept-selection.module#WipDeptSelectionPageModule'
+                loadChildren: './wip/wip.module#WipPageModule'
             },
             {
                 path: 'process-selection/:id',
@@ -637,6 +641,13 @@ var routes = [
                     special: _services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_3__["DataResolverService"]
                 },
                 loadChildren: './wip/wip-process-selection/wip-process-selection.module#WipProcessSelectionPageModule'
+            },
+            {
+                path: 'chart/:id',
+                resolve: {
+                    special: _services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_3__["DataResolverService"]
+                },
+                loadChildren: './wip/wip-chart/wip-chart.module#WipChartPageModule'
             },
             {
                 path: ':id',
@@ -652,11 +663,7 @@ var routes = [
         children: [
             {
                 path: '',
-                loadChildren: './output/output-dept-selection/output-dept-selection.module#OutputDeptSelectionPageModule'
-            },
-            {
-                path: 'dept-selection',
-                loadChildren: './output/output-dept-selection/output-dept-selection.module#OutputDeptSelectionPageModule'
+                loadChildren: './output/output.module#OutputPageModule'
             },
             {
                 path: 'process-selection/:id',
@@ -664,6 +671,13 @@ var routes = [
                     special: _services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_3__["DataResolverService"]
                 },
                 loadChildren: './output/output-process-selection/output-process-selection.module#OutputProcessSelectionPageModule'
+            },
+            {
+                path: 'chart/:id',
+                resolve: {
+                    special: _services_resolver_data_resolver_service__WEBPACK_IMPORTED_MODULE_3__["DataResolverService"]
+                },
+                loadChildren: './output/output-chart/output-chart.module#OutputChartPageModule'
             },
             {
                 path: 'machine-selection/:id',
@@ -749,10 +763,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_base_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/base.service */ "./src/app/services/base.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./shared/base-page/base-page.page */ "./src/app/shared/base-page/base-page.page.ts");
-/* harmony import */ var _data_model_constant_model__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./data-model/constant.model */ "./src/app/data-model/constant.model.ts");
-/* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
+/* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _ionic_native_firebase_x_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/firebase-x/ngx */ "./node_modules/@ionic-native/firebase-x/ngx/index.js");
 
 
 
@@ -763,11 +776,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+// import { FCM } from '@ionic-native/fcm/ngx';
 
 var AppComponent = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](AppComponent, _super);
-    function AppComponent(loadingCtrl, alertCtrl, platform, statusBar, service, network, router, navCtrl, menuCtrl, appVersion, meta, fcm) {
+    function AppComponent(loadingCtrl, alertCtrl, platform, statusBar, service, network, navCtrl, menuCtrl, modalCtrl, menu, actionSheetCtrl, popoverCtrl, router, toastCtrl, appVersion, meta, 
+    // private fcm: FCM,
+    firebaseX) {
         var _this = _super.call(this, loadingCtrl, alertCtrl) || this;
         _this.loadingCtrl = loadingCtrl;
         _this.alertCtrl = alertCtrl;
@@ -775,12 +790,17 @@ var AppComponent = /** @class */ (function (_super) {
         _this.statusBar = statusBar;
         _this.service = service;
         _this.network = network;
-        _this.router = router;
         _this.navCtrl = navCtrl;
         _this.menuCtrl = menuCtrl;
+        _this.modalCtrl = modalCtrl;
+        _this.menu = menu;
+        _this.actionSheetCtrl = actionSheetCtrl;
+        _this.popoverCtrl = popoverCtrl;
+        _this.router = router;
+        _this.toastCtrl = toastCtrl;
         _this.appVersion = appVersion;
         _this.meta = meta;
-        _this.fcm = fcm;
+        _this.firebaseX = firebaseX;
         _this.appPages = [
             {
                 title: 'Operator',
@@ -800,13 +820,13 @@ var AppComponent = /** @class */ (function (_super) {
             {
                 title: 'WIP',
                 // url: '/wip',
-                url: '/wip/dept-selection',
+                url: '/wip',
                 icon: 'briefcase'
             },
             {
                 title: 'Machine Output',
                 // url: '/output',
-                url: '/output/dept-selection',
+                url: '/output',
                 icon: 'construct'
             },
             {
@@ -817,8 +837,13 @@ var AppComponent = /** @class */ (function (_super) {
         ];
         _this.isConnectionLost = false;
         _this.selectedPath = '';
+        // set up hardware back button event.
+        _this.lastTimeBackPress = 0;
+        _this.timePeriodToExit = 2000;
         _this.initializeApp();
         return _this;
+        // Initialize BackButton Eevent.
+        // this.backButtonEvent();
     }
     AppComponent.prototype.initializeApp = function () {
         var _this = this;
@@ -851,49 +876,141 @@ var AppComponent = /** @class */ (function (_super) {
             //   console.error(error);
             // });
             // plugin.subscribe("latest_news");
-            // subscribe to a topic
-            _this.fcm.subscribeToTopic('latest_news');
-            // get FCM token
-            _this.fcm.getToken().then(function (token) {
-                console.log("tokentokentoken: ", token);
-            });
-            // ionic push notification example
-            _this.fcm.onNotification().subscribe(function (data) {
-                console.log(data);
-                if (data.wasTapped) {
-                    console.log('Received in background');
-                }
-                else {
-                    console.log('Received in foreground');
-                }
-            });
-            // refresh the FCM token
-            _this.fcm.onTokenRefresh().subscribe(function (token) {
-                console.log(token);
-            });
+            // this.fcm.requestPushPermissionIOS().then(isOK => {
+            //   console.log(`CAN PUSH IOS? ${isOK}`);
+            // });
+            // this.fcm.getAPNSToken().then(token => {
+            //   console.log("APNtokentokentoken: ", token);
+            // })
+            // // subscribe to a topic
+            // this.fcm.subscribeToTopic('latest_news');
+            // // get FCM token
+            // this.fcm.getToken().then(token => {
+            //   console.log("tokentokentoken: ", token);
+            // });
+            // // ionic push notification example
+            // this.fcm.onNotification().subscribe(data => {
+            //   console.log(data);
+            //   if (data.wasTapped) {
+            //     console.log('Received in background');
+            //   } else {
+            //     console.log('Received in foreground');
+            //   }
+            // });
+            // // refresh the FCM token
+            // this.fcm.onTokenRefresh().subscribe(token => {
+            //   console.log(token);
+            // });
             // unsubscribe from a topic
             // this.fcm.unsubscribeFromTopic('offers');
+            _this.firebaseX.grantPermission();
+            _this.firebaseX.getToken()
+                .then(function (token) { return console.log("The token is " + token); }) // save the token server-side and use it to push notifications to this device
+                .catch(function (error) { return console.error('Error getting token', error); });
+            _this.firebaseX.onMessageReceived()
+                .subscribe(function (data) { return console.log("User opened a notification " + data); });
+            _this.firebaseX.onTokenRefresh()
+                .subscribe(function (token) { return console.log("Got a new token " + token); });
+            _this.firebaseX.subscribe('latest_news');
         });
-        this.router.events.subscribe(function (event) {
-            if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_6__["NavigationEnd"]) {
-                _this.selectedPath = event.url;
-                var arrPath = _this.selectedPath.split('/');
-                if (arrPath.length > 2) {
-                    _this.backButtonSubscription = _this.platform.backButton.subscribeWithPriority(1, function () {
-                        _this.navCtrl.back();
-                    });
-                }
-                else {
-                    _this.backButtonSubscription = _this.platform.backButton.subscribeWithPriority(1, function () {
-                        _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__["BasePagePage"].presentAlert('Alert', 'Are you sure want to exit app?', function (res) {
-                            if (res.role == _data_model_constant_model__WEBPACK_IMPORTED_MODULE_8__["Constants"].b_OK) {
-                                navigator['app'].exitApp();
+        this.router.events.subscribe(function (event) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            var arrPath, element, error_1, element, error_2, element, error_3, element, error_4;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_6__["NavigationEnd"])) return [3 /*break*/, 14];
+                        this.selectedPath = event.url;
+                        arrPath = this.selectedPath.split('/');
+                        if (!(arrPath.length > 2)) return [3 /*break*/, 1];
+                        this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(1, function () {
+                            console.log('============= JUST NORMAL BACK');
+                            _this.navCtrl.back();
+                        });
+                        return [3 /*break*/, 14];
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.actionSheetCtrl.getTop()];
+                    case 2:
+                        element = _a.sent();
+                        if (element) {
+                            element.dismiss();
+                            return [2 /*return*/];
+                        }
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_1 = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 4:
+                        _a.trys.push([4, 6, , 7]);
+                        return [4 /*yield*/, this.popoverCtrl.getTop()];
+                    case 5:
+                        element = _a.sent();
+                        if (element) {
+                            element.dismiss();
+                            return [2 /*return*/];
+                        }
+                        return [3 /*break*/, 7];
+                    case 6:
+                        error_2 = _a.sent();
+                        return [3 /*break*/, 7];
+                    case 7:
+                        _a.trys.push([7, 9, , 10]);
+                        return [4 /*yield*/, this.modalCtrl.getTop()];
+                    case 8:
+                        element = _a.sent();
+                        if (element) {
+                            element.dismiss();
+                            return [2 /*return*/];
+                        }
+                        return [3 /*break*/, 10];
+                    case 9:
+                        error_3 = _a.sent();
+                        console.log(error_3);
+                        return [3 /*break*/, 10];
+                    case 10:
+                        _a.trys.push([10, 12, , 13]);
+                        return [4 /*yield*/, this.menu.getOpen()];
+                    case 11:
+                        element = _a.sent();
+                        if (element) {
+                            this.menu.close();
+                            return [2 /*return*/];
+                        }
+                        return [3 /*break*/, 13];
+                    case 12:
+                        error_4 = _a.sent();
+                        return [3 /*break*/, 13];
+                    case 13:
+                        this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(1, function () {
+                            console.log('NO ALERT ============= EXIT APP, ', _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__["BasePagePage"].alertController.getTop());
+                            // BasePagePage.presentAlert('Alert', 'Are you sure want to exit app?', (res) => {
+                            //   if (res.role == Constants.b_OK) {
+                            //     navigator['app'].exitApp();
+                            //   }
+                            // }, [Constants.b_CANCEL, Constants.b_OK]);
+                            if (new Date().getTime() - _this.lastTimeBackPress < _this.timePeriodToExit) {
+                                // this.platform.exitApp(); // Exit from app
+                                navigator['app'].exitApp(); // work in ionic 4
                             }
-                        }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_8__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_8__["Constants"].b_OK]);
-                    });
+                            else {
+                                _this.toastCtrl.create({
+                                    message: 'Please click back again to exit',
+                                    duration: _this.timePeriodToExit,
+                                    position: 'bottom'
+                                }).then(function (toastData) {
+                                    console.log(toastData);
+                                    toastData.present();
+                                });
+                                _this.lastTimeBackPress = new Date().getTime();
+                                console.log('LAST TIME BACK: ', _this.lastTimeBackPress);
+                            }
+                        });
+                        _a.label = 14;
+                    case 14: return [2 /*return*/];
                 }
-            }
-        });
+            });
+        }); });
         this.platform.ready().then(function () {
             // this.statusBar.styleDefault();
             _this.statusBar.styleLightContent();
@@ -930,6 +1047,108 @@ var AppComponent = /** @class */ (function (_super) {
             _this.isConnectionLost = true;
         });
     };
+    // active hardware back button
+    AppComponent.prototype.backButtonEvent = function () {
+        var _this = this;
+        this.platform.backButton.subscribe(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            var element, error_5, element, error_6, element, error_7, element, error_8, curr, outlet, activeView;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('BACK BUTTON HERE');
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.actionSheetCtrl.getTop()];
+                    case 2:
+                        element = _a.sent();
+                        if (element) {
+                            element.dismiss();
+                            return [2 /*return*/];
+                        }
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_5 = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 4:
+                        _a.trys.push([4, 6, , 7]);
+                        return [4 /*yield*/, this.popoverCtrl.getTop()];
+                    case 5:
+                        element = _a.sent();
+                        if (element) {
+                            element.dismiss();
+                            return [2 /*return*/];
+                        }
+                        return [3 /*break*/, 7];
+                    case 6:
+                        error_6 = _a.sent();
+                        return [3 /*break*/, 7];
+                    case 7:
+                        _a.trys.push([7, 9, , 10]);
+                        return [4 /*yield*/, this.modalCtrl.getTop()];
+                    case 8:
+                        element = _a.sent();
+                        if (element) {
+                            element.dismiss();
+                            return [2 /*return*/];
+                        }
+                        return [3 /*break*/, 10];
+                    case 9:
+                        error_7 = _a.sent();
+                        console.log(error_7);
+                        return [3 /*break*/, 10];
+                    case 10:
+                        _a.trys.push([10, 12, , 13]);
+                        return [4 /*yield*/, this.menu.getOpen()];
+                    case 11:
+                        element = _a.sent();
+                        if (element) {
+                            this.menu.close();
+                            return [2 /*return*/];
+                        }
+                        return [3 /*break*/, 13];
+                    case 12:
+                        error_8 = _a.sent();
+                        return [3 /*break*/, 13];
+                    case 13:
+                        console.log('routerOutletsrouterOutlets: ', this.routerOutlets);
+                        curr = this.router.url.split('/').filter(function (el) {
+                            return el != null && el != '';
+                        });
+                        console.log('currcurrcurr: ', curr);
+                        outlet = this.routerOutlets.first;
+                        activeView = outlet.activated.instance;
+                        //now calls the onBackButtonPress function in that instance       
+                        console.log('cangoback: ', (outlet && outlet.canGoBack()));
+                        console.log('arrrrrrrrtrrrrr: ', (curr.length == 1));
+                        if (outlet && outlet.canGoBack()) {
+                            // activeView.onBackButtonPress();
+                            outlet.back();
+                        }
+                        else if (curr.length == 1) {
+                            //some logic about what to do if onBackButtonPress is not defined, default action
+                            if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
+                                // this.platform.exitApp(); // Exit from app
+                                navigator['app'].exitApp(); // work in ionic 4
+                            }
+                            else {
+                                this.toastCtrl.create({
+                                    message: 'Please click back again to exit',
+                                    duration: this.timePeriodToExit,
+                                    position: 'bottom'
+                                }).then(function (toastData) {
+                                    console.log(toastData);
+                                    toastData.present();
+                                });
+                                this.lastTimeBackPress = new Date().getTime();
+                                console.log('LAST TIME BACK: ', this.lastTimeBackPress);
+                            }
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+    };
     AppComponent.prototype.ngOnInit = function () {
         // this.platform.ready().then(() => {
         //   navigator['app'].clearHistory();
@@ -956,6 +1175,10 @@ var AppComponent = /** @class */ (function (_super) {
             }
         }
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])(_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonRouterOutlet"]),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["QueryList"])
+    ], AppComponent.prototype, "routerOutlets", void 0);
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-root',
@@ -967,12 +1190,17 @@ var AppComponent = /** @class */ (function (_super) {
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_3__["StatusBar"],
             _services_base_service__WEBPACK_IMPORTED_MODULE_5__["BaseService"],
             _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_4__["Network"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
-            _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_9__["AppVersion"],
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__["Meta"],
-            _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_11__["FCM"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
+            _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_8__["AppVersion"],
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["Meta"],
+            _ionic_native_firebase_x_ngx__WEBPACK_IMPORTED_MODULE_10__["FirebaseX"]])
     ], AppComponent);
     return AppComponent;
 }(_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__["BasePagePage"]));
@@ -1008,7 +1236,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
 /* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
 /* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
-/* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
+/* harmony import */ var _ionic_native_firebase_x_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/firebase-x/ngx */ "./node_modules/@ionic-native/firebase-x/ngx/index.js");
 
 
 
@@ -1027,6 +1255,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // FCM
+// import { FCM } from '@ionic-native/fcm/ngx';
 
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -1052,7 +1281,8 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_15__["BarcodeScanner"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
                 _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_16__["AppVersion"],
-                _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_17__["FCM"]
+                // FCM,
+                _ionic_native_firebase_x_ngx__WEBPACK_IMPORTED_MODULE_17__["FirebaseX"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
@@ -1566,6 +1796,9 @@ var BasePagePage = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        if (BasePagePage_1.alertController.getTop()['__zone_symbol__value']) {
+                            BasePagePage_1.alertController.dismiss();
+                        }
                         vm = this;
                         if (!!vm.alertPresented) return [3 /*break*/, 4];
                         vm.alertPresented = true;

@@ -400,7 +400,7 @@ var OutputMachineSelectionPage = /** @class */ (function (_super) {
                 });
                 if (isCheckedAtLeastOne) {
                     this.service.setData('sel-mach', this.wipReqModel);
-                    this.navCtrl.navigateForward('/output/sel-mach');
+                    this.navCtrl.navigateForward('/output/chart/sel-mach');
                 }
                 else {
                     src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_8__["BasePagePage"].presentAlert('Alert', 'Please select at least one (1) machine.');

@@ -187,7 +187,7 @@ var WipPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <!-- <ion-menu-button></ion-menu-button> -->\n      <ion-back-button></ion-back-button>\n      <!-- <ion-button (click)=\"onClicked()\">\n        <ion-icon name=\"arrow-back\"></ion-icon>\n      </ion-button> -->\n    </ion-buttons>\n    <ion-title>\n      WIP\n    </ion-title>\n    <!-- <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" (click)=\"selectMachine()\">\n        <ion-icon name=\"list-box\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons> -->\n    <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" (click)=\"downloadcsv()\">\n        <ion-icon name=\"download\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-card>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"10\">\n          <div class=\"vertical-align-content\">\n            <p>{{ isPack ? 'Packaging' : 'Non-Packaging' }}</p>\n          </div>\n        </ion-col>\n        <ion-col size=\"2\">\n          <ion-toggle style=\"float: right;\" (ionChange)=\"updatePackaging($event)\" [checked]=\"isPack\"></ion-toggle>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n\n  <mat-tab-group #tabGroup [selectedIndex]=\"selectedTab\" (selectedTabChange)=\"onTabChanged($event)\">\n    <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">query_builder</mat-icon>\n        Hourly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              On this day\n              <ion-item>\n                <ion-datetime displayFormat=\"DD MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"wipPackReqModel.date\" (ionChange)=\"onWipHourlySelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewWIPDateClicked()\">View data</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas [hidden]=\"isPack == false\" *ngFor=\"let chart of arrDailyCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n      <chart-canvas [hidden]=\"isPack == true\" *ngFor=\"let chart of arrDailyNonPackCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab>\n\n    <!-- <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">query_builder</mat-icon>\n        Daily\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              On this day\n              <ion-item>\n                <ion-datetime displayFormat=\"DD MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"wipPackReqModel.date\" (ionChange)=\"onWipHourlySelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewWIPDateClicked()\">View date</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrDailyCharts;\" [data]=\"chart\" [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab> -->\n\n    <!-- <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">calendar_today</mat-icon>\n        Monthly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              From\n              <ion-item>\n                <ion-datetime displayFormat=\"MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"monthlyReqModel.datefrom\" (ionChange)=\"onFromMonthlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col>\n            <div>\n              To\n              <ion-item>\n                <ion-datetime displayFormat=\"MMM YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"monthlyReqModel.dateto\" (ionChange)=\"onToMonthlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewMonthlyDateClicked()\">View date</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrMonthlyCharts;\" [data]=\"chart\"  [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab>\n\n    <mat-tab>\n      <ng-template mat-tab-label>\n        <mat-icon class=\"example-tab-icon\">trending_up</mat-icon>\n        Yearly\n      </ng-template>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <div>\n              From\n              <ion-item>\n                <ion-datetime displayFormat=\"YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"yearlyReqModel.datefrom\" (ionChange)=\"onFromYearlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col>\n            <div>\n              To\n              <ion-item>\n                <ion-datetime displayFormat=\"YYYY\" min={{minDate}} max={{currentDate}}\n                  [(ngModel)]=\"yearlyReqModel.dateto\" (ionChange)=\"onToYearlyUsageSelected($event)\">\n                </ion-datetime>\n              </ion-item>\n            </div>\n          </ion-col>\n          <ion-col class=\"center-ver\" size=\"auto\">\n            <ion-button (click)=\"onViewYearlyDateClicked()\">View date</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <chart-canvas *ngFor=\"let chart of arrYearlyCharts;\" [data]=\"chart\"  [title]=\"strChartTitle\"></chart-canvas>\n\n    </mat-tab> -->\n  </mat-tab-group>\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      WIP\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <app-wip-dept-selection [checkBoxList]=\"checkBoxList\" (checkBoxChanged)=\"onCheckBoxEmitted($event)\"></app-wip-dept-selection>\n</ion-content>\n\n<ion-footer>\n\t<ion-toolbar position=\"bottom\">\n    <ion-row>\n      <ion-col class=\"ion-text-center\">\n        <ion-button (click)=\"onNextClicked()\">Next</ion-button>\n      </ion-col>\n    </ion-row>\n\t</ion-toolbar>\n</ion-footer>"
 
 /***/ }),
 
@@ -198,7 +198,7 @@ module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-butt
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".welcome-card img {\n  max-height: 35vh;\n  overflow: hidden; }\n\np.text-center {\n  text-align: center; }\n\n.example-tab-icon {\n  margin-right: 8px; }\n\n.vertical-align-content > * {\n  display: flex !important;\n  align-content: center !important;\n  align-items: center !important; }\n\n.center-ver {\n  display: flex !important;\n  align-content: center !important;\n  align-items: center !important;\n  float: right; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvSU9OSUNfUFJPSkVDVF9NQUlOL3NyYy9hcHAvd2lwL3dpcC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxnQkFBZ0I7RUFDaEIsZ0JBQWdCLEVBQUE7O0FBR3BCO0VBQ0ksa0JBQWtCLEVBQUE7O0FBR3RCO0VBQ0ksaUJBQWlCLEVBQUE7O0FBR3JCO0VBRUssd0JBQXVCO0VBQ3ZCLGdDQUErQjtFQUMvQiw4QkFBNkIsRUFBQTs7QUFHbEM7RUFDSSx3QkFBdUI7RUFDdkIsZ0NBQStCO0VBQy9CLDhCQUE2QjtFQUM3QixZQUFZLEVBQUEiLCJmaWxlIjoic3JjL2FwcC93aXAvd2lwLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi53ZWxjb21lLWNhcmQgaW1nIHtcbiAgICBtYXgtaGVpZ2h0OiAzNXZoO1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG59XG5cbnAudGV4dC1jZW50ZXIge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmV4YW1wbGUtdGFiLWljb24ge1xuICAgIG1hcmdpbi1yaWdodDogOHB4O1xufVxuXG4udmVydGljYWwtYWxpZ24tY29udGVudCA+ICpcbntcbiAgICAgZGlzcGxheTogZmxleCFpbXBvcnRhbnQ7XG4gICAgIGFsaWduLWNvbnRlbnQ6IGNlbnRlciFpbXBvcnRhbnQ7XG4gICAgIGFsaWduLWl0ZW1zOiBjZW50ZXIhaW1wb3J0YW50O1xufVxuXG4uY2VudGVyLXZlciB7XG4gICAgZGlzcGxheTogZmxleCFpbXBvcnRhbnQ7XG4gICAgYWxpZ24tY29udGVudDogY2VudGVyIWltcG9ydGFudDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyIWltcG9ydGFudDtcbiAgICBmbG9hdDogcmlnaHQ7XG59Il19 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3dpcC93aXAucGFnZS5zY3NzIn0= */"
 
 /***/ }),
 
@@ -214,16 +214,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WipPage", function() { return WipPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services_base_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/base.service */ "./src/app/services/base.service.ts");
-/* harmony import */ var _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data-model/constant.model */ "./src/app/data-model/constant.model.ts");
-/* harmony import */ var _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data-model/base.model */ "./src/app/data-model/base.model.ts");
+/* harmony import */ var src_app_services_base_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/base.service */ "./src/app/services/base.service.ts");
+/* harmony import */ var src_app_data_model_base_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/data-model/base.model */ "./src/app/data-model/base.model.ts");
+/* harmony import */ var src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/data-model/constant.model */ "./src/app/data-model/constant.model.ts");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _shared_select_machine_select_machine_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../shared/select-machine/select-machine.component */ "./src/app/shared/select-machine/select-machine.component.ts");
-/* harmony import */ var _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../shared/base-page/base-page.page */ "./src/app/shared/base-page/base-page.page.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/shared/base-page/base-page.page */ "./src/app/shared/base-page/base-page.page.ts");
 
 
 
@@ -232,285 +228,105 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-__webpack_require__(/*! chartjs-plugin-stacked100 */ "./node_modules/chartjs-plugin-stacked100/src/index.js");
 var WipPage = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](WipPage, _super);
-    function WipPage(loadingCtrl, alertCtrl, service, storage, loadingController, modalController, router, route) {
+    function WipPage(loadingCtrl, alertCtrl, navCtrl, service, storage) {
         var _this = _super.call(this, loadingCtrl, alertCtrl) || this;
         _this.loadingCtrl = loadingCtrl;
         _this.alertCtrl = alertCtrl;
+        _this.navCtrl = navCtrl;
         _this.service = service;
         _this.storage = storage;
-        _this.loadingController = loadingController;
-        _this.modalController = modalController;
-        _this.router = router;
-        _this.route = route;
-        _this.strChartTitle = '';
-        _this.arrDailyCharts = [];
-        _this.arrDailyNonPackCharts = [];
-        _this.arrMonthlyCharts = [];
-        _this.arrYearlyCharts = [];
-        _this.customActionSheetOptions = {
-            header: 'Machines',
-            subHeader: 'Select the machine(s) you want to view'
-        };
         _this.arrDept = [];
-        // arrSelectedDept: Array<any> = [];
-        _this.selectedTab = 0;
-        _this.accessToken = '';
-        _this.deptReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["AccessTokenModel"]();
-        _this.wipPackReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["WIPModel"](1 /* WIP */);
-        _this.wipNonPackReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["WIPModel"](1 /* WIP */);
-        _this.monthlyReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["UsageOrImpressionModel"]();
-        _this.yearlyReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["UsageOrImpressionModel"]();
-        // emailReqModel: EmailModel = new EmailModel(WSTypeCode.WIP);
-        _this.downloadCSVReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_4__["DownloadCSVModel"](1 /* WIP */);
-        _this.currentDate = moment__WEBPACK_IMPORTED_MODULE_6__().format("YYYY-MM-DD");
-        _this.yesterdayDate = moment__WEBPACK_IMPORTED_MODULE_6__().add(-1, 'days').format("YYYY-MM-DD");
-        _this.minDate = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_MIN_DATE_2020;
+        _this.deptReqModel = new src_app_data_model_base_model__WEBPACK_IMPORTED_MODULE_3__["AccessTokenModel"]();
         _this.checkBoxList = [];
-        _this.isPack = true;
-        _this.strChartTitle = _this.router.url.replace(/[^a-zA-Z0-9 ]/g, "");
-        _this.storage.get(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].c_ACCESS_TOKEN).then(function (accessToken) {
-            _this.accessToken = accessToken;
+        // isIndeterminate: boolean;
+        // masterCheck: boolean;
+        _this.processReqModel = new src_app_data_model_base_model__WEBPACK_IMPORTED_MODULE_3__["ProcessModel"](); // for next page use
+        _this.storage.get(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["Constants"].c_ACCESS_TOKEN).then(function (accessToken) {
             _this.deptReqModel.accesstoken = accessToken;
-            _this.downloadCSVReqModel.accesstoken = accessToken;
-            // this.monthlyReqModel.accesstoken = accessToken;
-            // this.monthlyReqModel.datefrom = this.standardDateTime(this.currentDate);
-            // this.monthlyReqModel.dateto = this.standardDateTime(this.currentDate);
-            // this.yearlyReqModel.accesstoken = accessToken;
-            // this.yearlyReqModel.datefrom = this.standardDateTime(this.currentDate);
-            // this.yearlyReqModel.dateto = this.standardDateTime(this.currentDate);
-            // this.wipPackReqModel.accesstoken = accessToken;
-            // this.wipPackReqModel.date = this.standardDateTime(this.currentDate);
-            // this.service.getWebService(Constants.k_GET_DEPT, this.deptReqModel, (res) => {
-            //   this.arrDept = JSON.parse(res.data);
-            //   this.arrDept.forEach(element => {
-            //     if (element === this.arrDept[0]) {
-            //       this.checkBoxList.push({'machine' : element, 'isChecked' : true})
-            //     } else {
-            //       this.checkBoxList.push({'machine' : element, 'isChecked' : false})
-            //     }
-            //   });
-            //   console.log("checkBoxList: ", this.checkBoxList);
-            //   // this.arrSelectedMachines = Array.prototype.map.call(this.arrMachines, function (item) { return item.value; })
-            //   this.wipPackReqModel.dept.push(this.arrDept[0].value);
-            //   this.monthlyReqModel.device = this.wipPackReqModel.dept.join(",");
-            //   this.yearlyReqModel.device = this.wipPackReqModel.dept.join(",");
-            //   this.callWSToReloadPagesData();        
-            // });
-            // if (this.data) {
-            //   this.wipPackReqModel.dept = [];
-            //   this.data.forEach(element => {
-            //     if (element.isChecked) {
-            //       this.wipPackReqModel.dept.push(element.dept.value)
-            //     }
-            //   });
-            //   this.callWSToReloadPagesData();
-            // }
+            _this.processReqModel.accesstoken = accessToken;
+            _this.service.presentLoading();
+            _this.service.callWebService(src_app_data_model_constant_model__WEBPACK_IMPORTED_MODULE_4__["Constants"].k_GET_DEPT, _this.deptReqModel, function (res) {
+                _this.arrDept = JSON.parse(res.data);
+                _this.arrDept.forEach(function (element) {
+                    _this.checkBoxList.push({ 'dept': element, 'isChecked': false });
+                });
+                _this.service.dismissLoading();
+            });
         });
-        if (_this.route.snapshot.data['special']) {
-            _this.wipPackReqModel = Object.assign({}, _this.route.snapshot.data['special']);
-            _this.wipNonPackReqModel = Object.assign({}, _this.route.snapshot.data['special']);
-            _this.downloadCSVReqModel.dept = _this.wipPackReqModel.dept;
-            _this.downloadCSVReqModel.process = _this.wipPackReqModel.process;
-            _this.wipPackReqModel.packaging = 1 /* Pack */;
-            _this.wipNonPackReqModel.packaging = 0 /* NonPack */;
-            _this.callWSToReloadPagesData();
-        }
         return _this;
     }
     WipPage.prototype.ngOnInit = function () {
-        // if (this.route.snapshot.data['special']) {
-        //   this.wipPackReqModel = this.route.snapshot.data['special'];
-        //   console.log("GET DATA FROM PROCESS: ", JSON.stringify([this.wipPackReqModel]));
-        //   this.callWSToReloadPagesData();
-        // }
     };
-    WipPage.prototype.ionViewDidEnter = function () {
+    // checkMaster() {
+    //   setTimeout(() => {
+    //     this.checkBoxList.forEach(obj => {
+    //       obj.isChecked = this.masterCheck;
+    //     });
+    //   });
+    // }
+    // checkEvent() {
+    //   const totalItems = this.checkBoxList.length;
+    //   let checked = 0;
+    //   this.checkBoxList.map(obj => {
+    //     if (obj.isChecked) checked++;
+    //   });
+    //   if (checked > 0 && checked < totalItems) {
+    //     //If even one item is checked but not all
+    //     this.isIndeterminate = true;
+    //     this.masterCheck = false;
+    //   } else if (checked == totalItems) {
+    //     //If all are checked
+    //     this.masterCheck = true;
+    //     this.isIndeterminate = false;
+    //   } else {
+    //     //If none is checked
+    //     this.isIndeterminate = false;
+    //     this.masterCheck = false;
+    //   }
+    // }
+    WipPage.prototype.onCheckBoxEmitted = function (arrCheckBox) {
+        this.checkBoxList = arrCheckBox;
     };
-    WipPage.prototype.callWSToReloadPagesData = function () {
-        var _this = this;
-        this.arrDailyCharts = [];
-        this.arrDailyNonPackCharts = [];
-        var response1 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_WIP, this.wipPackReqModel, function (res) {
-            if (res && res.data && res.data != '' && res.data != '-') {
-                _this.arrDailyCharts = JSON.parse(res.data);
-            }
-        });
-        var response2 = this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_HOURLY_WIP, this.wipNonPackReqModel, function (res) {
-            if (res && res.data && res.data != '' && res.data != '-') {
-                _this.arrDailyNonPackCharts = JSON.parse(res.data);
-            }
-        });
-        this.service.callWebServiceSimultaneously([response1, response2]);
-    };
-    WipPage.prototype.onWipHourlySelected = function (item) {
-    };
-    WipPage.prototype.onFromMonthlyUsageSelected = function (item) {
-        var from = Date.parse(this.monthlyReqModel.datefrom);
-        var to = Date.parse(this.monthlyReqModel.dateto);
-        if (from > to) {
-            this.monthlyReqModel.dateto = this.monthlyReqModel.datefrom;
-        }
-    };
-    WipPage.prototype.onToMonthlyUsageSelected = function (item) {
-        var from = Date.parse(this.monthlyReqModel.datefrom);
-        var to = Date.parse(this.monthlyReqModel.dateto);
-        if (to < from) {
-            this.monthlyReqModel.datefrom = this.monthlyReqModel.dateto;
-        }
-    };
-    WipPage.prototype.onFromYearlyUsageSelected = function (item) {
-        var from = Date.parse(this.yearlyReqModel.datefrom);
-        var to = Date.parse(this.yearlyReqModel.dateto);
-        if (from > to) {
-            this.yearlyReqModel.dateto = this.yearlyReqModel.datefrom;
-        }
-    };
-    WipPage.prototype.onToYearlyUsageSelected = function (item) {
-        var from = Date.parse(this.yearlyReqModel.datefrom);
-        var to = Date.parse(this.yearlyReqModel.dateto);
-        if (to < from) {
-            this.yearlyReqModel.datefrom = this.yearlyReqModel.dateto;
-        }
-    };
-    WipPage.prototype.updatePackaging = function ($event) {
-        this.isPack = !this.isPack;
-    };
-    WipPage.prototype.selectMachine = function () {
-        // this.selectPop.open()
-        // this.service.getWebService(Constants.k_GET_DEVICE, this.deviceReqModel, (res) => {
-        //   this.arrMachines = JSON.parse(res.data);
-        //   // Use a timeout to gice some time to Angular
-        //   // to update the view. The amount of time is not
-        //   // important; it's just to run the code async
-        //   setTimeout(() => {
-        //     // Open the select
-        //     this.selectPop.open()
-        //   }, 100);
-        // });
-        this.presentModal();
-    };
-    WipPage.prototype.optionsFn = function () {
-        this.monthlyReqModel.device = this.wipPackReqModel.dept.join(",");
-        this.yearlyReqModel.device = this.wipPackReqModel.dept.join(",");
-        this.callWSToReloadPagesData();
-    };
-    WipPage.prototype.onTabChanged = function (tabChangeEvent) {
-        console.log('tabChangeEvent => ', tabChangeEvent);
-        console.log('index => ', tabChangeEvent.index);
-        // this.optionsFn(null)
-    };
-    WipPage.prototype.onViewWIPDateClicked = function () {
-        this.wipPackReqModel.date = this.standardDateTime(this.wipPackReqModel.date);
-        this.wipNonPackReqModel.date = this.wipPackReqModel.date;
-        // this.service.presentLoading();
-        // this.service.callWebService(Constants.k_HOURLY_WIP, this.wipPackReqModel, (res) => {
-        //   if (res && res.data && res.data != '' && res.data != '-') {
-        //     this.arrDailyCharts = JSON.parse(res.data);
-        //   }
-        //   this.service.dismissLoading();
-        // });
-        this.callWSToReloadPagesData();
-    };
-    WipPage.prototype.random_rgb = function () {
-        var o = Math.round, r = Math.random, s = 255;
-        return 'rgb(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
-    };
-    WipPage.prototype.standardDateTime = function (dateString) {
-        return moment__WEBPACK_IMPORTED_MODULE_6__(dateString).format("YYYY-MM-DD");
-    };
-    WipPage.prototype.presentModal = function () {
+    WipPage.prototype.onNextClicked = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var modal;
+            var isCheckedAtLeastOne;
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.modalController.create({
-                            component: _shared_select_machine_select_machine_component__WEBPACK_IMPORTED_MODULE_9__["SelectMachineComponent"],
-                            componentProps: {
-                                "checkBoxList": this.checkBoxList,
-                                "paramTitle": "Select Department"
-                            }
-                        })];
-                    case 1:
-                        modal = _a.sent();
-                        modal.onDidDismiss().then(function (dataReturned) {
-                            if (dataReturned !== null && dataReturned.data !== undefined) {
-                                // this.dataReturned = dataReturned.data;
-                                _this.wipPackReqModel.dept = [];
-                                dataReturned.data.forEach(function (element) {
-                                    if (element.isChecked) {
-                                        _this.wipPackReqModel.dept.push(element.machine.value);
-                                    }
-                                });
-                                console.log('--- Modal SELECTED Data: ', _this.wipPackReqModel.dept);
-                                _this.optionsFn();
-                            }
-                        });
-                        return [4 /*yield*/, modal.present()];
-                    case 2: return [2 /*return*/, _a.sent()];
+                isCheckedAtLeastOne = false;
+                this.processReqModel.dept = [];
+                this.checkBoxList.forEach(function (element) {
+                    if (element.isChecked) {
+                        isCheckedAtLeastOne = true;
+                        _this.processReqModel.dept.push(element.dept.value);
+                    }
+                });
+                if (isCheckedAtLeastOne) {
+                    this.service.setData('sel-dept', this.processReqModel);
+                    this.navCtrl.navigateForward('/wip/process-selection/sel-dept');
                 }
+                else {
+                    src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__["BasePagePage"].presentAlert('Alert', 'Please select at least one (1) department.');
+                }
+                return [2 /*return*/];
             });
         });
     };
-    WipPage.prototype.onClicked = function () {
-        console.log("BACK");
-    };
-    WipPage.prototype.downloadcsv = function () {
-        var _this = this;
-        this.downloadCSVReqModel.packaging = this.isPack ? '1' : '0';
-        this.downloadCSVReqModel.accumulated = '0'; // WIP no accumulated data
-        _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_10__["BasePagePage"].presentAlert('Extract Data', 'Are you sure want to extract data as file to your local storage?', function (res) {
-            // console.log('hi, ai am here: ', res.data.values.email);
-            _this.downloadCSVReqModel.date = _this.wipPackReqModel.date;
-            _this.service.presentLoading();
-            _this.service.callWebService(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].k_DOWNLOAD_CSV, _this.downloadCSVReqModel, function (res) {
-                if (res && res.data && res.data != '' && res.data != '-') {
-                    var arr = JSON.parse(res.data);
-                    var filepath = arr[0];
-                    var fullpath = /*Constants.k_ROOT_DOMAIN_URL + "/" +*/ filepath.filepath;
-                    window.open(fullpath, '_system');
-                }
-                _this.service.dismissLoading();
-            });
-        }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_3__["Constants"].b_OK] /*, [{
-          name: 'email',
-          type: 'email',
-          placeholder: 'Recipient email here'
-        }]*/);
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('tabGroup'),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], WipPage.prototype, "tabGroup", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('popSelect'),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonSelect"])
-    ], WipPage.prototype, "selectPop", void 0);
     WipPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-wip',
             template: __webpack_require__(/*! ./wip.page.html */ "./src/app/wip/wip.page.html"),
             styles: [__webpack_require__(/*! ./wip.page.scss */ "./src/app/wip/wip.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["AlertController"],
-            _services_base_service__WEBPACK_IMPORTED_MODULE_2__["BaseService"],
-            _ionic_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ModalController"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_8__["Router"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_8__["ActivatedRoute"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["NavController"],
+            src_app_services_base_service__WEBPACK_IMPORTED_MODULE_2__["BaseService"],
+            _ionic_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"]])
     ], WipPage);
     return WipPage;
-}(_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_10__["BasePagePage"]));
+}(src_app_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__["BasePagePage"]));
 
 
 
