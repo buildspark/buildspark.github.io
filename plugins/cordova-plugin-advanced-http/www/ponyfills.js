@@ -16,7 +16,7 @@ cordova.define("cordova-plugin-advanced-http.ponyfills", function(require, expor
     } else if (global.Blob && value instanceof global.Blob) {
       // mimic File instance by adding missing properties
       value.lastModifiedDate = new Date();
-      value.name = filename || '';
+      value.name = filename !== undefined ? filename : 'blob';
     } else {
       value = String(value);
     }
@@ -45,4 +45,5 @@ cordova.define("cordova-plugin-advanced-http.ponyfills", function(require, expor
 
   return interface;
 };
+
 });

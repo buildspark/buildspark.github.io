@@ -14,10 +14,6 @@ cordova.define("cordova-plugin-advanced-http.public-interface", function(require
     setRequestTimeout: setRequestTimeout,
     getFollowRedirect: getFollowRedirect,
     setFollowRedirect: setFollowRedirect,
-    // @DEPRECATED
-    disableRedirect: disableRedirect,
-    // @DEPRECATED
-    setSSLCertMode: setServerTrustMode,
     setServerTrustMode: setServerTrustMode,
     setClientAuthMode: setClientAuthMode,
     sendRequest: sendRequest,
@@ -62,7 +58,12 @@ cordova.define("cordova-plugin-advanced-http.public-interface", function(require
     helpers.checkForInvalidHeaderValue(value);
 
     globalConfigs.headers[host] = globalConfigs.headers[host] || {};
-    globalConfigs.headers[host][header] = value;
+
+    if (value === null) {
+      delete globalConfigs.headers[host][header];
+    } else {
+      globalConfigs.headers[host][header] = value;
+    }
   }
 
   function getDataSerializer() {
@@ -103,14 +104,6 @@ cordova.define("cordova-plugin-advanced-http.public-interface", function(require
 
   function setFollowRedirect(follow) {
     globalConfigs.followRedirect = helpers.checkFollowRedirectValue(follow);
-  }
-
-  // @DEPRECATED
-  function disableRedirect(disable, success, failure) {
-    helpers.handleMissingCallbacks(success, failure);
-
-    setFollowRedirect(!disable);
-    success();
   }
 
   function setServerTrustMode(mode, success, failure) {
@@ -154,7 +147,7 @@ cordova.define("cordova-plugin-advanced-http.public-interface", function(require
       case 'post':
       case 'put':
       case 'patch':
-        return helpers.processData(options.data, options.serializer, function(data) {
+        return helpers.processData(options.data, options.serializer, function (data) {
           exec(onSuccess, onFail, 'CordovaHttpPlugin', options.method, [url, data, options.serializer, headers, options.timeout, options.followRedirect, options.responseType]);
         });
       case 'upload':

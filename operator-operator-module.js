@@ -319,7 +319,7 @@ var OperatorPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button autoHide=\"false\"></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Operator\n    </ion-title>\n    <!-- <ion-buttons slot=\"end\" [hidden]=\"true\">\n      <ion-fab-button size=\"small\" (click)=\"closeMenu()\">\n        <ion-icon name=\"list-box\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons> -->\n    <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" color=\"danger\" (click)=\"onRefreshClicked()\">\n        <ion-icon name=\"refresh\"></ion-icon>\n      </ion-fab-button>\n      <ion-fab-button [disabled]=\"isButtonDisabled\" size=\"small\" color=\"danger\" (click)=\"onOptionClicked()\">\n        <ion-icon name=\"search\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <form (ngSubmit)=\"onSubmit(operatorForm)\" #operatorForm=\"ngForm\">\n    <ion-list>\n\n      <ion-item>\n\n        <!-- <ion-grid>2\n            <ion-row>\n              <ion-col size=\"10\">\n                <ion-label>Machine Name</ion-label>\n                <ion-input type=\"text\" placeholder=\"Machine Name\" maxlength=\"50\" required [(ngModel)]=\"strMachineName\"\n                  name=\"machineName\"></ion-input>\n              </ion-col>\n              <ion-col size=\"2\">\n                <ion-button class=\"ion-float-right\"color=\"primary\" (click)=\"presentModal()\">\n                  <ion-icon name=\"options\"></ion-icon>\n                </ion-button>\n              </ion-col>\n            </ion-row>\n          </ion-grid> -->\n\n\n        <ion-label>Machine: </ion-label>\n        <ion-input type=\"text\" maxlength=\"50\" required [(ngModel)]=\"strMachineName\" (ngModelChange)=\"keyboardChanged()\"\n          name=\"machineName\"></ion-input>\n        <!-- <ion-button class=\"ion-float-right\" [disabled]=\"isButtonDisabled\" (click)=\"onOptionClicked()\"> -->\n        <!-- <ion-icon name=\"options\"></ion-icon> -->\n        <!-- <p>Select Machine</p>\n        </ion-button> -->\n\n      </ion-item>\n\n      <ion-item *ngFor=\"let transfile of arrTransfile;\">\n        <ion-grid>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Transfile ID</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.TransfileID}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Job No</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.JobNo}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Process Code</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.ProcessCode}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Start Datetime</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{readable(transfile.StartTime) | date:'yyyy-MM-dd, HH:mm:ss'}}\n              </ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row [style.background-color]=\"statusColor\" [hidden]=\"isFlash == true\">\n            <ion-col>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col>\n              <ion-label style=\"text-align: right;\">{{transfile.Status}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row [style.background-color]=\"none\" [hidden]=\"isFlash == false\">\n            <ion-col>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col>\n              <ion-label style=\"text-align: right;\">{{transfile.Status}}</ion-label>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n      <ion-item *ngIf=\"isIdle == true\">\n        <ion-grid>\n          <ion-row [style.background-color]=\"statusIdle\">\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">Idle</ion-label>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>\n\n<ion-content [hidden]=\"true\">\n  <p *ngIf=\"barcodeData\">\n    Scanned: {{barcodeData['text']}} | {{barcodeData['format']}}\n  </p>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar position=\"bottom\">\n    <ion-grid>\n      <ion-row>\n        <ion-col col-6>\n          <ion-button class=\"obj-center\" color=\"warning\" (click)=\"clickFunction()\">\n            <div>\n              <p class=\"ion-no-margin\">Reset</p>\n            </div>\n          </ion-button>\n          <!-- <app-button [color]=\"'warning'\" [title]=\"'reset'\" (clicked)=\"clickFunction()\"></app-button> -->\n        </ion-col>\n        <ion-col col-6>\n\n          <div [hidden]=\"isMachineFound == true\">\n            <ion-button [disabled]=\"operatorForm.form.invalid\" class=\"obj-center\" (click)=\"onSearchJobClicked()\">\n              <p class=\"ion-no-margin\">Search Job</p>\n            </ion-button>\n          </div>\n\n          <div [hidden]=\"isMachineFound == false\">\n            <ion-button [disabled]=\"operatorForm.form.invalid\" color=\"danger\" class=\"obj-center\"\n              (click)=\"onMachineDownClicked()\">\n              <p class=\"ion-no-margin\">Machine Down</p>\n            </ion-button>\n          </div>\n\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button autoHide=\"false\"></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Operator\n    </ion-title>\n    <!-- <ion-buttons slot=\"end\" [hidden]=\"true\">\n      <ion-fab-button size=\"small\" (click)=\"closeMenu()\">\n        <ion-icon name=\"list-box\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons> -->\n    <ion-buttons slot=\"end\">\n      <ion-fab-button size=\"small\" color=\"danger\" (click)=\"onRefreshClicked()\">\n        <ion-icon name=\"refresh\"></ion-icon>\n      </ion-fab-button>\n      <ion-fab-button [disabled]=\"isButtonDisabled\" size=\"small\" color=\"danger\" (click)=\"onOptionClicked()\">\n        <ion-icon name=\"search\"></ion-icon>\n      </ion-fab-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <form (ngSubmit)=\"onSubmit(operatorForm)\" #operatorForm=\"ngForm\">\n    <ion-list>\n\n      <ion-item>\n\n        <!-- <ion-grid>\n            <ion-row>\n              <ion-col size=\"10\">\n                <ion-label>Machine Name</ion-label>\n                <ion-input type=\"text\" placeholder=\"Machine Name\" maxlength=\"50\" required [(ngModel)]=\"strMachineName\"\n                  name=\"machineName\"></ion-input>\n              </ion-col>\n              <ion-col size=\"2\">\n                <ion-button class=\"ion-float-right\"color=\"primary\" (click)=\"presentModal()\">\n                  <ion-icon name=\"options\"></ion-icon>\n                </ion-button>\n              </ion-col>\n            </ion-row>\n          </ion-grid> -->\n\n\n        <ion-label>Machine: </ion-label>\n        <ion-input type=\"text\" maxlength=\"50\" required [(ngModel)]=\"strMachineName\" (ngModelChange)=\"keyboardChanged()\"\n          name=\"machineName\"></ion-input>\n        <!-- <ion-button class=\"ion-float-right\" [disabled]=\"isButtonDisabled\" (click)=\"onOptionClicked()\"> -->\n        <!-- <ion-icon name=\"options\"></ion-icon> -->\n        <!-- <p>Select Machine</p>\n        </ion-button> -->\n\n      </ion-item>\n\n      <ion-item *ngFor=\"let transfile of arrTransfile;\">\n        <ion-grid>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Transfile ID</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.TransfileID}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Job No</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.JobNo}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Process Code</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{transfile.ProcessCode}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Start Datetime</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">{{readable(transfile.StartTime) | date:'yyyy-MM-dd, HH:mm:ss'}}\n              </ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row [style.background-color]=\"statusColor\" [hidden]=\"isFlash == true\">\n            <ion-col>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col>\n              <ion-label style=\"text-align: right;\">{{transfile.Status}}</ion-label>\n            </ion-col>\n          </ion-row>\n          <ion-row [style.background-color]=\"none\" [hidden]=\"isFlash == false\">\n            <ion-col>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col>\n              <ion-label style=\"text-align: right;\">{{transfile.Status}}</ion-label>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n      <ion-item *ngIf=\"isIdle == true\">\n        <ion-grid>\n          <ion-row [style.background-color]=\"statusIdle\">\n            <ion-col col-6>\n              <ion-label style=\"text-align: left; font-weight: bold;\">Status</ion-label>\n            </ion-col>\n            <ion-col col-6>\n              <ion-label style=\"text-align: right;\">Idle</ion-label>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n    </ion-list>\n\n  </form>\n\n</ion-content>\n\n<ion-content [hidden]=\"true\">\n  <p *ngIf=\"barcodeData\">\n    Scanned: {{barcodeData['text']}} | {{barcodeData['format']}}\n  </p>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar position=\"bottom\">\n    <ion-grid>\n      <ion-row>\n        <ion-col col-6>\n          <ion-button class=\"obj-center\" color=\"warning\"\n            (click)=\"onResetClicked()\">\n            <div>\n              <p class=\"ion-no-margin\">Reset</p>\n            </div>\n          </ion-button>\n        </ion-col>\n        <ion-col col-6>\n\n          <div [hidden]=\"isMachineFound == true\">\n            <ion-button [disabled]=\"operatorForm.form.invalid\" class=\"obj-center\" (click)=\"onSearchJobClicked()\">\n              <p class=\"ion-no-margin\">Search Job</p>\n            </ion-button>\n          </div>\n\n          <div [hidden]=\"isMachineFound == false\">\n            <ion-button [disabled]=\"operatorForm.form.invalid\" color=\"danger\" class=\"obj-center\"\n              (click)=\"onMachineDownClicked()\">\n              <p class=\"ion-no-margin\">Machine Down</p>\n            </ion-button>\n          </div>\n\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>"
 
 /***/ }),
 
@@ -330,7 +330,7 @@ module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-butt
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".obj-center {\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important; }\n\np {\n  text-shadow: 0px 2px 2px black; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvSU9OSUNfUFJPSkVDVF9NQUlOL3NyYy9hcHAvb3BlcmF0b3Ivb3BlcmF0b3IucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksd0JBQXdCO0VBQ3hCLGtDQUFrQztFQUNsQyw4QkFBOEIsRUFBQTs7QUFHbEM7RUFDSSw4QkFBOEIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL29wZXJhdG9yL29wZXJhdG9yLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5vYmotY2VudGVyIHtcbiAgICBkaXNwbGF5OiBmbGV4ICFpbXBvcnRhbnQ7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXIgIWltcG9ydGFudDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyICFpbXBvcnRhbnQ7XG59XG5cbnAge1xuICAgIHRleHQtc2hhZG93OiAwcHggMnB4IDJweCBibGFjazsgXG59Il19 */"
+module.exports = ".obj-center {\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important; }\n\np {\n  text-shadow: 0px 2px 2px black; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvaW5zaWdodC9zcmMvYXBwL29wZXJhdG9yL29wZXJhdG9yLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLHdCQUF3QjtFQUN4QixrQ0FBa0M7RUFDbEMsOEJBQThCLEVBQUE7O0FBR2xDO0VBQ0ksOEJBQThCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9vcGVyYXRvci9vcGVyYXRvci5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIub2JqLWNlbnRlciB7XG4gICAgZGlzcGxheTogZmxleCAhaW1wb3J0YW50O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyICFpbXBvcnRhbnQ7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlciAhaW1wb3J0YW50O1xufVxuXG5wIHtcbiAgICB0ZXh0LXNoYWRvdzogMHB4IDJweCAycHggYmxhY2s7IFxufSJdfQ== */"
 
 /***/ }),
 
@@ -374,7 +374,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var OperatorPage = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](OperatorPage, _super);
-    function OperatorPage(loadingCtrl, alertCtrl, navCtrl, service, storage, modalCtrl, barcodeScanner, menu, actionSheetCtrl, popoverCtrl) {
+    function OperatorPage(loadingCtrl, alertCtrl, navCtrl, service, storage, modalCtrl, barcodeScanner) {
         var _this = _super.call(this, loadingCtrl, alertCtrl) || this;
         _this.loadingCtrl = loadingCtrl;
         _this.alertCtrl = alertCtrl;
@@ -383,9 +383,6 @@ var OperatorPage = /** @class */ (function (_super) {
         _this.storage = storage;
         _this.modalCtrl = modalCtrl;
         _this.barcodeScanner = barcodeScanner;
-        _this.menu = menu;
-        _this.actionSheetCtrl = actionSheetCtrl;
-        _this.popoverCtrl = popoverCtrl;
         _this.statusColor = 'none';
         _this.statusDown = "#E62C04";
         _this.statusRunning = "#30FA14";
@@ -399,7 +396,6 @@ var OperatorPage = /** @class */ (function (_super) {
         _this.isFlash = false;
         _this.tick = 500;
         _this.isButtonDisabled = false;
-        _this.isTapped = false;
         _this.transfileReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_5__["TransfileModel"]();
         _this.arrTransfile = [];
         _this.issueMachineDownReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_5__["IssueMDownModel"]();
@@ -407,6 +403,7 @@ var OperatorPage = /** @class */ (function (_super) {
         _this.smsReqModel = new _data_model_base_model__WEBPACK_IMPORTED_MODULE_5__["SMSModel"]();
         return _this;
     }
+    ;
     OperatorPage.prototype.ngOnInit = function () {
         var _this = this;
         this.countDown = Object(rxjs__WEBPACK_IMPORTED_MODULE_11__["timer"])(0, this.tick).subscribe(function () {
@@ -511,97 +508,12 @@ var OperatorPage = /** @class */ (function (_super) {
         this.storage.remove(_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].c_OP_MACHINE);
     };
     OperatorPage.prototype.onResetClicked = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var element, error_1, element, error_2, element, error_3, element, error_4;
-            var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.actionSheetCtrl.getTop()];
-                    case 1:
-                        element = _a.sent();
-                        if (element) {
-                            element.dismiss();
-                            return [2 /*return*/];
-                        }
-                        return [3 /*break*/, 3];
-                    case 2:
-                        error_1 = _a.sent();
-                        return [3 /*break*/, 3];
-                    case 3:
-                        _a.trys.push([3, 5, , 6]);
-                        return [4 /*yield*/, this.popoverCtrl.getTop()];
-                    case 4:
-                        element = _a.sent();
-                        if (element) {
-                            element.dismiss();
-                            return [2 /*return*/];
-                        }
-                        return [3 /*break*/, 6];
-                    case 5:
-                        error_2 = _a.sent();
-                        return [3 /*break*/, 6];
-                    case 6:
-                        _a.trys.push([6, 8, , 9]);
-                        return [4 /*yield*/, this.modalCtrl.getTop()];
-                    case 7:
-                        element = _a.sent();
-                        if (element) {
-                            element.dismiss();
-                            return [2 /*return*/];
-                        }
-                        return [3 /*break*/, 9];
-                    case 8:
-                        error_3 = _a.sent();
-                        console.log(error_3);
-                        return [3 /*break*/, 9];
-                    case 9:
-                        _a.trys.push([9, 11, , 12]);
-                        return [4 /*yield*/, this.menu.getOpen()];
-                    case 10:
-                        element = _a.sent();
-                        if (element) {
-                            this.menu.close();
-                            return [2 /*return*/];
-                        }
-                        return [3 /*break*/, 12];
-                    case 11:
-                        error_4 = _a.sent();
-                        return [3 /*break*/, 12];
-                    case 12:
-                        if (this.isTapped == false) {
-                            this.isTapped = true;
-                            _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_8__["BasePagePage"].presentAlert('Alert', 'Are you sure want to reset?', function (res) {
-                                if (res.role = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK) {
-                                    _this.resetField();
-                                    _this.isTapped = false;
-                                }
-                            }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK]);
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    OperatorPage.prototype.clickFunction = function () {
         var _this = this;
-        if (this.isTapped == false) {
-            // console.log('single clickFunction');
-            // this.isTapped = true;
-            // setTimeout(() => {
-            //   this.isTapped = false;
-            //   console.log('single isTapped: ', this.isTapped);
-            // }, 5000);
-            _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_8__["BasePagePage"].presentAlert('Alert', 'Are you sure want to reset?', function (res) {
-                if (res.role = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK) {
-                    _this.resetField();
-                }
-            }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK]);
-        }
-    };
-    OperatorPage.prototype.dclickFunction = function () {
-        console.log('dclickFunction');
+        _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_8__["BasePagePage"].presentAlert('Alert', 'Are you sure want to reset?', function (res) {
+            if (res.role = _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK) {
+                _this.resetField();
+            }
+        }, [_data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_CANCEL, _data_model_constant_model__WEBPACK_IMPORTED_MODULE_6__["Constants"].b_OK]);
     };
     OperatorPage.prototype.numberOnlyValidation = function (event) {
         var pattern = /[0-9]/;
@@ -798,10 +710,7 @@ var OperatorPage = /** @class */ (function (_super) {
             _services_base_service__WEBPACK_IMPORTED_MODULE_4__["BaseService"],
             _ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"],
-            _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__["BarcodeScanner"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]])
+            _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__["BarcodeScanner"]])
     ], OperatorPage);
     return OperatorPage;
 }(_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_8__["BasePagePage"]));
@@ -828,7 +737,7 @@ module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Select Departmen
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".obj-center {\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvSU9OSUNfUFJPSkVDVF9NQUlOL3NyYy9hcHAvb3BlcmF0b3Ivc2VsLWRlcHQvc2VsLWRlcHQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSx3QkFBd0I7RUFDeEIsa0NBQWtDO0VBQ2xDLDhCQUE4QixFQUFBIiwiZmlsZSI6InNyYy9hcHAvb3BlcmF0b3Ivc2VsLWRlcHQvc2VsLWRlcHQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIub2JqLWNlbnRlciB7XG4gICAgZGlzcGxheTogZmxleCAhaW1wb3J0YW50O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyICFpbXBvcnRhbnQ7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlciAhaW1wb3J0YW50O1xufSJdfQ== */"
+module.exports = ".obj-center {\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvaW5zaWdodC9zcmMvYXBwL29wZXJhdG9yL3NlbC1kZXB0L3NlbC1kZXB0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksd0JBQXdCO0VBQ3hCLGtDQUFrQztFQUNsQyw4QkFBOEIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL29wZXJhdG9yL3NlbC1kZXB0L3NlbC1kZXB0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm9iai1jZW50ZXIge1xuICAgIGRpc3BsYXk6IGZsZXggIWltcG9ydGFudDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlciAhaW1wb3J0YW50O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXIgIWltcG9ydGFudDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1039,7 +948,7 @@ module.exports = "<ion-header class=\"custom-header\">\n  <ion-toolbar>\n    <io
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".obj-center {\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvSU9OSUNfUFJPSkVDVF9NQUlOL3NyYy9hcHAvb3BlcmF0b3Ivc2VsLW1hY2hpbmUvc2VsLW1hY2hpbmUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSx3QkFBd0I7RUFDeEIsa0NBQWtDO0VBQ2xDLDhCQUE4QixFQUFBIiwiZmlsZSI6InNyYy9hcHAvb3BlcmF0b3Ivc2VsLW1hY2hpbmUvc2VsLW1hY2hpbmUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIub2JqLWNlbnRlciB7XG4gICAgZGlzcGxheTogZmxleCAhaW1wb3J0YW50O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyICFpbXBvcnRhbnQ7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlciAhaW1wb3J0YW50O1xufSJdfQ== */"
+module.exports = ".obj-center {\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvaW5zaWdodC9zcmMvYXBwL29wZXJhdG9yL3NlbC1tYWNoaW5lL3NlbC1tYWNoaW5lLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksd0JBQXdCO0VBQ3hCLGtDQUFrQztFQUNsQyw4QkFBOEIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL29wZXJhdG9yL3NlbC1tYWNoaW5lL3NlbC1tYWNoaW5lLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm9iai1jZW50ZXIge1xuICAgIGRpc3BsYXk6IGZsZXggIWltcG9ydGFudDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlciAhaW1wb3J0YW50O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXIgIWltcG9ydGFudDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1192,7 +1101,7 @@ module.exports = "<ion-header class=\"custom-header\">\n  <ion-toolbar>\n    <io
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".obj-center {\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvSU9OSUNfUFJPSkVDVF9NQUlOL3NyYy9hcHAvb3BlcmF0b3Ivc2VsLXByb2Nlc3Mvc2VsLXByb2Nlc3MuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSx3QkFBd0I7RUFDeEIsa0NBQWtDO0VBQ2xDLDhCQUE4QixFQUFBIiwiZmlsZSI6InNyYy9hcHAvb3BlcmF0b3Ivc2VsLXByb2Nlc3Mvc2VsLXByb2Nlc3MuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIub2JqLWNlbnRlciB7XG4gICAgZGlzcGxheTogZmxleCAhaW1wb3J0YW50O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyICFpbXBvcnRhbnQ7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlciAhaW1wb3J0YW50O1xufSJdfQ== */"
+module.exports = ".obj-center {\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvaW5zaWdodC9zcmMvYXBwL29wZXJhdG9yL3NlbC1wcm9jZXNzL3NlbC1wcm9jZXNzLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksd0JBQXdCO0VBQ3hCLGtDQUFrQztFQUNsQyw4QkFBOEIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL29wZXJhdG9yL3NlbC1wcm9jZXNzL3NlbC1wcm9jZXNzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm9iai1jZW50ZXIge1xuICAgIGRpc3BsYXk6IGZsZXggIWltcG9ydGFudDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlciAhaW1wb3J0YW50O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXIgIWltcG9ydGFudDtcbn0iXX0= */"
 
 /***/ }),
 

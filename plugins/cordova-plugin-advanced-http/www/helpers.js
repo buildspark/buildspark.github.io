@@ -187,7 +187,9 @@ cordova.define("cordova-plugin-advanced-http.helpers", function(require, exports
   }
 
   function checkForInvalidHeaderValue(value) {
-    if (jsUtil.getTypeOf(value) !== 'String') {
+    var type = jsUtil.getTypeOf(value);
+
+    if (type !== 'String' && type !== 'Null') {
       throw new Error(messages.INVALID_HEADER_VALUE);
     }
 
@@ -451,7 +453,7 @@ cordova.define("cordova-plugin-advanced-http.helpers", function(require, exports
       reader.onload = function () {
         result.buffers.push(base64.fromArrayBuffer(reader.result));
         result.names.push(entry.value[0]);
-        result.fileNames.push(entry.value[1].name || 'blob');
+        result.fileNames.push(entry.value[1].name !== undefined ? entry.value[1].name : 'blob');
         result.types.push(entry.value[1].type || '');
         processFormDataIterator(iterator, textEncoder, result, onFinished);
       };

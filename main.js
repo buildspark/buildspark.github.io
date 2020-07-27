@@ -765,7 +765,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./shared/base-page/base-page.page */ "./src/app/shared/base-page/base-page.page.ts");
 /* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _ionic_native_firebase_x_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/firebase-x/ngx */ "./node_modules/@ionic-native/firebase-x/ngx/index.js");
 
 
 
@@ -777,12 +776,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // import { FCM } from '@ionic-native/fcm/ngx';
-
+// import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 var AppComponent = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](AppComponent, _super);
-    function AppComponent(loadingCtrl, alertCtrl, platform, statusBar, service, network, navCtrl, menuCtrl, modalCtrl, menu, actionSheetCtrl, popoverCtrl, router, toastCtrl, appVersion, meta, 
-    // private fcm: FCM,
-    firebaseX) {
+    function AppComponent(loadingCtrl, alertCtrl, platform, statusBar, service, network, navCtrl, menuCtrl, modalCtrl, menu, actionSheetCtrl, popoverCtrl, router, toastCtrl, appVersion, meta) {
         var _this = _super.call(this, loadingCtrl, alertCtrl) || this;
         _this.loadingCtrl = loadingCtrl;
         _this.alertCtrl = alertCtrl;
@@ -800,7 +797,6 @@ var AppComponent = /** @class */ (function (_super) {
         _this.toastCtrl = toastCtrl;
         _this.appVersion = appVersion;
         _this.meta = meta;
-        _this.firebaseX = firebaseX;
         _this.appPages = [
             {
                 title: 'Operator',
@@ -903,15 +899,15 @@ var AppComponent = /** @class */ (function (_super) {
             // });
             // unsubscribe from a topic
             // this.fcm.unsubscribeFromTopic('offers');
-            _this.firebaseX.grantPermission();
-            _this.firebaseX.getToken()
-                .then(function (token) { return console.log("The token is " + token); }) // save the token server-side and use it to push notifications to this device
-                .catch(function (error) { return console.error('Error getting token', error); });
-            _this.firebaseX.onMessageReceived()
-                .subscribe(function (data) { return console.log("User opened a notification " + data); });
-            _this.firebaseX.onTokenRefresh()
-                .subscribe(function (token) { return console.log("Got a new token " + token); });
-            _this.firebaseX.subscribe('latest_news');
+            // this.firebaseX.grantPermission();
+            // this.firebaseX.getToken()
+            //   .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device
+            //   .catch(error => console.error('Error getting token', error));
+            // this.firebaseX.onMessageReceived()
+            //   .subscribe(data => console.log(`User opened a notification ${data}`));
+            // this.firebaseX.onTokenRefresh()
+            //   .subscribe((token: string) => console.log(`Got a new token ${token}`));
+            // this.firebaseX.subscribe('latest_news');
         });
         this.router.events.subscribe(function (event) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
             var arrPath, element, error_1, element, error_2, element, error_3, element, error_4;
@@ -1199,8 +1195,7 @@ var AppComponent = /** @class */ (function (_super) {
             _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
             _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_8__["AppVersion"],
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["Meta"],
-            _ionic_native_firebase_x_ngx__WEBPACK_IMPORTED_MODULE_10__["FirebaseX"]])
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["Meta"]])
     ], AppComponent);
     return AppComponent;
 }(_shared_base_page_base_page_page__WEBPACK_IMPORTED_MODULE_7__["BasePagePage"]));
@@ -1236,7 +1231,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
 /* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
 /* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
-/* harmony import */ var _ionic_native_firebase_x_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/firebase-x/ngx */ "./node_modules/@ionic-native/firebase-x/ngx/index.js");
 
 
 
@@ -1256,7 +1250,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // FCM
 // import { FCM } from '@ionic-native/fcm/ngx';
-
+// import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -1281,8 +1275,6 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_15__["BarcodeScanner"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
                 _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_16__["AppVersion"],
-                // FCM,
-                _ionic_native_firebase_x_ngx__WEBPACK_IMPORTED_MODULE_17__["FirebaseX"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
@@ -1308,8 +1300,8 @@ __webpack_require__.r(__webpack_exports__);
 var Constants = /** @class */ (function () {
     function Constants() {
     }
-    Constants.k_ROOT_DOMAIN_URL = "https://wshqmobile.thunderprint.org";
-    Constants.k_BASE_WS_URL = "https://wshqmobile.thunderprint.org/HQ_Service.asmx";
+    // public static readonly k_ROOT_DOMAIN_URL = "https://wshqmobile.thunderprint.org"
+    Constants.k_BASE_WS_URL = "http://wshqmobile.thunderprint.org/HQ_Service.asmx";
     Constants.k_LOGIN = "TPInsight_MobileLogIn";
     Constants.k_GET_DEVICE = "TPInsight_GetDevice";
     Constants.k_DAILY_USAGE = "TPInsight_GetDeviceDailyUsageByDay";
@@ -1582,10 +1574,9 @@ var BaseService = /** @class */ (function () {
         }
     };
     BaseService.prototype.screenSize = function () {
-        var _this = this;
         this.plt.ready().then(function (readySource) {
-            console.log('Width: ' + _this.plt.width());
-            console.log('Height: ' + _this.plt.height());
+            // console.log('Width: ' + this.plt.width());
+            // console.log('Height: ' + this.plt.height());
         });
         return {
             'screenWidth': this.plt.width(),
@@ -1796,9 +1787,6 @@ var BasePagePage = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (BasePagePage_1.alertController.getTop()['__zone_symbol__value']) {
-                            BasePagePage_1.alertController.dismiss();
-                        }
                         vm = this;
                         if (!!vm.alertPresented) return [3 /*break*/, 4];
                         vm.alertPresented = true;
@@ -1824,7 +1812,8 @@ var BasePagePage = /** @class */ (function () {
                                 inputs: input,
                                 subHeader: '',
                                 message: message,
-                                buttons: arrButton
+                                buttons: arrButton,
+                                backdropDismiss: false
                             })];
                     case 1:
                         alert_1 = _a.sent();
@@ -1927,7 +1916,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/xiangwei/Documents/IONIC_PROJECT_MAIN/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/xiangwei/Documents/insight/src/main.ts */"./src/main.ts");
 
 
 /***/ })

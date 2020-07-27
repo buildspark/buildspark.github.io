@@ -887,87 +887,6 @@ var OutputDeptSelectionPage = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ "./src/app/shared/button/button.component.html":
-/*!*****************************************************!*\
-  !*** ./src/app/shared/button/button.component.html ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<ion-button class=\"obj-center\" color=\"{{color}}\" (click)=\"clickFunction($event)\">\n  <div>\n    <p class=\"ion-no-margin\">{{title}}</p>\n  </div>\n</ion-button>"
-
-/***/ }),
-
-/***/ "./src/app/shared/button/button.component.scss":
-/*!*****************************************************!*\
-  !*** ./src/app/shared/button/button.component.scss ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".obj-center {\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important; }\n\np {\n  text-shadow: 0px 2px 2px black; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvSU9OSUNfUFJPSkVDVF9NQUlOL3NyYy9hcHAvc2hhcmVkL2J1dHRvbi9idXR0b24uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSx3QkFBd0I7RUFDeEIsa0NBQWtDO0VBQ2xDLDhCQUE4QixFQUFBOztBQUdsQztFQUNJLDhCQUE4QixFQUFBIiwiZmlsZSI6InNyYy9hcHAvc2hhcmVkL2J1dHRvbi9idXR0b24uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIub2JqLWNlbnRlciB7XG4gICAgZGlzcGxheTogZmxleCAhaW1wb3J0YW50O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyICFpbXBvcnRhbnQ7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlciAhaW1wb3J0YW50O1xufVxuXG5wIHtcbiAgICB0ZXh0LXNoYWRvdzogMHB4IDJweCAycHggYmxhY2s7IFxufSJdfQ== */"
-
-/***/ }),
-
-/***/ "./src/app/shared/button/button.component.ts":
-/*!***************************************************!*\
-  !*** ./src/app/shared/button/button.component.ts ***!
-  \***************************************************/
-/*! exports provided: ButtonComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ButtonComponent", function() { return ButtonComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var ButtonComponent = /** @class */ (function () {
-    function ButtonComponent() {
-        this.clicked = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.isTapped = false;
-    }
-    ButtonComponent.prototype.ngOnInit = function () { };
-    ButtonComponent.prototype.clickFunction = function (e) {
-        var _this = this;
-        this.clicked.emit(e);
-        if (this.isTapped == false) {
-            console.log('single clickFunction');
-            this.isTapped = true;
-            setTimeout(function () {
-                _this.isTapped = false;
-                console.log('single isTapped: ', _this.isTapped);
-            }, 5000);
-        }
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], ButtonComponent.prototype, "color", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], ButtonComponent.prototype, "title", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], ButtonComponent.prototype, "clicked", void 0);
-    ButtonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-button',
-            template: __webpack_require__(/*! ./button.component.html */ "./src/app/shared/button/button.component.html"),
-            styles: [__webpack_require__(/*! ./button.component.scss */ "./src/app/shared/button/button.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], ButtonComponent);
-    return ButtonComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/shared/canvas/canvas.component.html":
 /*!*****************************************************!*\
   !*** ./src/app/shared/canvas/canvas.component.html ***!
@@ -986,7 +905,7 @@ module.exports = "<div>\n  <ion-card class=\"welcome-card\">\n    <ion-card-head
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".chartWrapper {\n  position: relative; }\n\n.chartWrapper > canvas {\n  position: absolute;\n  left: 0;\n  top: 0;\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n\n.chartAreaWrapper {\n  width: 600px;\n  overflow-x: scroll; }\n\n.scrolling-wrapper {\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap;\n  pointer-events: auto; }\n\n.scrolling-wrapper .card {\n    display: inline-block; }\n\n.chart-top {\n  position: relative;\n  z-index: 100; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvSU9OSUNfUFJPSkVDVF9NQUlOL3NyYy9hcHAvc2hhcmVkL2NhbnZhcy9jYW52YXMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBa0IsRUFBQTs7QUFHdEI7RUFDSSxrQkFBa0I7RUFDbEIsT0FBTztFQUNQLE1BQU07RUFDTixvQkFBb0I7RUFDcEIseUJBQWlCO0tBQWpCLHNCQUFpQjtNQUFqQixxQkFBaUI7VUFBakIsaUJBQWlCLEVBQUE7O0FBR3JCO0VBQ0ksWUFBWTtFQUNaLGtCQUFrQixFQUFBOztBQUd0QjtFQUNJLGtCQUFrQjtFQUNsQixrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLG9CQUFvQixFQUFBOztBQUp4QjtJQU9NLHFCQUFxQixFQUFBOztBQUkzQjtFQUNJLGtCQUFrQjtFQUdsQixZQUFZLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9zaGFyZWQvY2FudmFzL2NhbnZhcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jaGFydFdyYXBwZXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLmNoYXJ0V3JhcHBlciA+IGNhbnZhcyB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGxlZnQ6IDA7XG4gICAgdG9wOiAwO1xuICAgIHBvaW50ZXItZXZlbnRzOiBub25lO1xuICAgIHVzZXItc2VsZWN0OiBub25lO1xufVxuXG4uY2hhcnRBcmVhV3JhcHBlciB7XG4gICAgd2lkdGg6IDYwMHB4O1xuICAgIG92ZXJmbG93LXg6IHNjcm9sbDtcbn1cblxuLnNjcm9sbGluZy13cmFwcGVyIHtcbiAgICBvdmVyZmxvdy14OiBzY3JvbGw7XG4gICAgb3ZlcmZsb3cteTogaGlkZGVuO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gICAgcG9pbnRlci1ldmVudHM6IGF1dG87XG4gICAgXG4gICAgLmNhcmQge1xuICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIH1cbiAgfVxuXG4uY2hhcnQtdG9wIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgLy8gbGVmdDogMHB4O1xuICAgIC8vIHRvcDogMHB4O1xuICAgIHotaW5kZXg6IDEwMDtcbn0iXX0= */"
+module.exports = ".chartWrapper {\n  position: relative; }\n\n.chartWrapper > canvas {\n  position: absolute;\n  left: 0;\n  top: 0;\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n\n.chartAreaWrapper {\n  width: 600px;\n  overflow-x: scroll; }\n\n.scrolling-wrapper {\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap;\n  pointer-events: auto; }\n\n.scrolling-wrapper .card {\n    display: inline-block; }\n\n.chart-top {\n  position: relative;\n  z-index: 100; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy94aWFuZ3dlaS9Eb2N1bWVudHMvaW5zaWdodC9zcmMvYXBwL3NoYXJlZC9jYW52YXMvY2FudmFzLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQWtCLEVBQUE7O0FBR3RCO0VBQ0ksa0JBQWtCO0VBQ2xCLE9BQU87RUFDUCxNQUFNO0VBQ04sb0JBQW9CO0VBQ3BCLHlCQUFpQjtLQUFqQixzQkFBaUI7TUFBakIscUJBQWlCO1VBQWpCLGlCQUFpQixFQUFBOztBQUdyQjtFQUNJLFlBQVk7RUFDWixrQkFBa0IsRUFBQTs7QUFHdEI7RUFDSSxrQkFBa0I7RUFDbEIsa0JBQWtCO0VBQ2xCLG1CQUFtQjtFQUNuQixvQkFBb0IsRUFBQTs7QUFKeEI7SUFPTSxxQkFBcUIsRUFBQTs7QUFJM0I7RUFDSSxrQkFBa0I7RUFHbEIsWUFBWSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvc2hhcmVkL2NhbnZhcy9jYW52YXMuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2hhcnRXcmFwcGVyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5jaGFydFdyYXBwZXIgPiBjYW52YXMge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBsZWZ0OiAwO1xuICAgIHRvcDogMDtcbiAgICBwb2ludGVyLWV2ZW50czogbm9uZTtcbiAgICB1c2VyLXNlbGVjdDogbm9uZTtcbn1cblxuLmNoYXJ0QXJlYVdyYXBwZXIge1xuICAgIHdpZHRoOiA2MDBweDtcbiAgICBvdmVyZmxvdy14OiBzY3JvbGw7XG59XG5cbi5zY3JvbGxpbmctd3JhcHBlciB7XG4gICAgb3ZlcmZsb3cteDogc2Nyb2xsO1xuICAgIG92ZXJmbG93LXk6IGhpZGRlbjtcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICAgIHBvaW50ZXItZXZlbnRzOiBhdXRvO1xuICAgIFxuICAgIC5jYXJkIHtcbiAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB9XG4gIH1cblxuLmNoYXJ0LXRvcCB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIC8vIGxlZnQ6IDBweDtcbiAgICAvLyB0b3A6IDBweDtcbiAgICB6LWluZGV4OiAxMDA7XG59Il19 */"
 
 /***/ }),
 
@@ -1076,7 +995,7 @@ var CanvasComponent = /** @class */ (function () {
         var usageChart = {
             scales: {
                 xAxes: [{
-                        barPercentage: 0.9,
+                        // barPercentage: 0.9,
                         gridLines: {
                             offsetGridLines: true
                         },
@@ -1180,7 +1099,7 @@ var CanvasComponent = /** @class */ (function () {
         var impressionChart = {
             scales: {
                 xAxes: [{
-                        barPercentage: 0.9,
+                        // barPercentage: 0.9,
                         gridLines: {
                             offsetGridLines: true
                         },
@@ -1304,7 +1223,7 @@ var CanvasComponent = /** @class */ (function () {
         var wipChart = {
             scales: {
                 xAxes: [{
-                        barPercentage: 0.9,
+                        // barPercentage: 0.9,
                         gridLines: {
                             offsetGridLines: true
                         },
@@ -1660,8 +1579,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _wip_wip_dept_selection_wip_dept_selection_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../wip/wip-dept-selection/wip-dept-selection.page */ "./src/app/wip/wip-dept-selection/wip-dept-selection.page.ts");
 /* harmony import */ var _output_output_dept_selection_output_dept_selection_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../output/output-dept-selection/output-dept-selection.page */ "./src/app/output/output-dept-selection/output-dept-selection.page.ts");
-/* harmony import */ var _button_button_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./button/button.component */ "./src/app/shared/button/button.component.ts");
-
 
 
 
@@ -1676,14 +1593,14 @@ var SharedModule = /** @class */ (function () {
     }
     SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_canvas_canvas_component__WEBPACK_IMPORTED_MODULE_3__["CanvasComponent"], _button_button_component__WEBPACK_IMPORTED_MODULE_9__["ButtonComponent"], _select_machine_select_machine_component__WEBPACK_IMPORTED_MODULE_5__["SelectMachineComponent"], _wip_wip_dept_selection_wip_dept_selection_page__WEBPACK_IMPORTED_MODULE_7__["WipDeptSelectionPage"], _output_output_dept_selection_output_dept_selection_page__WEBPACK_IMPORTED_MODULE_8__["OutputDeptSelectionPage"]],
+            declarations: [_canvas_canvas_component__WEBPACK_IMPORTED_MODULE_3__["CanvasComponent"], _select_machine_select_machine_component__WEBPACK_IMPORTED_MODULE_5__["SelectMachineComponent"], _wip_wip_dept_selection_wip_dept_selection_page__WEBPACK_IMPORTED_MODULE_7__["WipDeptSelectionPage"], _output_output_dept_selection_output_dept_selection_page__WEBPACK_IMPORTED_MODULE_8__["OutputDeptSelectionPage"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"]
             ],
             entryComponents: [_select_machine_select_machine_component__WEBPACK_IMPORTED_MODULE_5__["SelectMachineComponent"]],
-            exports: [_canvas_canvas_component__WEBPACK_IMPORTED_MODULE_3__["CanvasComponent"], _button_button_component__WEBPACK_IMPORTED_MODULE_9__["ButtonComponent"], _wip_wip_dept_selection_wip_dept_selection_page__WEBPACK_IMPORTED_MODULE_7__["WipDeptSelectionPage"], _output_output_dept_selection_output_dept_selection_page__WEBPACK_IMPORTED_MODULE_8__["OutputDeptSelectionPage"]]
+            exports: [_canvas_canvas_component__WEBPACK_IMPORTED_MODULE_3__["CanvasComponent"], _wip_wip_dept_selection_wip_dept_selection_page__WEBPACK_IMPORTED_MODULE_7__["WipDeptSelectionPage"], _output_output_dept_selection_output_dept_selection_page__WEBPACK_IMPORTED_MODULE_8__["OutputDeptSelectionPage"]]
         })
     ], SharedModule);
     return SharedModule;
