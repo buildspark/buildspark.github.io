@@ -1301,7 +1301,7 @@ var Constants = /** @class */ (function () {
     function Constants() {
     }
     // public static readonly k_ROOT_DOMAIN_URL = "https://wshqmobile.thunderprint.org"
-    Constants.k_BASE_WS_URL = "http://wshqmobile.thunderprint.org/HQ_Service.asmx";
+    Constants.k_BASE_WS_URL = "https://wshqmobile.thunderprint.org/HQ_Service.asmx";
     Constants.k_LOGIN = "TPInsight_MobileLogIn";
     Constants.k_GET_DEVICE = "TPInsight_GetDevice";
     Constants.k_DAILY_USAGE = "TPInsight_GetDeviceDailyUsageByDay";
